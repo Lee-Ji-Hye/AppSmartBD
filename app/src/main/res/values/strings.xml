@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">smartBuilding</string>
+    <!-- 은지 -->
+    <string name="title_activity_parking_buildng_info">parking_buildng_info</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <!--명근 시작-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <!--명근 종료-->
+
+    <!--지혜 시작-->
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string-array name="spinner_counts">
+        <item>10분후</item>
+        <item>20분후</item>
+        <item>30분후</item>
+        <item>40분후</item>
+        <item>1시간후</item>
+    </string-array>
+    <!--지혜 종료-->
+</resources>

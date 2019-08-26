@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    tools:context=".activity.RentalActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#377dff">
+
+        <ImageButton
+            android:id="@+id/btn_OpenDrawer"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/menubtn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="사무실 임대"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                app:tabMode="scrollable" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="629dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onLastLocationButtonClicked"
+            android:text="현재 위치" />
+
+        <fragment
+            android:id="@+id/map"
+            class="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="676dp" />
+    </FrameLayout>
+
+    <!-- DrawerLayout -->
+    <RelativeLayout
+        android:id="@+id/drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:layout_gravity="start">
+
+        <RelativeLayout
+            android:id="@+id/firstRLayout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#377dff"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userIdView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="20dp"
+                android:text="000 님"
+                android:textColor="#ffffff"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userIdView"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:text="환영합니다"
+                android:textColor="#ffffff"
+                android:textSize="24dp" />
+
+            <Button
+                android:id="@+id/mypageBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="내 정보"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/firstRLayout">
+
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="로그인"
+                android:textAlignment="center"
+                android:background="#cccccc"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <Button
+                android:id="@+id/btnSingUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:textAlignment="center"
+                android:background="#cccccc"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_CloseDrawer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="닫기" />
+    </RelativeLayout>
+</LinearLayout>

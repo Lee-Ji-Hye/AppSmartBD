@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Main -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#fff">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="#FCFCFC"
+        android:gravity="center"
+        android:text="안녕하세요. 스마트 빌딩입니다." />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/main_image" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Got a question?"
+            android:textColor="#fff"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnParking"
+            android:layout_margin="5dp"
+            android:background="#ffffff"
+            android:text="주차장"
+            android:textColor="#377dff"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_height" />
+
+        <Button
+            android:id="@+id/btnFood"
+            android:layout_margin="5dp"
+            android:background="#ffffff"
+            android:text="음식점"
+            android:textColor="#377dff"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_height" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bntRental"
+            android:layout_margin="5dp"
+            android:background="#ffffff"
+            android:text="사무실 임대"
+            android:textColor="#377dff"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_height" />
+
+        <Button
+            android:id="@+id/bntReservation"
+            android:layout_margin="5dp"
+            android:background="#ffffff"
+            android:text="회의실 예약"
+            android:textColor="#377dff"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_height" />
+    </LinearLayout>
+</LinearLayout>

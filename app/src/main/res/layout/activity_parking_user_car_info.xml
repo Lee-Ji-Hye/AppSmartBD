@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ParkingUserCarInfo"
+    android:orientation="vertical">
+
+    <!--상단바-->
+    <androidx.appcompat.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_left_arrow" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:text="소유한 차량정보를 입력하고 \n 더욱 편리한 주차서비스이용하세요."/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/radius_border"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="차량등록"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
