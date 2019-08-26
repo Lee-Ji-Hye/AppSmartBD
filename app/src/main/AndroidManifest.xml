@@ -27,8 +27,7 @@
         <activity android:name=".activity.parkingsearchActivity" />
         <activity android:name=".activity.ParkingBuildinginfo" />
         <activity android:name=".activity.ParkingCarSearchDetail" />
-        <activity android:name=".activity.ParkingTicketPayment" />
-
+        <activity android:name=".activity.ParkingTicketPayment"/>
         <!--명근 액티비 -->
         <activity android:name=".activity.SignInActivity" />
         <activity android:name=".activity.SignUpActivity" />
