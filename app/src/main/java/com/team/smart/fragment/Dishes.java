@@ -28,9 +28,9 @@ public class Dishes extends Fragment {
     private List<Foods.Food> datumList;
 
     public Dishes() {
-        //if(apiInterface == null) {
+        if(apiInterface == null) {
             apiInterface = APIClient.getClient().create(APIInterface.class);
-        //}
+        }
     }
 
     //통신

@@ -1,13 +1,19 @@
 package com.team.smart.network;
 
 import com.team.smart.vo.FoodDetailVO;
+import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
 import com.team.smart.vo.Foods;
 
+import java.util.HashMap;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface APIInterface
 {
@@ -32,5 +38,10 @@ public interface APIInterface
     @GET("/smart/api/food/getFoodMenuList")
     Call<FoodDetailVO> foodMenuList(@Query("comp_seq") String comp_seq);
     //지혜 종료
+
+    @POST("/kakao/payTest")
+    Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
+    @GET
+    Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
 
 }
