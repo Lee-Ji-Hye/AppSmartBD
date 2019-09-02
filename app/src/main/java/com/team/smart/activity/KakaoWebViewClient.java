@@ -7,11 +7,14 @@ import android.net.Uri;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 import com.team.smart.vo.FoodOrderVO;
+
+import org.web3j.crypto.Hash;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
@@ -25,11 +28,13 @@ import retrofit2.Response;
 public class KakaoWebViewClient extends WebViewClient {
     private Activity activity;
     private String f_ocode;
+    private String theme;
 
     private APIInterface apiInterface;
 
-    public KakaoWebViewClient(Activity activity, String f_ocode) {
+    public KakaoWebViewClient(Activity activity, String theme, String f_ocode) {
         this.activity = activity;
+        this.theme = theme;
         this.f_ocode = f_ocode;
     }
 
@@ -97,20 +102,40 @@ public class KakaoWebViewClient extends WebViewClient {
                     if(response.code()==200) {
                         HashMap resource = response.body();
 
-                        Gson gson3 = new Gson();
-                        String json3 = gson3.toJson(resource);
-
-                        view.destroy();
-
+                        view.destroy();//카카오 웹뷰 종료
+                        GoMyOrderPage(resource);//마이페이지 이동
                     }
                 }
 
                 @Override
                 public void onFailure(Call<HashMap> call, Throwable t) {
-                    Log.d("카카오 success 통신 fail~~~.", "실패..");
+                    Log.d("카카오페이 통신 fail~~~.", "결제승인 실패..");
+
                     call.cancel();
                 }
             });
         return null;
+    }
+
+    private void GoMyOrderPage(HashMap response) {
+        Intent myPageintent = null;
+
+        //theme는 멤버변수에 있음
+        if(theme.equals("food")) {
+            myPageintent = new Intent(activity, FoodOrderComplete.class);
+            myPageintent.putExtra("f_ocode", response.get("partner_order_id").toString());
+
+        } else if(theme.equals("parking")) {
+            //myPageintent = new Intent(activity, ParkingOrderComplete.class);
+            //myPageintent.putExtra("parking_code", response.get("partner_order_id").toString());
+        } else if(theme.equals("rental")) {
+            //myPageintent = new Intent(activity, RentalOrderComplete.class);
+            //myPageintent.putExtra("rt_code", response.get("partner_order_id").toString());
+        } else {
+            myPageintent = new Intent();
+        }
+
+        activity.startActivity(myPageintent);
+        activity.finish(); //카카오 액티비티 종료
     }
 }
