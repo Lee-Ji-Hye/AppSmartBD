@@ -21,7 +21,9 @@ import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 import com.team.smart.vo.FoodCartVO;
+
 import com.team.smart.vo.FoodDetailVO;
+
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 
@@ -63,11 +65,13 @@ public class AKakaoTestActivity extends Activity {
         setIntent(intent);
     }
 
+
     protected ApprovePayResponse approvePayResponse;
     interface ApprovePayResponse {
         void  success(String theme, HashMap response);//theme = food, parking, room.
         void  failed(String theme, String message);
     };
+
 
     //카카오페이 결제요청 통신
     protected void callApi() {
@@ -98,7 +102,6 @@ public class AKakaoTestActivity extends Activity {
                     webview.loadUrl((String) resource.get("next_redirect_app_url")); //https://mockup-pg-web.kakao.com/v1/267b306c4ec2efb1c89517f80c05~~~~
 
 
-
                 }
             }
 
@@ -118,6 +121,8 @@ public class AKakaoTestActivity extends Activity {
 //            return true;
 //        }
 //    }
+
+
 
 
 }

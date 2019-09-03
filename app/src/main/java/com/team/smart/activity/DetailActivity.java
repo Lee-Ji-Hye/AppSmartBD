@@ -197,6 +197,7 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<FoodStoreVO> call, Throwable t) {
                 Log.d("스토어 통신 fail~~~~~~~~~...", "실패..");

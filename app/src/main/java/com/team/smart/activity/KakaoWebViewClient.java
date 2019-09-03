@@ -7,14 +7,18 @@ import android.net.Uri;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 import android.widget.Toast;
+
 
 import com.google.gson.Gson;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 import com.team.smart.vo.FoodOrderVO;
 
+
 import org.web3j.crypto.Hash;
+
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
@@ -28,6 +32,7 @@ import retrofit2.Response;
 public class KakaoWebViewClient extends WebViewClient {
     private Activity activity;
     private String f_ocode;
+
     private String theme;
 
     private APIInterface apiInterface;
@@ -35,6 +40,7 @@ public class KakaoWebViewClient extends WebViewClient {
     public KakaoWebViewClient(Activity activity, String theme, String f_ocode) {
         this.activity = activity;
         this.theme = theme;
+
         this.f_ocode = f_ocode;
     }
 
@@ -76,10 +82,13 @@ public class KakaoWebViewClient extends WebViewClient {
         } else {
             Log.d("카카오페이 결제승인 영역: ", url);
             //결제승인 통신
+
             successCallAPI(view, url);
+
         }
         return false;
     }
+
 
     public HashMap successCallAPI(WebView view, String reUrl) {
             if(apiInterface == null) {
@@ -89,11 +98,13 @@ public class KakaoWebViewClient extends WebViewClient {
         try {
             reUrl = URLDecoder.decode(reUrl, "utf-8");
             reUrl = reUrl.replace("localhost:8089", "192.168.123.8:8089");
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
         //통신
+
             Call<HashMap> call = apiInterface.kakaoPaySuccess(reUrl, f_ocode);
             call.enqueue(new Callback<HashMap>() {
                 @Override
@@ -138,4 +149,5 @@ public class KakaoWebViewClient extends WebViewClient {
         activity.startActivity(myPageintent);
         activity.finish(); //카카오 액티비티 종료
     }
+
 }

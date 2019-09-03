@@ -22,21 +22,30 @@ public interface APIInterface
     //Call<Foods> DishesList(@Query("page") HashMap<String,String> param);
     //주차관리 은지 시작
     //주차장 건물 전체리스트 정보
-    @GET("/smart/api/parking/ParkingInfo")
+    @GET("/api/parking/ParkingInfo")
     Call<ParkingBDVO> getParkingInfo();
 
     //주차장 건물 정보 상세
-    @GET("/smart/api/parking/ParkingbuidingInfo")
+    @GET("/api/parking/ParkingbuidingInfo")
     Call<ParkingBDVO> getParkingBDInfo(@Query("b_code") String b_code);
     //주차관리 은지 종료
 
     //지혜 시작
-    @GET("/smart/api/food/getStoreList")
+    @GET("/api/food/getStoreList")
     Call<FoodStoreVO> DishesList(@Query("f_category") String f_category, @Query("comp_seq") String comp_seq);
-    @GET("/smart/api/food/getStoreList")
+    @GET("/api/food/getStoreList")
     Call<FoodStoreVO> foodStore(@Query("comp_seq") String comp_seq);
-    @GET("/smart/api/food/getFoodMenuList")
+    @GET("/api/food/getFoodMenuList")
     Call<FoodDetailVO> foodMenuList(@Query("comp_seq") String comp_seq);
+
+    @GET("/api/payTest")
+    Call<HashMap> kakaoPayTest();
+
+    @POST("/api/food/payTest")
+    Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
+
+    @GET
+    Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
     //지혜 종료
 
     @POST("/kakao/payTest")
