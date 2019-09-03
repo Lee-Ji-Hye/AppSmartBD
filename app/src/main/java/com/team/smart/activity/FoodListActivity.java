@@ -19,12 +19,12 @@ public class FoodListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_food_list2);
-//        findId(); //아이디 셋팅
-//        FoodListLoad();
+        setContentView(R.layout.activity_food_list2);
+        findId(); //아이디 셋팅
+        FoodListLoad();
 
-        Intent intent = new Intent(getApplicationContext(), AKakaoTestActivity.class);
-        this.startActivity(intent);
+        //Intent intent = new Intent(getApplicationContext(), AKakaoTestActivity.class);
+        //this.startActivity(intent);
     }
 
     public void FoodListLoad() {

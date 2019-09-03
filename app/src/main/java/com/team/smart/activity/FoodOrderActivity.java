@@ -1,10 +1,8 @@
 package com.team.smart.activity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -13,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.vo.FoodCartVO;
 import com.team.smart.vo.FoodOrderVO;
@@ -34,7 +31,9 @@ public class FoodOrderActivity extends AppCompatActivity {
 
     //findid
     TextView tvCompOrg,tvAddress,tvFcnt,editMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvOpen,tvOpenWeek,paymentBtn;
-    EditText tvName, tvHp;
+    EditText tvName, tvHp, btMinusBtn, btPlusBtn;
+
+    int cnt = 1; //인원 관리
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -50,6 +49,7 @@ public class FoodOrderActivity extends AppCompatActivity {
         configuListner(); // 클릭 리스너 일괄 세팅
 
         //여기서 업체정보 불러오는 통신 한번 하고(~)
+
     }
 
     private void findid() {
@@ -64,6 +64,9 @@ public class FoodOrderActivity extends AppCompatActivity {
         tvAmount = findViewById(R.id.tv_amount);             //주문금액
         tvSalePrice = findViewById(R.id.tv_sale_price);     //할인금액
         tvTotPayPrice = findViewById(R.id.tv_tot_pay_price);//최종 결제 금액
+
+        btMinusBtn = findViewById(R.id.bt_minusBtn);
+        btPlusBtn = findViewById(R.id.bt_plusBtn);
 
         //소요시간(스피너 세팅)
         spinArriveTime = (Spinner)findViewById(R.id.spinArrivedTime);
@@ -107,6 +110,27 @@ public class FoodOrderActivity extends AppCompatActivity {
 
     //리스너 이벤트 모아놓음
     private void configuListner() {
+//음식점 페이지 이동
+        btMinusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(cnt > 1) {
+                    cnt--;
+                    tvFcnt.setText(String.valueOf(cnt)); //수량변경
+                }
+            }
+        });
+
+        btPlusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(cnt < 10) {
+                    cnt++;
+                    tvFcnt.setText(String.valueOf(cnt)); //수량변경
+                }
+            }
+        });
 
         paymentBtn.setOnClickListener(view -> {
             //파라미터 세팅
@@ -116,6 +140,7 @@ public class FoodOrderActivity extends AppCompatActivity {
             FoodOrderVO orderinfoVO = new FoodOrderVO();
             orderinfoVO.setComp_seq(comp_seq);
             orderinfoVO.setUserid("id10");
+            orderinfoVO.setF_name(tvName.getText().toString());
             orderinfoVO.setF_hp(tvHp.getText().toString());
             orderinfoVO.setF_person_num(f_cnt);
             orderinfoVO.setF_receive_time(f_receive_time);

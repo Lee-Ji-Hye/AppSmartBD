@@ -5,10 +5,16 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FoodOrderComplete extends AppCompatActivity {
+import com.team.smart.R;
+
+public class FoodOrderCompleteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_food_order_complete);
+
+
     }
 }

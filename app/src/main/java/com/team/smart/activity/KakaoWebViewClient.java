@@ -8,16 +8,9 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import android.widget.Toast;
 
-
-import com.google.gson.Gson;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
-import com.team.smart.vo.FoodOrderVO;
-
-
-import org.web3j.crypto.Hash;
 
 
 import java.io.UnsupportedEncodingException;
@@ -97,7 +90,7 @@ public class KakaoWebViewClient extends WebViewClient {
 
         try {
             reUrl = URLDecoder.decode(reUrl, "utf-8");
-            reUrl = reUrl.replace("localhost:8089", "192.168.123.8:8089");
+            reUrl = reUrl.replace("localhost:8089", "192.168.219.120:8081");
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -133,7 +126,7 @@ public class KakaoWebViewClient extends WebViewClient {
 
         //theme는 멤버변수에 있음
         if(theme.equals("food")) {
-            myPageintent = new Intent(activity, FoodOrderComplete.class);
+            myPageintent = new Intent(activity, FoodOrderCompleteActivity.class);
             myPageintent.putExtra("f_ocode", response.get("partner_order_id").toString());
 
         } else if(theme.equals("parking")) {

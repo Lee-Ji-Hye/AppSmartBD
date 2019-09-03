@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class FoodOrderVO implements Serializable {
     private String comp_seq;         //업체코드
+    private String f_name;           //이름
     private String f_hp;             //핸드폰번호
     private String f_receive_time;  //예상수령시간
     private String f_message;       //요청사항
@@ -36,6 +37,14 @@ public class FoodOrderVO implements Serializable {
 
     public void setComp_seq(String comp_seq) {
         this.comp_seq = comp_seq;
+    }
+
+    public String getF_name() {
+        return f_name;
+    }
+
+    public void setF_name(String f_name) {
+        this.f_name = f_name;
     }
 
     public String getF_hp() {

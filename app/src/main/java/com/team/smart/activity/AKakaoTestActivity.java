@@ -2,30 +2,18 @@ package com.team.smart.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 import com.team.smart.vo.FoodCartVO;
-
-import com.team.smart.vo.FoodDetailVO;
-
 import com.team.smart.vo.FoodOrderVO;
-import com.team.smart.vo.FoodStoreVO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
