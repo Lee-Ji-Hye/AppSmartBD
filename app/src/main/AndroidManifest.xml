@@ -47,8 +47,8 @@
         <activity android:name=".activity.FoodCartPopupActivity" />
         <activity android:name=".activity.FoodOrderActivity"
                    android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".activity.AKakaoTestActivity" />
-
+        <activity android:name=".activity.AKakaoTestActivity"/>
+        <activity android:name=".activity.FoodOrderComplete" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -48,4 +48,9 @@ public interface APIInterface
     Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
     //지혜 종료
 
+    @POST("/kakao/payTest")
+    Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
+    @GET
+    Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
+
 }
