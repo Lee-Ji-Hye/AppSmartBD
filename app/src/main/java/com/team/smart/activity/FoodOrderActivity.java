@@ -2,6 +2,8 @@ package com.team.smart.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -11,12 +13,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.team.smart.R;
+import com.team.smart.network.APIClient;
+import com.team.smart.network.APIInterface;
 import com.team.smart.vo.FoodCartVO;
 import com.team.smart.vo.FoodOrderVO;
+import com.team.smart.vo.FoodStoreVO;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FoodOrderActivity extends AppCompatActivity {
     DecimalFormat numberComma = new DecimalFormat("###,###"); //숫자 콤마
@@ -30,7 +40,7 @@ public class FoodOrderActivity extends AppCompatActivity {
     private Spinner spinArriveTime;
 
     //findid
-    TextView tvCompOrg,tvAddress,tvFcnt,editMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvOpen,tvOpenWeek,paymentBtn;
+    TextView tvCompOrg,tvAddress,tvFcnt,editMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvOpen,tvOpenWeek,paymentBtn,tvCompName, tvCompHp;
     EditText tvName, tvHp, btMinusBtn, btPlusBtn;
 
     int cnt = 1; //인원 관리
@@ -49,11 +59,64 @@ public class FoodOrderActivity extends AppCompatActivity {
         configuListner(); // 클릭 리스너 일괄 세팅
 
         //여기서 업체정보 불러오는 통신 한번 하고(~)
+        callStoreInfoApi(comp_seq);
 
+
+    }
+
+    private APIInterface apiStoreInterface;
+
+    //스토어 통신
+    protected void callStoreInfoApi(String paramCompSeq) {
+
+        if(apiStoreInterface == null) {
+            apiStoreInterface = APIClient.getClient().create(APIInterface.class);
+        }
+
+        //통신
+        Call<FoodStoreVO> call = apiStoreInterface.foodStore(paramCompSeq);
+        call.enqueue(new Callback<FoodStoreVO>() {
+            @Override
+            public void onResponse(Call<FoodStoreVO> call, Response<FoodStoreVO> response) {
+                Log.d("TAG",response.code()+"");
+                if(response.code()==200) {
+                    FoodStoreVO data = response.body();
+
+                    Gson gson3 = new Gson();
+                    String json3 = gson3.toJson(data.getStores());
+                    Log.d("오더 스토어 통신~~~~",json3);
+
+                    FoodStoreVO.Store store = data.getStores().get(0);
+                    tvAddress.setText(store.getComp_branch()); //업체 주소
+                    tvOpen.setText(store.getF_open_stt() +"~"+store.getF_open_end());
+                    tvCompName.setText(store.getComp_org());
+                    tvCompHp.setText(store.getComp_hp());
+                    //정보세팅
+                    //foodStore = ;
+//                    FoodStoreVO.Store store = data.getStores().get(0);
+//                    LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+//                    viewStoreLongDesc = inflater.inflate(R.layout.food_detail_desc, null);
+//                    TextView tvLongDesc = viewStoreLongDesc.findViewById(R.id.tv_long_desc);
+//                    tvLongDesc.setText(store.getLong_desc());
+//                    //mainImg
+//                    Glide.with(getApplicationContext()).load(store.getF_mainimg()).placeholder(R.drawable.no_img)
+//                            .error(R.drawable.no_img).into(mainImg);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FoodStoreVO> call, Throwable t) {
+                Log.d("스토어 통신 fail~~~~~~~~~...", "실패..");
+                call.cancel();
+            }
+        });
     }
 
     private void findid() {
         tvCompOrg = findViewById(R.id.tv_comp_org);           //업체명
+        tvCompName = findViewById(R.id.tv_comp_name);         //업체명2
+        tvCompHp = findViewById(R.id.tv_comp_hp);             //업체번호
         tvAddress = findViewById(R.id.tv_address);            //업체주소
         tvName = findViewById(R.id.edit_name);                   //주문자명
         tvHp = findViewById(R.id.edit_hp);                       //핸드폰번호
@@ -133,6 +196,7 @@ public class FoodOrderActivity extends AppCompatActivity {
         });
 
         paymentBtn.setOnClickListener(view -> {
+
             //파라미터 세팅
             String f_cnt = (String)tvFcnt.getText();
             String f_receive_time = spinArriveTime.getSelectedItem().toString();
@@ -148,6 +212,24 @@ public class FoodOrderActivity extends AppCompatActivity {
             //orderinfoVO.setF_serial("asd-asd-asd"); //시리얼
             orderinfoVO.setF_sale_price(String.valueOf(salePrice));
             orderinfoVO.setF_amount(String.valueOf(sum));
+
+
+            //검증
+            if(tvName.getText().toString().equals("")) {
+                Toast toast = Toast.makeText(getApplicationContext(),"주문자명을 입력하세요", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
+                tvName.requestFocus();
+                return;
+            } else if(tvHp.getText().toString().equals("")) {
+                Toast toast = Toast.makeText(getApplicationContext(),"휴대번호를 입력하세요", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
+                tvHp.requestFocus();
+                return;
+            }
 
             //카카오페이 액티비티 이동
             Intent intent = new Intent(getApplicationContext(), AKakaoTestActivity.class);

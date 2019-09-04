@@ -106,7 +106,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="8dp"
-                                android:text="서울특별시 금천구 가산동 547-9"
+                                android:text=""
                                 android:textColor="@color/subText"
                                 android:textSize="14dp" />
 
@@ -452,7 +452,7 @@
                                     android:layout_height="wrap_content"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
-                                    android:text="24시간"
+                                    android:text="문의"
                                     android:textColor="#2ebcff"
                                     android:layout_marginRight="20dp"
                                     android:layout_alignParentRight="true"
@@ -674,14 +674,14 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp">
                             <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                android:id="@+id/parkNameTV"
+                                android:id="@+id/tv_comp_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="육삼냉면 (본점)"
                                 android:textSize="12dp"
                                 android:textColor="#000"/>
                             <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                android:id="@+id/phoneTV"
+                                android:id="@+id/tv_comp_hp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/subText"

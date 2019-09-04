@@ -75,11 +75,11 @@ public class KakaoWebViewClient extends WebViewClient {
         } else {
             Log.d("카카오페이 결제승인 영역: ", url);
             //결제승인 통신
-
             successCallAPI(view, url);
-
         }
+
         return false;
+
     }
 
 
@@ -90,7 +90,7 @@ public class KakaoWebViewClient extends WebViewClient {
 
         try {
             reUrl = URLDecoder.decode(reUrl, "utf-8");
-            reUrl = reUrl.replace("localhost:8089", "192.168.219.120:8081");
+            //reUrl = reUrl.replace("localhost:8089", "192.168.219.120:8081");
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -107,21 +107,29 @@ public class KakaoWebViewClient extends WebViewClient {
                         HashMap resource = response.body();
 
                         view.destroy();//카카오 웹뷰 종료
-                        GoMyOrderPage(resource);//마이페이지 이동
+                        OrderCompletePage(resource);//성공 페이지 이동
                     }
                 }
 
                 @Override
                 public void onFailure(Call<HashMap> call, Throwable t) {
                     Log.d("카카오페이 통신 fail~~~.", "결제승인 실패..");
-
+                    OrderFailPage();//실패시 실패 페이지 이동
                     call.cancel();
                 }
             });
         return null;
     }
 
-    private void GoMyOrderPage(HashMap response) {
+    //결제 실패시 실패 페이지 이동
+    private void OrderFailPage() {
+        Intent myFailPage = new Intent(activity, FoodOrderCompleteActivity.class);
+        activity.startActivity(myFailPage);
+        activity.finish(); //카카오 액티비티 종료
+    }
+
+    //결제완료시 주문완료 페이지 이동
+    private void OrderCompletePage(HashMap response) {
         Intent myPageintent = null;
 
         //theme는 멤버변수에 있음
