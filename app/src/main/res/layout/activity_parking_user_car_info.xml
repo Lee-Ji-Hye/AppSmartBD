@@ -19,36 +19,182 @@
             android:layout_height="14dp"
             android:src="@drawable/ic_left_arrow" />
 
+        <com.team.smart.customfonts.MyTextView_Roboto_Medium
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="차량 정보 입력 "
+            android:textColor="#000"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_three_dot"/>
+
     </androidx.appcompat.widget.Toolbar>
 
+    <!--내용: 차량정보가 없을때-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="16dp"
             android:paddingTop="30dp"
-            android:paddingBottom="30dp"
+            android:paddingBottom="15dp"
             android:text="소유한 차량정보를 입력하고 \n 더욱 편리한 주차서비스이용하세요."/>
-
+        <!--이미지 입력부분-->
         <RelativeLayout
+            android:id="@+id/addLayout"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@drawable/radius_border"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            >
-            <TextView
+            android:layout_marginTop="20dp">
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="차량등록"
-                android:textSize="16dp"/>
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:src="@drawable/camera"
+                    android:layout_marginBottom="12dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="번호판 사진 등록하기"
+                    android:textSize="15dp"/>
 
+            </LinearLayout>
         </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="가로사진으로 번호판이 잘보이도록 찰영해주세요.\n
+           차량번호가 자동으로 입력됩니다."
+            android:textAlignment="center"
+            android:textSize="13dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/mainText"/>
+
+        <!--텍스트 입력부분-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <!--소항목 제목-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="차량번호"
+                    android:textAlignment="textStart"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/mainText"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="(필수)"
+                    android:textAlignment="textStart"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#ff1e05"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="37dp"
+                    android:paddingTop="10dp"
+                    android:hint="12가1234"
+                    android:textSize="18dp"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+            <!--소항목 제목-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="차종유형"
+                    android:textAlignment="textStart"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/mainText"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="(필수)"
+                    android:textAlignment="textStart"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#ff1e05"
+                    android:maxLength="8"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="37dp"
+                    android:paddingTop="10dp"
+                    android:hint="차종 유형 선택"
+                    android:textSize="18dp"
+                    android:layout_centerInParent="true"
+                    android:enabled="false"/>
+            </RelativeLayout>
+
+        </LinearLayout><!--내용:차량없을때-->
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/send_inq_rect"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="등록"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
 </LinearLayout>
