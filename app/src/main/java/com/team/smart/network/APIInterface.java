@@ -37,12 +37,11 @@ public interface APIInterface
     Call<FoodStoreVO> foodStore(@Query("comp_seq") String comp_seq);
     @GET("/api/food/getFoodMenuList")
     Call<FoodDetailVO> foodMenuList(@Query("comp_seq") String comp_seq);
-
     @POST("/api/food/payTest")
     Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
-
     @POST
     Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
+    Call<FoodOrderVO> getOrderDerailInfo(@Query("comp_seq") String comp_seq, @Query("id") String id); //주문정보 1건 조회
     //지혜 종료
 
 }
