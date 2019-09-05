@@ -29,7 +29,7 @@ public class FoodCartPopupActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnClear,btnAddFood;
     private FoodCartAdapter foodCartAdapter;
-    private String fname;
+    private String fname, comp_seq;
     private ImageButton backBtn;
 
 
@@ -58,7 +58,8 @@ public class FoodCartPopupActivity extends AppCompatActivity {
         cartBtn.setOnClickListener((view -> {
             //Intent
             Intent intent = new Intent(getApplicationContext(), FoodOrderActivity.class);
-            intent.putExtra("orderMenuList", foodVo);
+            intent.putExtra("cartMenuList", foodVo);
+            intent.putExtra("comp_seq", comp_seq);
             this.startActivity(intent);
         }));
 
@@ -160,6 +161,7 @@ public class FoodCartPopupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         foodVo = (ArrayList<FoodCartVO>) intent.getSerializableExtra("foodList");
         fname = intent.getStringExtra("fname");
+        comp_seq = intent.getStringExtra("comp_seq");
     }
 
 

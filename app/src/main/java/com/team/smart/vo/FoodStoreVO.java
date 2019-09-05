@@ -30,6 +30,10 @@ public class FoodStoreVO extends BaseRespon {
         private String f_category;  //카테고리 |* DB에 ENUM걸어놔서 한식, 중식, 일식, 디저트 이외의 카테고리가 들어가면 오류남. 추가하고 싶을경우 알려주세요*|
         @SerializedName("f_mainimg")
         private String f_mainimg;   //업체이미지
+        @SerializedName("f_open_stt")
+        private String f_open_stt;  //영업시간(평일) //09:00 [추가]
+        @SerializedName("f_open_end")
+        private String f_open_end;  //영업시간(평일) //22:00 [추가]
 
         @SerializedName("comp_org")
         private String comp_org;    //업체명
@@ -40,7 +44,6 @@ public class FoodStoreVO extends BaseRespon {
         @SerializedName("comp_hp")
         private String comp_hp;     //업체전화번호
         @SerializedName("f_coupon_num")
-
         private String f_coupon_num; //쿠폰명
         @SerializedName("f_coupon_name")
         private String f_coupon_name;//쿠폰네임
@@ -99,6 +102,22 @@ public class FoodStoreVO extends BaseRespon {
 
         public void setF_mainimg(String f_mainimg) {
             this.f_mainimg = f_mainimg;
+        }
+
+        public String getF_open_stt() {
+            return f_open_stt;
+        }
+
+        public void setF_open_stt(String f_open_stt) {
+            this.f_open_stt = f_open_stt;
+        }
+
+        public String getF_open_end() {
+            return f_open_end;
+        }
+
+        public void setF_open_end(String f_open_end) {
+            this.f_open_end = f_open_end;
         }
 
         public String getComp_org() {
