@@ -4,6 +4,7 @@ package com.team.smart.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +34,10 @@ public class FoodOrderCompleteActivity extends AppCompatActivity {
     protected void configuListner() {
         //주문내역 페이지 이동 버튼
         tvOrderDetailBtn.setOnClickListener(view -> {
+            Toast.makeText(getApplicationContext(), "ssss", Toast.LENGTH_SHORT).show();
             Intent myOrderintent = new Intent(FoodOrderCompleteActivity.this, FoodOrderDetailActivity.class);
             myOrderintent.putExtra("f_ocode", paramFocode);
+            this.startActivity(myOrderintent);
         });
 
     }

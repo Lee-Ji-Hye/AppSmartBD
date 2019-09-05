@@ -31,7 +31,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
-        <activity android:name=".activity.FoodOrderCompleteActivity" />
         <activity android:name=".activity.WalletTransferActivity" />
         <activity android:name=".activity.MyWalletActivity" /> <!-- 액티비티 추가 -->
         <!-- 은지 액티비티 -->

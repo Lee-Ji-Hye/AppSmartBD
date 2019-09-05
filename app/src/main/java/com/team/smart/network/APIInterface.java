@@ -57,7 +57,7 @@ public interface APIInterface
     //Call<HashMap> kakaoPayParkingTicket(@Body FoodOrderVO foodOrderVO);
     @POST("/api/parking/kakao/ParkingBuyTicket")
     Call<HashMap> ParkingBuyTicket(@Body ParkingOrderVO orderVO);
-    @POST
-    Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("p_ocode") String p_ocode);
+    //@POST
+    //Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("p_ocode") String p_ocode);
     //카카오페이 끝
 }
