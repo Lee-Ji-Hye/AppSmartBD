@@ -5,7 +5,6 @@ import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
 import com.team.smart.vo.Foods;
-import com.team.smart.vo.ParkingTicketVO;
 
 import java.util.HashMap;
 
@@ -25,13 +24,10 @@ public interface APIInterface
     //주차장 건물 전체리스트 정보
     @GET("/api/parking/ParkingInfo")
     Call<ParkingBDVO> getParkingInfo();
+
     //주차장 건물 정보 상세
     @GET("/api/parking/ParkingbuidingInfo")
     Call<ParkingBDVO> getParkingBDInfo(@Query("b_code") String b_code);
-    //주차권 정보 가져오기
-    @GET("/smart/api/parking/ParkingTicketInfo")
-    Call<ParkingTicketVO> getParkingTicketInfo(@Query("b_code") String b_code);
-
     //주차관리 은지 종료
 
     //지혜 시작

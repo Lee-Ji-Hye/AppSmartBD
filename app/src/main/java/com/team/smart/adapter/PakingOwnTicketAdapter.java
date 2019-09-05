@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.team.smart.R;
 import com.team.smart.activity.DetailActivity;
-import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.vo.ParkingTicket;
 
 import java.util.ArrayList;
 
 public class PakingOwnTicketAdapter extends RecyclerView.Adapter<PakingOwnTicketAdapter.Holder> {
-    private ArrayList<ParkingTicketVO.ParkingTicket> p_List;
+    private ArrayList<ParkingTicket> p_List;
     private Context mCtx;
 
-    public PakingOwnTicketAdapter(Context context, ArrayList<ParkingTicketVO.ParkingTicket> pList) {
+    public PakingOwnTicketAdapter(Context context, ArrayList<ParkingTicket> pList) {
         this.mCtx = context;
         this.p_List = pList;
     }
@@ -36,12 +36,12 @@ public class PakingOwnTicketAdapter extends RecyclerView.Adapter<PakingOwnTicket
 
     @Override
     public void onBindViewHolder(@NonNull PakingOwnTicketAdapter.Holder holder, int position) {
-        final ParkingTicketVO.ParkingTicket parkingTicket = p_List.get(position);
+        final ParkingTicket parkingTicket = p_List.get(position);
 
         holder.b_name.setText(parkingTicket.getB_name());
         holder.hourly.setText(parkingTicket.getHourly());
-        //holder.address.setText(parkingTicket.getAddress());
-        //holder.count.setText(parkingTicket.getCount());
+        holder.address.setText(parkingTicket.getAddress());
+        holder.count.setText(parkingTicket.getCount());
 
         Log.d("Parking DATA ====> ", parkingTicket.getB_code());
         //상세 페이지 이동
