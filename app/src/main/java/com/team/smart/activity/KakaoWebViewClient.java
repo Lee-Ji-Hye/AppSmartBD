@@ -8,7 +8,6 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.gson.Gson;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 
@@ -74,12 +73,11 @@ public class KakaoWebViewClient extends WebViewClient {
         } else {
             Log.d("카카오페이 결제승인 영역: ", url);
             //결제승인 통신
-
             successCallAPI(view, url);
-
-
         }
+
         return false;
+
     }
 
 
@@ -87,6 +85,7 @@ public class KakaoWebViewClient extends WebViewClient {
         if(apiInterface == null) {
             apiInterface = APIClient.getClient().create(APIInterface.class);
         }
+
 
         try {
             reUrl = URLDecoder.decode(reUrl, "utf-8");
@@ -105,12 +104,8 @@ public class KakaoWebViewClient extends WebViewClient {
                 if(response.code()==200) {
                     HashMap resource = response.body();
 
-                    Gson gson3 = new Gson();
-                    String json3 = gson3.toJson(resource);
-
                     view.destroy();//카카오 웹뷰 종료
                     OrderCompletePage(resource);//성공 페이지 이동
-
                 }
             }
 
@@ -121,6 +116,7 @@ public class KakaoWebViewClient extends WebViewClient {
                 call.cancel();
             }
         });
+
         return null;
     }
 
@@ -143,6 +139,7 @@ public class KakaoWebViewClient extends WebViewClient {
         } else if(theme.equals("parking")) {
             myPageintent = new Intent(activity, ParkingOrderComplete.class);
             myPageintent.putExtra("parking_code", response.get("partner_order_id").toString());
+
         } else if(theme.equals("rental")) {
             //myPageintent = new Intent(activity, RentalOrderComplete.class);
             //myPageintent.putExtra("rt_code", response.get("partner_order_id").toString());

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FoodOrderActivity">
+    tools:context=".activity.FoodOrderDetailActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,6 +131,8 @@
                         android:orientation="vertical"
                         android:background="#ffffff"
                         android:layout_marginTop="10dp">
+
+                        <!--주문 코드-->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -143,30 +145,68 @@
                                 android:paddingLeft="16dp"
                                 android:paddingTop="10dp"
                                 android:paddingBottom="10dp"
-                                android:text="주문자"
                                 android:textColor="@color/mainText"
+                                android:text="주문번호"
                                 android:textSize="14dp" />
 
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/stroke_top_bottom_ddd">
-                            <EditText
-                                android:id="@+id/edit_name"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="10dp"
-                                android:textSize="11dp"
-                                android:paddingBottom="10dp"
-                                android:paddingLeft="12dp"
-                                android:hint="이름을 입력하세요"
-                                android:text=""
-                                android:background="@null"
-                                android:textColor="@color/mainText"/>
+                                android:gravity="right" >
+                                <TextView
+                                    android:id="@+id/tv_ocode"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="#1266FF"
+                                    android:textStyle="bold"
+                                    android:text="FD00235"
+                                    android:textSize="12dp"/>
 
+                            </LinearLayout>
                         </LinearLayout>
+
+                        <!--주문자-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/mainText"
+                                android:text="주문자"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" >
+                                <TextView
+                                    android:id="@+id/tv_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="@color/mainText"
+                                    android:text="이미미"
+                                    android:textSize="12dp"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
 
                         <!--핸드폰 번호-->
                         <RelativeLayout
@@ -184,44 +224,151 @@
                                 android:text="휴대번호"
                                 android:textColor="@color/mainText"
                                 android:textSize="14dp" />
-                        </RelativeLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="#dddddd"/>
 
-                        <!--요청사항-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/stroke_top_bottom_ddd">
-                            <EditText
-                                android:id="@+id/edit_hp"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="right" >
+
+                                <TextView
+                                    android:id="@+id/tv_hp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="@color/mainText"
+                                    android:text="010-2721-1710"
+                                    android:textSize="12dp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <!-- 인원정보 -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
                                 android:paddingTop="10dp"
-                                android:textSize="11dp"
                                 android:paddingBottom="10dp"
-                                android:paddingLeft="12dp"
-                                android:hint="'-' 없이 입력"
-                                android:text=""
-                                android:background="@null"
-                                android:textColor="@color/mainText"/>
+                                android:text="인원정보"
+                                android:textColor="@color/mainText"
+                                android:textSize="14dp" />
 
-                        </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" >
 
+                                <TextView
+                                    android:id="@+id/tv_person_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="@color/mainText"
+                                    android:text="0 명"
+                                    android:textSize="12dp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <!-- 주문시간 -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="주문시간"
+                                android:textColor="@color/mainText"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" >
+
+                                <TextView
+                                    android:id="@+id/tv_regidate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="#2ebcff"
+                                    android:text="2019-09-05 12:03"
+                                    android:textSize="12dp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <!-- 주문시간 -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="도착시간"
+                                android:textColor="@color/mainText"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" >
+
+                                <TextView
+                                    android:id="@+id/tv_receive_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="#2ebcff"
+                                    android:text="2019-09-05 14:03"
+                                    android:textSize="12dp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.7dp"
                             android:background="#dddddd"/>
+
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.7dp"
                         android:background="#dddddd"/>
 
-                    <!---->
+                    <!--요청사항-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -239,125 +386,15 @@
                                 android:paddingLeft="16dp"
                                 android:textSize="14dp"
                                 android:textColor="@color/mainText"
-                                android:text="인원정보" />
+                                android:text="요청사항" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:layout_marginRight="10dp"
-                                    android:gravity="right">
-
-                                    <EditText
-                                        android:id="@+id/bt_minusBtn"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:background="@drawable/stroke_top_bottom_ddd"
-                                        android:clickable="true"
-                                        android:focusable="false"
-                                        android:gravity="center"
-                                        android:text="─"
-                                        android:textSize="22dp" />
-
-                                    <TextView
-                                        android:id="@+id/tv_fCnt"
-                                        android:layout_width="50dp"
-                                        android:layout_height="wrap_content"
-                                        android:background="@drawable/stroke_top_bottom_ddd"
-                                        android:clickable="true"
-                                        android:editable="false"
-                                        android:focusable="false"
-                                        android:gravity="center"
-                                        android:text="1"
-                                        android:textSize="22dp" />
-
-                                    <EditText
-                                        android:id="@+id/bt_plusBtn"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:background="@drawable/stroke_top_bottom_ddd"
-                                        android:clickable="true"
-                                        android:editable="false"
-                                        android:focusable="false"
-                                        android:gravity="center"
-                                        android:text="+"
-                                        android:textSize="22dp" />
-                                </LinearLayout>
-
-                            </LinearLayout>
                         </LinearLayout>
 
-
-                        <!--소요시간-->
                         <LinearLayout
+                            android:id="@+id/li_message"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:paddingLeft="6dp"
-                                android:textSize="14dp"
-                                android:textColor="@color/mainText"
-                                android:text="소요시간" />
+                            android:layout_height="wrap_content" >
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="right">
-
-                                <Spinner
-                                    android:id="@+id/spinArrivedTime"
-                                    android:layout_width="150dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:background="@drawable/stroke_top_bottom_ddd"
-                                    android:paddingBottom="3dp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"></LinearLayout>
-                        </LinearLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginTop="0dp"
-                                android:paddingLeft="16dp"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:text="요청사항"
-                                android:textColor="@color/mainText"
-                                android:textSize="14dp" />
-
-                        </RelativeLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="#dddddd"/>
-
-                        <!--요청사항-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/stroke_top_bottom_ddd">
                             <EditText
                                 android:id="@+id/edit_message"
                                 android:layout_width="match_parent"
@@ -366,14 +403,11 @@
                                 android:textSize="11dp"
                                 android:paddingBottom="10dp"
                                 android:paddingLeft="12dp"
-                                android:hint="50자까지 작성할 수 있어요"
                                 android:text=""
                                 android:background="@null"
                                 android:textColor="@color/mainText"/>
 
                         </LinearLayout>
-
-                        <!--주차요금-->
 
                         <View
                             android:layout_width="match_parent"
@@ -381,90 +415,52 @@
                             android:background="#dddddd"/>
                     </LinearLayout>
 
-                    <!--운영시간-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="#dddddd"/>
+
+                    <!--요청사항-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:background="#FFFFFF"
+                        android:background="#ffffff"
                         android:layout_marginTop="10dp">
+
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content">
+
                             <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="12dp"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:text="운영시간"
+                                android:layout_marginTop="20dp"
+                                android:paddingLeft="16dp"
+                                android:text="주문 메뉴"
                                 android:textColor="@color/mainText"
                                 android:textSize="14dp" />
 
-                            <!--평일 운영시간-->
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="#f5f5f5"
+                                android:clipToPadding="false"
+                                android:elevation="1dp"
+                                android:paddingBottom="20dp">
 
-                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:text="평일"
-                                    android:textColor="@color/mainText"
-                                    android:layout_marginLeft="20dp"
-                                    android:textSize="11dp" />
+                            </androidx.recyclerview.widget.RecyclerView>
 
-                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                    android:id="@+id/tv_open"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:text="24시간"
-                                    android:textColor="#2ebcff"
-                                    android:layout_marginRight="20dp"
-                                    android:layout_alignParentRight="true"
-                                    android:textSize="11dp" />
-                            </RelativeLayout>
-
-                            <!--주말 운영시간-->
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingBottom="5dp">
-
-                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:text="주말/공휴일"
-                                    android:textColor="@color/mainText"
-                                    android:layout_marginLeft="20dp"
-                                    android:textSize="11dp" />
-
-                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                    android:id="@+id/tv_open_week"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
-                                    android:text="문의"
-                                    android:textColor="#2ebcff"
-                                    android:layout_marginRight="20dp"
-                                    android:layout_alignParentRight="true"
-                                    android:textSize="11dp" />
-                            </RelativeLayout>
                         </LinearLayout>
 
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="1dp"
+                            android:layout_height="0.7dp"
                             android:background="#dddddd"/>
+
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <View
@@ -582,58 +578,7 @@
                                 android:textSize="12dp" />
                         </LinearLayout>
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:background="@drawable/edit_border"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:text="카카오페이결제" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginRight="10dp"
-                                android:text="변경"
-                                android:textColor="#2ebcff" />
-                        </RelativeLayout>
                     </LinearLayout>
-                </LinearLayout>
-
-                <!--할인 쿠폰-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#ffffff"
-                    android:layout_marginTop="10dp">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp">
-                        <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/subText"
-                            android:textSize="14dp"
-                            android:text="할인 쿠폰"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="10dp"
-                            android:text="0개 보유 >" />
-                    </RelativeLayout>
                 </LinearLayout>
 
                 <!--업체 담당자-->
@@ -706,49 +651,18 @@
         </ScrollView>
     </LinearLayout>
 
-    <!--결제 버튼 -->
+    <!-- 주문 취소하기 버튼 :: 이건... 구매 후 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:background="#ffffff">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/openBtn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/toparrow"
-                android:layout_centerInParent="true"/>
+            android:layout_height="10dp">
         </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/spinnerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <Spinner
-                android:id="@+id/carTypeBtn"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@drawable/box_border"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"></Spinner>
-
-            <Spinner
-                android:id="@+id/timeTypeBtn"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@drawable/box_border"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"></Spinner>
-        </LinearLayout>
 
         <com.team.smart.customfonts.MyTextView_Roboto_Regular
             android:id="@+id/paymentBtn"
@@ -762,7 +676,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_below="@+id/openBtn"
-            android:text="결제하기"
+            android:text="주문 취소하기"
             android:textSize="18dp"
             android:textColor="#ffffff" />
     </LinearLayout>

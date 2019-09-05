@@ -197,6 +197,7 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<FoodStoreVO> call, Throwable t) {
                 Log.d("스토어 통신 fail~~~~~~~~~...", "실패..");
@@ -340,6 +341,7 @@ public class DetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), FoodCartPopupActivity.class);
                 intent.putExtra("foodList", foodCartVO);
                 intent.putExtra("fname", paramCompName);
+                intent.putExtra("comp_seq", paramCompSeq);
                 startActivityForResult(intent, REQUESTFOODCARTCD);
             } else {
                 Toast.makeText(getApplicationContext(),"장바구니 데이터 없음",Toast.LENGTH_SHORT).show();
