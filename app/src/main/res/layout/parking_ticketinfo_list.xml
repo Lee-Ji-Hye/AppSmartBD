@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="80dp"
         android:background="@drawable/box_border"
         >
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:text="시간권 ["
+            android:text="타입 "
             android:layout_centerVertical="true"
             android:textColor="#000"
             android:textSize="18dp" />
@@ -32,23 +33,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="1시간"
+            android:text="시간"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/hourText"
             android:textColor="#000"
             android:textSize="18dp" />
 
-        <com.team.smart.customfonts.MyTextView_Roboto_Medium
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toRightOf="@+id/hourlyTV"
-            android:text="]"
-            android:textColor="#000"
-            android:textSize="18dp" />
+
         <com.team.smart.customfonts.MyTextView_Roboto_Medium
             android:id="@+id/priceTV"
             android:layout_width="wrap_content"

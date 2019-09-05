@@ -8,10 +8,8 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
-
 
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
@@ -84,9 +82,10 @@ public class KakaoWebViewClient extends WebViewClient {
 
 
     public HashMap successCallAPI(WebView view, String reUrl) {
-            if(apiInterface == null) {
-                apiInterface = APIClient.getClient().create(APIInterface.class);
-            }
+        if(apiInterface == null) {
+            apiInterface = APIClient.getClient().create(APIInterface.class);
+        }
+
 
         try {
             reUrl = URLDecoder.decode(reUrl, "utf-8");
@@ -97,27 +96,27 @@ public class KakaoWebViewClient extends WebViewClient {
         }
 
         //통신
+        Call<HashMap> call = apiInterface.kakaoPaySuccess(reUrl, f_ocode);
+        call.enqueue(new Callback<HashMap>() {
+            @Override
+            public void onResponse(Call<HashMap> call, Response<HashMap> response) {
+                Log.d("TAG",response.code()+"");
+                if(response.code()==200) {
+                    HashMap resource = response.body();
 
-            Call<HashMap> call = apiInterface.kakaoPaySuccess(reUrl, f_ocode);
-            call.enqueue(new Callback<HashMap>() {
-                @Override
-                public void onResponse(Call<HashMap> call, Response<HashMap> response) {
-                    Log.d("TAG",response.code()+"");
-                    if(response.code()==200) {
-                        HashMap resource = response.body();
-
-                        view.destroy();//카카오 웹뷰 종료
-                        OrderCompletePage(resource);//성공 페이지 이동
-                    }
+                    view.destroy();//카카오 웹뷰 종료
+                    OrderCompletePage(resource);//성공 페이지 이동
                 }
+            }
 
-                @Override
-                public void onFailure(Call<HashMap> call, Throwable t) {
-                    Log.d("카카오페이 통신 fail~~~.", "결제승인 실패..");
-                    OrderFailPage();//실패시 실패 페이지 이동
-                    call.cancel();
-                }
-            });
+            @Override
+            public void onFailure(Call<HashMap> call, Throwable t) {
+                Log.d("카카오페이 통신 fail~~~.", "결제승인 실패..");
+                OrderFailPage();//실패시 실패 페이지 이동
+                call.cancel();
+            }
+        });
+
         return null;
     }
 
@@ -138,8 +137,9 @@ public class KakaoWebViewClient extends WebViewClient {
             myPageintent.putExtra("f_ocode", response.get("partner_order_id").toString());
 
         } else if(theme.equals("parking")) {
-            //myPageintent = new Intent(activity, ParkingOrderComplete.class);
-            //myPageintent.putExtra("parking_code", response.get("partner_order_id").toString());
+            myPageintent = new Intent(activity, ParkingOrderComplete.class);
+            myPageintent.putExtra("parking_code", response.get("partner_order_id").toString());
+
         } else if(theme.equals("rental")) {
             //myPageintent = new Intent(activity, RentalOrderComplete.class);
             //myPageintent.putExtra("rt_code", response.get("partner_order_id").toString());

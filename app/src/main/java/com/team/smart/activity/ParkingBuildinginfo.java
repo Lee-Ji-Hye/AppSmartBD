@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ParkingBuildinginfo extends AppCompatActivity {
-    TextView titleTv,addressTv,opendayTv,openWeekTv,phoneTV,parkNameTV;
+    TextView titleTv,addressTv,opendayTv,openWeekTv,phoneTV,parkNameTV,selectTv,selectPriceTV;
     private String b_code;
     private APIInterface apiParkingInterface,apiTicketInterface;
     TextView paymentBtn;
@@ -47,8 +48,8 @@ public class ParkingBuildinginfo extends AppCompatActivity {
     private ParkingBDVO parkingDB;
     public ParkingTicketVO parkingTicketVO;
     private ParkingTicketAdapter ticketAdapter;
-    HashMap<String, Object> spinnerMap;
-
+    Spinner spinner;
+    ArrayList arrayList,valueList, priceList;
     public ArrayList<ParkingTicketVO.ParkingTicket> t_list;
     interface NetworkResponse {
         void  success(ParkingBDVO data);
@@ -74,6 +75,9 @@ public class ParkingBuildinginfo extends AppCompatActivity {
                 //titleTv,addressTv,opendayTv,openWeekTv,phoneTV,parkNameTV
                 titleTv= findViewById(R.id.titleTv); //건물명
                 titleTv.setText(parkingDB.getParkingBDsList().get(0).getB_name());
+
+                LinearLayout hiddenLayout = findViewById(R.id.hiddenLayout);
+                hiddenLayout.setVisibility(View.VISIBLE);
 
                 String totalAddress = parkingDB.getParkingBDsList().get(0).getB_area1()+
                         parkingDB.getParkingBDsList().get(0).getB_area2()+
@@ -148,14 +152,13 @@ public class ParkingBuildinginfo extends AppCompatActivity {
             @Override
             public void success(ParkingTicketVO data) {
 
-                LinearLayout tikectInfoTv = findViewById(R.id.tikectInfoTv);
-                paymentBtn = findViewById(R.id.paymentBtn);
-                openBtn = findViewById(R.id.openBtn);
-                tikectInfoTv.setVisibility(View.VISIBLE);
-                paymentBtn.setVisibility(View.VISIBLE);
-                openBtn.setVisibility(View.VISIBLE);
-
                 if (data.getParkingTickets().size()>0) {
+                    LinearLayout tikectInfoTv = findViewById(R.id.tikectInfoTv);
+                    paymentBtn = findViewById(R.id.paymentBtn);
+                    openBtn = findViewById(R.id.openBtn);
+                    tikectInfoTv.setVisibility(View.VISIBLE);
+                    paymentBtn.setVisibility(View.VISIBLE);
+                    openBtn.setVisibility(View.VISIBLE);
                     //=================== 주차권 =====================
                     // 리사이클러뷰에 표시할 데이터 리스트 생성.
                     t_list = data.getParkingTickets();
@@ -169,33 +172,78 @@ public class ParkingBuildinginfo extends AppCompatActivity {
                     recyclerView.setAdapter(ticketAdapter);
 
                     List<ParkingTicketVO.ParkingTicket> ticket=data.getParkingTickets();
-                    Spinner spinner = findViewById(R.id.spinner);
+
 
                     //넣어줄 값 정리
-                    ArrayList arrayList = new ArrayList<>();
-                    ArrayList valueList = new ArrayList<>();
+                    arrayList = new ArrayList<>();
+                    valueList = new ArrayList<>();
+                    priceList = new ArrayList<>();
                     String h_type ="";
                     String S_text= "";
+                    arrayList.add("상품선택");
+                    valueList.add(0);
+                    priceList.add(0);
                     for(int i=0;i<ticket.size();i++){
+
                         h_type = ticket.get(i).getP_type();
 
                         if (h_type.equalsIgnoreCase("h")){
                             S_text="시간권 ["+ticket.get(i).getHourly()+"시간]";
                         }else if (h_type.equalsIgnoreCase("d")){
-                            S_text="일일권";
+                            S_text="일일권2";
                         }else{
                             S_text="시간권 ["+ticket.get(i).getHourly()+"분]";
                         }
                         arrayList.add(S_text);
                         valueList.add(ticket.get(i).getP_code());
+                        priceList.add(ticket.get(i).getPrice());
                     }
+                    //스피너에 값 넣기
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,arrayList);
                     spinner.setAdapter(arrayAdapter);
 
+                    RelativeLayout selectedTvLayout = findViewById(R.id.selectedTvLayout);
+                    selectTv = findViewById(R.id.selectTv);
+                    selectPriceTV = findViewById(R.id.selectPriceTV);
+                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override   // position 으로 몇번째 것이 선택됬는지 값을 넘겨준다
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                            if (position == 0){ //상품목록 선택시 초기화
+                                selectedTvLayout.setVisibility(View.GONE);
+                                selectPriceTV.setText("0원");
+
+                                //결제 버튼 클릭시
+                                paymentBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Toast.makeText(getApplicationContext(), "상품을 선택하세요.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }else{//상품 선택
+                                selectedTvLayout.setVisibility(View.VISIBLE);
+                                selectTv.setText(arrayList.get(position).toString());
+                                selectPriceTV.setText(priceList.get(position).toString()+"원");
+                                //결제 버튼 클릭시
+                                paymentBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        Intent intent2 = new Intent(getApplicationContext(),ParkingTicketPayment.class);
+                                        intent2.putExtra("p_code",valueList.get(position).toString());
+                                        startActivity(intent2);
+                                    }
+                                });
+                            }
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
                     //스피너 클릭 이벤트
-
                 }else{ //주차권정보가 없으면
-
 
                 }
             }
@@ -221,8 +269,6 @@ public class ParkingBuildinginfo extends AppCompatActivity {
 
                     if(networkResponse2!=null) {
                         networkResponse2.success(resource);
-
-
                     }
                 }
             }
@@ -241,14 +287,16 @@ public class ParkingBuildinginfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parking_buildinginfo);
+        setContentView(R.layout.activity_parking_buildinginfo);;
 
+        spinner = findViewById(R.id.spinner);
         LinearLayout tikectInfoTv = findViewById(R.id.tikectInfoTv);
         paymentBtn = findViewById(R.id.paymentBtn);
         openBtn = findViewById(R.id.openBtn);
         tikectInfoTv.setVisibility(View.GONE);
         paymentBtn.setVisibility(View.GONE);
         openBtn.setVisibility(View.GONE);
+
 
         //b_code값 받아오기
         Intent intent = getIntent();
@@ -269,21 +317,13 @@ public class ParkingBuildinginfo extends AppCompatActivity {
 
         //결제버튼
 
-        paymentBtn = findViewById(R.id.paymentBtn);
-        openBtn = findViewById(R.id.openBtn);
-        paymentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ParkingTicketPayment.class); //ParkingMainActivity 이동
-                startActivity(intent);
-            }
-        });
 
+        LinearLayout spinnerLayout = findViewById(R.id.spinnerLayout);
         //옵션창 여는 버튼
         openBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LinearLayout spinnerLayout = findViewById(R.id.spinnerLayout);
+
 
                 if(spinnerLayout.getVisibility() == view.GONE) {
                     spinnerLayout.setVisibility(view.VISIBLE);
@@ -292,6 +332,19 @@ public class ParkingBuildinginfo extends AppCompatActivity {
                 }
             }
         });
+        paymentBtn = findViewById(R.id.paymentBtn);
+        openBtn = findViewById(R.id.openBtn);
+        paymentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(spinnerLayout.getVisibility() == view.GONE) {
+                    spinnerLayout.setVisibility(view.VISIBLE);
+                } else {
+                    Toast.makeText(getApplicationContext(), "상품을 선택하세요.", Toast.LENGTH_SHORT).show();
+                }
 
+
+            }
+        });
     }
 }
