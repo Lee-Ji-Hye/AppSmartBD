@@ -1,85 +1,75 @@
 package com.team.smart.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.team.smart.R;
-import com.team.smart.activity.DetailActivity;
-import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.vo.ParkingTicket;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class ParkingTicketAdapter extends RecyclerView.Adapter<ParkingTicketAdapter.ViewHolder> {
+public class ParkingTicketAdapter extends BaseAdapter {
 
-    private ArrayList<ParkingTicketVO.ParkingTicket> mData = null ;
+    private List<ParkingTicket> mData;
 
-    // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView hourText, hourlyTV,priceTV;
-
-        ViewHolder(View itemView) {
-            super(itemView) ;
-
-            // 뷰 객체에 대한 참조. (hold strong reference)
-            hourText = itemView.findViewById(R.id.hourText) ;
-            hourlyTV = itemView.findViewById(R.id.hourlyTV) ;
-            priceTV = itemView.findViewById(R.id.priceTV) ;
-        }
+    public ParkingTicketAdapter(List<ParkingTicket> mData) {
+        this.mData = mData;
     }
-
-    // 생성자에서 데이터 리스트 객체를 전달받음.
-    public ParkingTicketAdapter(ArrayList<ParkingTicketVO.ParkingTicket> list) {
-        mData = list ;
-    }
-
-    // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
+    // 아이템의 갯수
     @Override
-    public ParkingTicketAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext() ;
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
+    public int getCount() {
+        return mData.size();
+    }
+    // position 번째의 아이템
 
-        View view = inflater.inflate(R.layout.parking_ticketinfo_list, parent, false) ;
-        ParkingTicketAdapter.ViewHolder vh = new ParkingTicketAdapter.ViewHolder(view) ;
-
-        return vh ;
+    @Override
+    public Object getItem(int position) {
+        return mData.get(position);
     }
 
-    // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
+    // position 번째의 아이디
     @Override
-    public void onBindViewHolder(ParkingTicketAdapter.ViewHolder holder, int position) {
-        ParkingTicketVO.ParkingTicket ticket = mData.get(position) ;
-        String h_text ="";
-        String h_type = ticket.getP_type();
-        String hour = ticket.getHourly();
+    public long getItemId(int position) {
+        return position;
+    }
 
-        if (h_type.equalsIgnoreCase("h")){
-            h_text="시간권 [";
-            hour=hour+"시간]";
-        }else if (h_type.equalsIgnoreCase("d")){
-            h_text="일일권 ";
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder; // 맨 아래 Viewholder 클래스를 작성 후 선언한다.
+
+        if(convertView == null){    // 처음 1번만 convertView를 객체화 (싱글톤 느낌)
+            holder = new ViewHolder();  // 성능개선 클래스 생성
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.parking_ticketinfo_list, parent,false);
+            // attachToRoot: false = 이 레이아웃이 루트 레이아웃인지를 지정한다.. 리스트뷰의 각 아이템이므로 false를 지정
+
+            // 날씨, 도시명, 기온 View
+            // 시간, 금액
+
+            TextView hourlyTV = convertView.findViewById(R.id.hourlyTV);
+            TextView priceTV = convertView.findViewById(R.id.priceTV);
+
+            holder.hourlyTV = hourlyTV;
+            holder.priceTV = priceTV;
+
+            convertView.setTag(holder);
+
         }else{
-            h_text="시간권 [";
-            hour=hour+"분]";
+            holder = (ViewHolder)convertView.getTag(); // holder
         }
 
+        ParkingTicket parkingTicket = mData.get(position);
 
-        holder.hourText.setText(h_text);
-        holder.hourlyTV.setText(hour);
-        holder.priceTV.setText(ticket.getPrice());
-
+        //holder.hourlyTV.setText(parkingTicket.getHourly());
+       // holder.priceTV.setText(parkingTicket.getPrice());
+        return convertView;
     }
 
-    // getItemCount() - 전체 데이터 갯수 리턴.
-    @Override
-    public int getItemCount() {
-        return mData.size() ;
+    // 성능개선 클래스 ViewHolder 패턴은 자주 사용하는 뷰를 한번 로드하면 재사용하고, 표시할 내용만 교체하기위한 패턴이다.
+    static class ViewHolder {
+        TextView hourlyTV;
+        TextView priceTV;
     }
 }

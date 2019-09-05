@@ -166,10 +166,8 @@
 
                         <!--주차권-->
                         <LinearLayout
-                            android:id="@+id/tikectInfoTv"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content">
                             <com.team.smart.customfonts.MyTextView_Roboto_Medium
                                 android:id="@+id/ticketText"
                                 android:layout_width="wrap_content"
@@ -181,13 +179,17 @@
                                 android:paddingLeft="12dp"
                                 android:textColor="@color/mainText"/>
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/recycler1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                            </androidx.recyclerview.widget.RecyclerView>
                         </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <ListView
+                                android:id="@+id/list_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                >
+                            </ListView>
+                        </RelativeLayout>
 
                         <!--주차요금-->
                         <LinearLayout
@@ -469,14 +471,22 @@
             android:visibility="gone">
 
             <Spinner
-                android:id="@+id/spinner"
+            android:id="@+id/carTypeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/box_border"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"></Spinner>
+
+            <Spinner
+                android:id="@+id/timeTypeBtn"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@drawable/box_border"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"></Spinner>
-
         </LinearLayout>
 
         <com.team.smart.customfonts.MyTextView_Roboto_Regular
