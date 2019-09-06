@@ -4,9 +4,9 @@ import com.team.smart.vo.FoodDetailVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
-import com.team.smart.vo.Foods;
 import com.team.smart.vo.ParkingOrderVO;
 import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.vo.RoomBVO;
 
 import java.util.HashMap;
 
@@ -51,6 +51,15 @@ public interface APIInterface
     Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
     Call<FoodOrderVO> getOrderDerailInfo(@Query("comp_seq") String comp_seq, @Query("id") String id); //주문정보 1건 조회
     //지혜 종료
+
+    //명근 시작
+    //매물 수량
+    @GET("/api/room/getRoomCnt")
+    Call<RoomBVO> getRoomCnt();
+    //매물 정보 리스트
+    @GET("/api/room/getRoomList")
+    Call<RoomBVO> getRoomList(@Query("b_code") String b_code);
+    //명근 종료
 
     //카카오페이
     //@POST("/kakao/payTest")
