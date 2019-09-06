@@ -47,8 +47,8 @@ public interface APIInterface
     Call<FoodDetailVO> foodMenuList(@Query("comp_seq") String comp_seq);
     @POST("/api/food/payTest")
     Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
-    @POST
-    Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
+    //@POST
+    //Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
     Call<FoodOrderVO> getOrderDerailInfo(@Query("comp_seq") String comp_seq, @Query("id") String id); //주문정보 1건 조회
     //지혜 종료
 
@@ -66,7 +66,7 @@ public interface APIInterface
     //Call<HashMap> kakaoPayParkingTicket(@Body FoodOrderVO foodOrderVO);
     @POST("/api/parking/kakao/ParkingBuyTicket")
     Call<HashMap> ParkingBuyTicket(@Body ParkingOrderVO orderVO);
-    //@POST
-    //Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("p_ocode") String p_ocode);
+    @POST
+    Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("orderCode") String orderCode);
     //카카오페이 끝
 }
