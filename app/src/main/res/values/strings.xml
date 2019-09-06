@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">smartBuilding</string>
+    <string name="app_name">SmartBuilding</string>
     <!-- 은지 -->
     <string name="title_activity_parking_buildng_info">parking_buildng_info</string>
     <string name="tab_text_1">Tab 1</string>

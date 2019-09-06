@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.team.smart.R;
 
@@ -66,7 +64,7 @@ public class MainActivity extends HeaderActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "사무실 임대 버튼 눌림", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(),RentalActivity.class); // RentalActivity 이동할 준비
+                Intent intent = new Intent(getApplicationContext(), RoomMainActivity.class); // RoomMainActivity 이동할 준비
                 startActivityForResult(intent,reqCode);
             }
         });
@@ -75,7 +73,7 @@ public class MainActivity extends HeaderActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "회의실 예약 버튼 눌림", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(),RentalActivity.class); // ReservationActivity 이동할 준비
+                Intent intent = new Intent(getApplicationContext(), RoomMainActivity.class); // ReservationActivity 이동할 준비
                 startActivityForResult(intent,reqCode);
             }
         });
