@@ -12,6 +12,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- AR -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false"/>
+    <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,8 +36,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
-        <activity android:name=".activity.WalletTransferActivity" />
-        <activity android:name=".activity.MyWalletActivity" /> <!-- 액티비티 추가 -->
+        <!-- 액티비티 추가 -->
         <!-- 은지 액티비티 -->
         <activity android:name=".activity.ParkingPaymentActivity" />
         <activity android:name=".activity.ParkingCarSearchActivity" />
@@ -45,16 +49,21 @@
         <activity android:name=".activity.ParkingTicketPayment" />
         <activity android:name=".activity.PakingTicketKakaoActivity" />
         <activity android:name=".activity.ParkingOrderComplete" />
-        <activity android:name=".activity.ParkingOwnTicket" /> <!-- 명근 액티비 -->
+        <activity android:name=".activity.ParkingOwnTicket" />
+        <!-- 명근 액티비티 -->
         <activity android:name=".activity.SignInActivity" />
         <activity android:name=".activity.SignUpActivity" />
-        <activity android:name=".activity.RentalContractActivity" />
-        <activity android:name=".activity.RentalDetailsActivity" />
-        <activity android:name=".activity.RentalListActivity" />
-        <activity android:name=".activity.RentalActivity" />
-        <activity android:name=".activity.WalletCreateActivity" />
+        <activity android:name=".activity.RoomContractActivity" />
+        <activity android:name=".activity.RoomDetailActivity" />
+        <activity android:name=".activity.RoomListActivity" />
+        <activity android:name=".activity.RoomMainActivity" />
         <activity android:name=".activity.WalletActivity" />
-        <activity android:name=".activity.Start" /> <!-- 지혜 액티비티 -->
+        <activity android:name=".activity.WalletCreateActivity" />
+        <activity android:name=".activity.WalletTransferActivity" />
+        <activity android:name=".activity.MyWalletActivity" />
+        <activity android:name=".activity.Start" />
+        <activity android:name=".activity.SearchMapActivity" />
+        <!-- 지혜 액티비티 -->
         <activity android:name=".activity.DetailActivity" />
         <activity android:name=".activity.FoodListActivity" />
         <activity android:name=".activity.DetailFoodPopupActivity" />
@@ -74,12 +83,17 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <!-- 세로고정portrait -->
+            <!-- 세로 화면으로 고정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="unity.tango-enable" android:value="True" />
+        <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true" />
+        <meta-data android:name="unity.build-id" android:value="2b8e0cad-7fed-4fff-ae1f-243cf14b9dc0"/>
+        <meta-data android:name="unity.splash-mode" android:value="0" />
+        <meta-data android:name="unity.splash-enable" android:value="True" />
     </application>
 
 </manifest>
