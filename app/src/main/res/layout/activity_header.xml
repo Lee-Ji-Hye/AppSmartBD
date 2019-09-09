@@ -72,32 +72,67 @@
             android:background="#377dff"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/userIdView"
+            <!--회원 안내문-->
+            <LinearLayout
+                android:id="@+id/lay_userTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="23dp"
-                android:layout_marginLeft="20dp"
-                android:text="ooo 님"
-                android:textColor="#ffffff"
-                android:textSize="24dp"/>
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/userIdView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="ooo 님"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp"/>
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/userIdView"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="환영합니다"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+            <!--비회원 안내문 default = 안보이게 -->
+            <LinearLayout
+                android:id="@+id/lay_guestTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/userIdView"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="20dp"
-                android:text="환영합니다"
-                android:textColor="#ffffff"
-                android:textSize="24dp" />
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="로그인을"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/userIdView"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="해주세요"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+            </LinearLayout>
 
             <Button
-                android:id="@+id/mypageBtn"
+                android:id="@+id/btn_CloseDrawer"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="내 정보"
+                android:text="닫기"
                 android:background="@drawable/radius_mini_border"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
@@ -112,19 +147,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/firstRLayout"
             android:orientation="vertical">
-            <Button
-                android:id="@+id/btnSignIn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="로그인"
-                android:textAlignment="center"
-                android:background="#e3e3e3"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
 
-            <Button
+            <!--<Button
                 android:id="@+id/btnSingUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,18 +158,31 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
-
+                android:layout_marginBottom="5dp" />-->
             <Button
+                android:id="@+id/mypageBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="보유한 주차권 조회"
+                android:text="마이페이지"
                 android:textAlignment="center"
-                android:background="#e3e3e3"
+                android:background="#ffffff"
+                android:textColor="#377dff"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"/>
+            <!--마이페이지 안에서 처리하기 -->
+            <!--<Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="보유한 주차권 조회"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#377dff"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>-->
 
             <!--메뉴-->
             <RelativeLayout
@@ -170,15 +207,39 @@
                     android:textSize="18dp"/>
             </RelativeLayout>
         </LinearLayout>
+
         <Button
-            android:id="@+id/btn_CloseDrawer"
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSingUp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="로그인"
+            android:background="#ffffff"
+            android:textColor="#377dff" />
+
+        <Button
+            android:id="@+id/btnSingUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
-            android:text="닫기"
-            android:background="#e3e3e3" />
+            android:text="회원가입"
+            android:background="#ffffff"
+            android:textColor="#377dff"/>
+
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="로그아웃"
+            android:background="#ffffff"
+            android:textColor="#377dff"/>
 
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

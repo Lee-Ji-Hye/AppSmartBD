@@ -1,14 +1,18 @@
 package com.team.smart.network;
 
+import com.team.smart.vo.FoodCouponVO;
 import com.team.smart.vo.FoodDetailVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
 import com.team.smart.vo.ParkingOrderVO;
 import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.vo.RequestUserVO;
 import com.team.smart.vo.RoomBVO;
+import com.team.smart.vo.UserVO;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -45,11 +49,17 @@ public interface APIInterface
     Call<FoodStoreVO> foodStore(@Query("comp_seq") String comp_seq);
     @GET("/api/food/getFoodMenuList")
     Call<FoodDetailVO> foodMenuList(@Query("comp_seq") String comp_seq);
+    @POST("/api/food/getBeachonCoupon")
+    Call<FoodCouponVO> getBeaconCouponList(@Body HashMap map);
     @POST("/api/food/payTest")
     Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
-    //@POST
-    //Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("f_ocode") String f_ocode);
+    @POST("/api/food/orderDetail")
     Call<FoodOrderVO> getOrderDerailInfo(@Query("comp_seq") String comp_seq, @Query("id") String id); //주문정보 1건 조회
+
+    @POST("/api/user/signUp")
+    Call<Map<String, String>> memberSignUp(@Body RequestUserVO userVO); //회원가입
+    @POST("/api/user/signIn")
+    Call<UserVO> memberSignIn(@Body RequestUserVO userVO); //로그인
     //지혜 종료
 
     //명근 시작

@@ -182,7 +182,7 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
         carNumPayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(getApplicationContext(), MainActivity.class); //parkingsearchActivity 이동
+                //Intent intent = new Intent(getApplicationContext(), BeaconActivity.class); //parkingsearchActivity 이동
                 // startActivity(intent);
                 chooseLayout = findViewById(R.id.chooseLayout);
 
