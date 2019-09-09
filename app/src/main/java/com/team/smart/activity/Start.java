@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,11 +36,8 @@ public class Start extends Activity {
 
         initData();
 
-        if (names.size() == 0){
-            Intent intent = new Intent();
-            intent.setClass(this,WalletCreateActivity.class);
-            startActivity(intent);
-        } else {
+        if (names.size() > 0){
+            Log.d("name size", "22222");
             ListView listView = findViewById(R.id.listview);
             startAdapter = new StartAdapter(this, R.layout.wallet_item, names);
             listView.setAdapter(startAdapter);
