@@ -63,6 +63,14 @@ public class RoomRecyclerAdapter extends RecyclerView.Adapter<RoomRecyclerAdapte
             public void onClick(View view) {
                 Toast.makeText(context, "매물 정보 버튼 눌림", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, RoomDetailActivity.class); //RentalDetailsActivity 이동할 준비
+                intent.putExtra("b_area1", lists.getB_area1());
+                intent.putExtra("b_area2", lists.getB_area2());
+                intent.putExtra("b_address", lists.getB_address());
+                intent.putExtra("b_year", lists.getB_year());
+                intent.putExtra("b_landarea", lists.getB_landarea());
+                intent.putExtra("b_buildarea", lists.getB_buildarea());
+                intent.putExtra("b_buildscale", lists.getB_buildscale());
+
                 intent.putExtra("r_code", lists.getR_code());
                 intent.putExtra("r_name", lists.getR_name());
                 intent.putExtra("r_type", lists.getR_type());
@@ -75,11 +83,15 @@ public class RoomRecyclerAdapter extends RecyclerView.Adapter<RoomRecyclerAdapte
                 intent.putExtra("regidate", sfd.format(batch_date));
                 intent.putExtra("r_area", lists.getR_area());
                 intent.putExtra("r_desc", lists.getR_desc());
+
                 intent.putExtra("b_lat", lists.getB_lat());
                 intent.putExtra("b_lon", lists.getB_lon());
+
                 intent.putExtra("name", lists.getName());
                 intent.putExtra("email", lists.getEmail());
                 intent.putExtra("hp", lists.getHp());
+
+                intent.putExtra("comp_seq", lists.getComp_seq());
                 context.startActivity(intent);
             }
         });

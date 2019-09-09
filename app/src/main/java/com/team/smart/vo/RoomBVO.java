@@ -19,6 +19,21 @@ public class RoomBVO extends BaseRespon {
 
     public class Room {
 
+        @SerializedName("b_area1")
+        private String b_area1;        //서울시
+        @SerializedName("b_area2")
+        private String b_area2;        //금천구
+        @SerializedName("b_address")
+        private String b_address;      //주소
+        @SerializedName("b_year")
+        private String b_year;         //준공년도
+        @SerializedName("b_landarea")
+        private String b_landarea;     //대지면적
+        @SerializedName("b_buildarea")
+        private String b_buildarea;    //건축면적
+        @SerializedName("b_buildscale")
+        private String b_buildscale;   //건축규모
+
         @SerializedName("r_code")
         private String r_code;         //매물 코드
         @SerializedName("b_code")
@@ -59,18 +74,80 @@ public class RoomBVO extends BaseRespon {
         private String userid;         //관리자 아이디
         @SerializedName("r_kind")
         private String r_kind;         //매물 종류
-        @SerializedName("r_cnt")
-        private String r_cnt;          //매물 수량
+
         @SerializedName("b_lat")
         private double b_lat;          //위도
         @SerializedName("b_lon")
         private double b_lon;          //경도
+
+        @SerializedName("r_cnt")
+        private String r_cnt;          //매물 수량
+
         @SerializedName("name")
         private String name;           //임대 관리자 이름
         @SerializedName("email")
         private String email;          //임대 관리자 이메일
         @SerializedName("hp")
         private String hp;             //임대관리자 핸드폰
+
+        @SerializedName("comp_seq")
+        private String comp_seq;       //업체 코드
+
+        public String getB_area1() {
+            return b_area1;
+        }
+
+        public void setB_area1(String b_area1) {
+            this.b_area1 = b_area1;
+        }
+
+        public String getB_area2() {
+            return b_area2;
+        }
+
+        public void setB_area2(String b_area2) {
+            this.b_area2 = b_area2;
+        }
+
+        public String getB_address() {
+            return b_address;
+        }
+
+        public void setB_address(String b_address) {
+            this.b_address = b_address;
+        }
+
+        public String getB_year() {
+            return b_year;
+        }
+
+        public void setB_year(String b_year) {
+            this.b_year = b_year;
+        }
+
+        public String getB_landarea() {
+            return b_landarea;
+        }
+
+        public void setB_landarea(String b_landarea) {
+            this.b_landarea = b_landarea;
+        }
+
+        public String getB_buildarea() {
+            return b_buildarea;
+        }
+
+        public void setB_buildarea(String b_buildarea) {
+            this.b_buildarea = b_buildarea;
+        }
+
+        public String getB_buildscale() {
+            return b_buildscale;
+        }
+
+        public void setB_buildscale(String b_buildscale) {
+            this.b_buildscale = b_buildscale;
+        }
 
         public String getR_code() {
             return r_code;
@@ -232,14 +309,6 @@ public class RoomBVO extends BaseRespon {
             this.r_kind = r_kind;
         }
 
-        public String getR_cnt() {
-            return r_cnt;
-        }
-
-        public void setR_cnt(String r_cnt) {
-            this.r_cnt = r_cnt;
-        }
-
         public double getB_lat() {
             return b_lat;
         }
@@ -256,16 +325,44 @@ public class RoomBVO extends BaseRespon {
             this.b_lon = b_lon;
         }
 
-        public String getName() { return name; }
+        public String getR_cnt() {
+            return r_cnt;
+        }
 
-        public void setName(String name) { this.name = name; }
+        public void setR_cnt(String r_cnt) {
+            this.r_cnt = r_cnt;
+        }
 
-        public String getEmail() { return email; }
+        public String getName() {
+            return name;
+        }
 
-        public void setEmail(String email) { this.email = email; }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-        public String getHp() { return hp; }
+        public String getEmail() {
+            return email;
+        }
 
-        public void setHp(String hp) { this.hp = hp; }
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getHp() {
+            return hp;
+        }
+
+        public void setHp(String hp) {
+            this.hp = hp;
+        }
+
+        public String getComp_seq() {
+            return comp_seq;
+        }
+
+        public void setComp_seq(String comp_seq) {
+            this.comp_seq = comp_seq;
+        }
     }
 }

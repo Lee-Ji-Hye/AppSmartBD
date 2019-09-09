@@ -38,7 +38,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
-import com.google.maps.android.clustering.ClusterManager;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
@@ -52,7 +51,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int REQUEST_CODE_PERMISSIONS = 1000;
 
@@ -68,20 +67,12 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
     //지오 코딩(Geocoding)으로 주소를 해당 좌표(위도, 경도)로 변환
     private Geocoder geocoder;
 
-    //Google Map에 Marker Clustering 추가
-    private ClusterManager<MarkerItem> mClusterManager;
-
     //정보
     ArrayList<RoomBVO.Room> RoomList;
 
     private APIInterface apiRoomCntInterface;
 
     protected NetworkResponse networkResponse;
-
-    @Override
-    public void onMapClick(LatLng latLng) {
-
-    }
 
     interface NetworkResponse {
         void  success(RoomBVO data);
@@ -278,45 +269,19 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
     }
 // /////////////// 지오 코딩(Geocoding)으로 주소를 해당 좌표(위도, 경도)로 변환 종료 ///////////////
 
-    // ////////////////////////////// Google Map에 Custom Marker 추가 시작 /////////////////////////////
+// ////////////////////////////// Google Map에 Custom Marker 추가 시작 /////////////////////////////
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.480372, 126.877127), 17.0f));
         mMap.setOnMarkerClickListener(this);
-        mMap.setOnMapClickListener(this);
 
         setCustomMarkerView();
     }
-// /////////////////////////// Google Map에 Marker Clustering 추가 시작 ////////////////////////////
-        /*mClusterManager = new ClusterManager<>(this, mMap);
-        mMap.setOnCameraIdleListener(mClusterManager);
-        mMap.setOnMarkerClickListener(mClusterManager);
-
-        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MarkerItem>() {
-            @Override
-            public boolean onClusterItemClick(MarkerItem markerItem) {
-                Toast.makeText(getApplicationContext(), "매물 리스트 버튼 눌림", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(),RentalListActivity.class); // ReservationActivity 이동할 준비
-                startActivity(intent);
-                return true;
-            }
-        });
-
-        addItems();
-        setCustomMarkerView();
-    }
-
-    private void addItems() {
-
-        double lat = 37.478888;
-        double lng = 126.878920;
-    }*/
-// /////////////////////////// Google Map에 Marker Clustering 추가 종료 ////////////////////////////
 // ////////////////////////////// Google Map에 Custom Marker 추가 종료 /////////////////////////////
 
-    // /////////////////////////////// Google Map에 현재 위치 정보 시작 ////////////////////////////////
+// /////////////////////////////// Google Map에 현재 위치 정보 시작 ////////////////////////////////
     public void onLastLocationButtonClicked(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -365,7 +330,7 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 // /////////////////////////////// Google Map에 현재 위치 정보 종료 ////////////////////////////////
 
-    // ///////////////////////////////////////// 공통헤더 시작 /////////////////////////////////////////
+// ///////////////////////////////////////// 공통헤더 시작 /////////////////////////////////////////
     @Override
     void findid() { }
 
@@ -374,7 +339,7 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
         btSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "검색 버튼 눌림", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "주소 검색 버튼 눌림", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), SearchMapActivity.class); //SearchMapActivity 이동할 준비
                 startActivityForResult(intent, Code.requestCode);
             }

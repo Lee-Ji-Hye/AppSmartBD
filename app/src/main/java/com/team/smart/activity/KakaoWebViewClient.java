@@ -22,17 +22,17 @@ import retrofit2.Response;
 
 public class KakaoWebViewClient extends WebViewClient {
     private Activity activity;
-    private String f_ocode;
+    private String orderCode;
 
     private String theme;
 
     private APIInterface apiInterface;
 
-    public KakaoWebViewClient(Activity activity, String theme, String f_ocode) {
+    public KakaoWebViewClient(Activity activity, String theme, String orderCode) {
         this.activity = activity;
         this.theme = theme;
 
-        this.f_ocode = f_ocode;
+        this.orderCode = orderCode;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class KakaoWebViewClient extends WebViewClient {
         }
 
         //통신
-        Call<HashMap> call = apiInterface.kakaoPaySuccess(reUrl, f_ocode);
+        Call<HashMap> call = apiInterface.kakaoPaySuccess(reUrl, orderCode);
         call.enqueue(new Callback<HashMap>() {
             @Override
             public void onResponse(Call<HashMap> call, Response<HashMap> response) {
