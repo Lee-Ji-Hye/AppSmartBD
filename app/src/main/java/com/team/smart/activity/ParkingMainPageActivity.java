@@ -119,13 +119,10 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
 
                     Gson gson3 = new Gson();
                     String json3 = gson3.toJson(resource.getParkingBDsList());
-                    Log.d("디테일 통신~~~~",json3);
+                    Log.d("주차장 정보~~~~",json3);
 
                     if(networkResponse!=null) {
                         networkResponse.success(resource);
-
-
-
                         //마커 넣기
                         getSampleMarkerItems(ParkingList);
                     }
@@ -185,7 +182,7 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
         carNumPayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(getApplicationContext(), MainActivity.class); //parkingsearchActivity 이동
+                //Intent intent = new Intent(getApplicationContext(), BeaconActivity.class); //parkingsearchActivity 이동
                 // startActivity(intent);
                 chooseLayout = findViewById(R.id.chooseLayout);
 
@@ -231,7 +228,7 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.537523, 126.96558), 14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.480372,126.877127), 14));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 

@@ -23,7 +23,7 @@ public class FoodListActivity extends AppCompatActivity {
         findId(); //아이디 셋팅
         FoodListLoad();
 
-        //Intent intent = new Intent(getApplicationContext(), FoodOrderActivity.class);
+        //Intent intent = new Intent(getApplicationContext(), AKakaoTestActivity.class);
         //this.startActivity(intent);
     }
 

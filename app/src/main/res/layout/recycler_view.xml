@@ -45,7 +45,7 @@
                 android:textSize="14dp" />
 
             <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                android:id="@+id/r_reposit"
+                android:id="@+id/r_deposit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

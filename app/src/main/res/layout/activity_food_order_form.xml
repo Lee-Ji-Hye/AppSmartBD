@@ -83,7 +83,7 @@
                             android:textAlignment="center"
                             android:textColor="#000"
                             android:textSize="18dp" />
--->
+                        -->
                     </LinearLayout>
 
                     <!--식당정보 & 주문 정보-->
@@ -106,7 +106,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginTop="8dp"
-                                android:text="서울특별시 금천구 가산동 547-9"
+                                android:text=""
                                 android:textColor="@color/subText"
                                 android:textSize="14dp" />
 
@@ -123,6 +123,98 @@
 
                         <!--주차시간-->
 
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#ffffff"
+                        android:layout_marginTop="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="주문자"
+                                android:textColor="@color/mainText"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/stroke_top_bottom_ddd">
+                            <EditText
+                                android:id="@+id/edit_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="10dp"
+                                android:textSize="11dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="12dp"
+                                android:hint="이름을 입력하세요"
+                                android:text=""
+                                android:background="@null"
+                                android:textColor="@color/mainText"/>
+
+                        </LinearLayout>
+
+                        <!--핸드폰 번호-->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="휴대번호"
+                                android:textColor="@color/mainText"
+                                android:textSize="14dp" />
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:background="#dddddd"/>
+
+                        <!--요청사항-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/stroke_top_bottom_ddd">
+                            <EditText
+                                android:id="@+id/edit_hp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="10dp"
+                                android:textSize="11dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="12dp"
+                                android:hint="'-' 없이 입력"
+                                android:text=""
+                                android:background="@null"
+                                android:textColor="@color/mainText"/>
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:background="#dddddd"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -268,13 +360,14 @@
                             android:background="@drawable/stroke_top_bottom_ddd">
                             <EditText
                                 android:id="@+id/edit_message"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="10dp"
                                 android:textSize="11dp"
                                 android:paddingBottom="10dp"
                                 android:paddingLeft="12dp"
-                                android:text="50자까지 작성할 수 있어요"
+                                android:hint="50자까지 작성할 수 있어요"
+                                android:text=""
                                 android:background="@null"
                                 android:textColor="@color/mainText"/>
 
@@ -359,7 +452,7 @@
                                     android:layout_height="wrap_content"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
-                                    android:text="24시간"
+                                    android:text="문의"
                                     android:textColor="#2ebcff"
                                     android:layout_marginRight="20dp"
                                     android:layout_alignParentRight="true"
@@ -581,14 +674,14 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp">
                             <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                android:id="@+id/parkNameTV"
+                                android:id="@+id/tv_comp_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="육삼냉면 (본점)"
                                 android:textSize="12dp"
                                 android:textColor="#000"/>
                             <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                android:id="@+id/phoneTV"
+                                android:id="@+id/tv_comp_hp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/subText"
