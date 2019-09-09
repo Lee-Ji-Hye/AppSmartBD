@@ -28,10 +28,18 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
     int images[] = {R.drawable.property, R.drawable.property, R.drawable.property, R.drawable.property};
     MyCustomPagerAdapter myCustomPagerAdapter;
 
-    private String r_code,r_name,r_type,r_price,r_deposit,r_ofer_fee,r_floor,r_indi_space,r_able_date,regidate,r_area,r_desc,name,email,hp;
+    private String b_area1,b_area2,b_address,b_year,b_landarea,b_buildarea,b_buildscale
+                  ,r_code,r_name,r_type,r_price,r_deposit,r_ofer_fee,r_floor,r_indi_space,r_able_date,regidate,r_area,r_desc
+                  ,name,email,hp
+                  ,comp_seq;
     private double b_lat,b_lon;
-    TextView imageNo,rentalContract,tv_r_type,tv_r_price,tv_r_deposit,tv_r_name,tv_r_indi_space,tv_r_floor,tv_r_ofer_fee,tv_r_able_date,tv_regidate
-            ,tv_r_type2,tv_r_floor2,tv_r_ofer_fee2,tv_r_area2,tv_r_able_date2,tv_r_deposit2,tv_r_indi_space2,tv_r_desc2
+    TextView imageNo,rentalContract
+            ,tv_r_type,tv_r_price,tv_r_deposit
+            ,tv_r_name,tv_r_indi_space,tv_r_floor,tv_r_ofer_fee
+            ,tv_r_able_date,tv_regidate
+            ,tv_r_type2,tv_r_floor2,tv_r_ofer_fee2,tv_r_area2,tv_r_able_date2,tv_r_deposit2
+            ,tv_r_indi_space2
+            ,tv_r_desc2
             ,tv_user_name,tv_user_eamil,tv_user_hp,btnAR;
     ImageView btnCall;
 
@@ -68,6 +76,21 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "계약서 작성 버튼 눌림", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), RoomContractActivity.class); //ParkingMainActivity 이동할 준비
+                intent.putExtra("b_area1", b_area1);
+                intent.putExtra("b_area2", b_area2);
+                intent.putExtra("b_address", b_address);
+                intent.putExtra("b_year", b_year);
+                intent.putExtra("b_landarea", b_landarea);
+                intent.putExtra("b_buildarea", b_buildarea);
+                intent.putExtra("b_buildscale", b_buildscale);
+
+                intent.putExtra("r_price", r_price);
+                intent.putExtra("r_deposit", r_deposit);
+
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("hp", hp);
+                intent.putExtra("comp_seq", comp_seq);
                 startActivity(intent);
             }
         });
@@ -88,6 +111,14 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
     private void findid() {
         //Intent Parameter Data
         Intent intent = getIntent(); //데이터 수신
+        b_area1 = intent.getExtras().getString("b_area1");
+        b_area2 = intent.getExtras().getString("b_area2");
+        b_address = intent.getExtras().getString("b_address");
+        b_year = intent.getExtras().getString("b_year");
+        b_landarea = intent.getExtras().getString("b_landarea");
+        b_buildarea = intent.getExtras().getString("b_buildarea");
+        b_buildscale = intent.getExtras().getString("b_buildscale");
+
         r_code = intent.getExtras().getString("r_code");
         r_name = intent.getExtras().getString("r_name");
         r_type = intent.getExtras().getString("r_type");
@@ -100,11 +131,15 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         regidate = intent.getExtras().getString("regidate");
         r_area = intent.getExtras().getString("r_area");
         r_desc = intent.getExtras().getString("r_desc");
+
         b_lat = intent.getExtras().getDouble("b_lat");
         b_lon = intent.getExtras().getDouble("b_lon");
+
         name = intent.getExtras().getString("name");
         email = intent.getExtras().getString("email");
         hp = intent.getExtras().getString("hp");
+
+        comp_seq = intent.getExtras().getString("comp_seq");
 
         //find id
         viewPager = (ViewPager)findViewById(R.id.viewpager);
