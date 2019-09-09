@@ -1,15 +1,18 @@
 package com.team.smart.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.team.smart.R;
+import com.team.smart.blockchain.Wallet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class parkingmypageActivity extends AppCompatActivity {
 
@@ -44,8 +47,26 @@ public class parkingmypageActivity extends AppCompatActivity {
         btnWalletInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Start.class); //MyWalletActivity 이동
-                startActivity(intent);
+
+                List<String> names = new ArrayList<>();
+                Wallet wallet = Wallet.getInstance();
+                String filepath = getFilesDir()+"/keystore";
+                try {
+                    wallet.getLists(filepath);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                names = wallet.getNames();
+
+                if (names.size() == 0){
+                    Intent intent = new Intent(getApplicationContext(), WalletCreateActivity.class); //지갑 없음 이동
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), Start.class); //지갑있음 이동
+                    startActivity(intent);
+                }
+
             }
         });
     }
