@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,11 +36,8 @@ public class Start extends Activity {
 
         initData();
 
-        if (names.size() == 0){
-            Intent intent = new Intent();
-            intent.setClass(this,WalletCreateActivity.class);
-            startActivity(intent);
-        } else {
+        if (names.size() > 0){
+            Log.d("name size", "22222");
             ListView listView = findViewById(R.id.listview);
             startAdapter = new StartAdapter(this, R.layout.wallet_item, names);
             listView.setAdapter(startAdapter);
@@ -67,21 +65,21 @@ public class Start extends Activity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Start.this);
                     final EditText et = new EditText(Start.this);
                     builder.setMessage("비밀번호를 입력하세요").
-                        setView(et).
-                        setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            String inputPass = et.getText().toString();
-                            if (inputPass.equals(pass)) {
-                                Toast.makeText(getApplicationContext(), "지갑 정보 관리 페이지 이동", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getApplicationContext(), MyWalletActivity.class); //MyWalletActivity 이동할 준비
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_LONG).show();
-                            }
-                            }
-                        }).
-                        setNegativeButton("취소", null);
+                            setView(et).
+                            setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    String inputPass = et.getText().toString();
+                                    if (inputPass.equals(pass)) {
+                                        Toast.makeText(getApplicationContext(), "지갑 정보 관리 페이지 이동", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), MyWalletActivity.class); //MyWalletActivity 이동할 준비
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "실패", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }).
+                            setNegativeButton("취소", null);
                     builder.create().show();
                 }
             });
