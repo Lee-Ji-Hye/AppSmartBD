@@ -65,15 +65,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:paddingTop="10dp">
+                            android:paddingTop="10dp"
+                            android:orientation="horizontal">
 
                             <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                android:id="@+id/propertyName"
+                                android:id="@+id/b_nameTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:text="월드벤처 2차 [가산디지털단지역]"
+                                android:text="건물이름"
                                 android:textColor="#000"
                                 android:textSize="14dp" />
 
@@ -86,6 +86,7 @@
                             android:orientation="horizontal">
 
                             <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:id="@+id/t_nameTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
@@ -203,6 +204,38 @@
                                 android:text="결제 정보"
                                 android:textColor="#000"
                                 android:textSize="16dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="20dp"
+                                    android:text="가격"
+                                    android:textColor="#000"
+                                    android:textSize="14dp"
+                                    android:textAlignment="center"/>
+
+                                <LinearLayout
+                                    android:layout_width="110dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:orientation="horizontal">
+                                    <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                        android:id="@+id/priceTV"
+                                        android:layout_width="100dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:text="가격"
+                                        android:textColor="#000"
+                                        android:textSize="14dp"
+                                        android:textAlignment="center"/>
+
+                                </LinearLayout>
+                            </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -224,13 +257,16 @@
                                     android:orientation="horizontal">
 
                                     <EditText
+                                        android:id="@+id/countEdit"
                                         android:layout_width="50dp"
                                         android:layout_height="40dp"
                                         android:hint="0"
                                         android:textAlignment="center"
-                                        android:layout_marginTop="10dp"/>
+                                        android:layout_marginTop="10dp"
+                                        android:inputType="number"/>
 
                                     <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                                        android:id="@+id/p_countBtn"
                                         android:layout_width="45dp"
                                         android:layout_height="30dp"
                                         android:layout_marginLeft="5dp"
@@ -286,6 +322,7 @@
                                 android:textSize="16dp"
                                 />
                             <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:id="@+id/totalPriceTV"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="50dp"
@@ -294,6 +331,44 @@
                                 android:textColor="#000"
                                 android:textSize="16dp"
                                 android:layout_toRightOf="@id/totalText"
+                                />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:id="@+id/payTypeTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:text="결제 수단"
+                                android:textColor="#000"
+                                android:textSize="16dp"
+                                />
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toRightOf="@+id/payTypeTv"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="6dp">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    />
+                            </RadioGroup>
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="75dp"
+                                android:layout_marginTop="10dp"
+                                android:text="카카오페이"
+                                android:textColor="#000"
+                                android:textSize="16dp"
+                                android:layout_toRightOf="@id/payTypeTv"
                                 />
                         </RelativeLayout>
 

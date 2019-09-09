@@ -53,7 +53,6 @@ public class KoreanDishes extends Dishes {
 
         callApiFoodList("한식"); //부모 통신
 
-
         return view;
 
     }

@@ -166,8 +166,10 @@
 
                         <!--주차권-->
                         <LinearLayout
+                            android:id="@+id/tikectInfoTv"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
                             <com.team.smart.customfonts.MyTextView_Roboto_Medium
                                 android:id="@+id/ticketText"
                                 android:layout_width="wrap_content"
@@ -179,17 +181,13 @@
                                 android:paddingLeft="12dp"
                                 android:textColor="@color/mainText"/>
 
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <ListView
-                                android:id="@+id/list_view"
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler1"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                >
-                            </ListView>
-                        </RelativeLayout>
+                                android:layout_height="wrap_content">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
 
                         <!--주차요금-->
                         <LinearLayout
@@ -447,11 +445,13 @@
 
     <!--결제 버튼 -->
     <LinearLayout
+        android:id="@+id/hiddenLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:visibility="gone">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -468,25 +468,98 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            >
 
             <Spinner
-            android:id="@+id/carTypeBtn"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/box_border"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"></Spinner>
-
-            <Spinner
-                android:id="@+id/timeTypeBtn"
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@drawable/box_border"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"></Spinner>
+                android:layout_marginBottom="10dp"
+                >
+
+            </Spinner>
+            <RelativeLayout
+                android:id="@+id/selectedTvLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0원 "
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="8dp"
+                android:paddingTop="10dp"
+                android:textSize="14dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/mainText"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/selectPriceTV"
+                android:background="@color/colorLightGray"
+                android:visibility="gone">
+
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:id="@+id/selectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주차권 "
+                    android:textSize="14dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/mainText"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorLightGray"
+                    android:layout_marginRight="10dp"/>
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:layout_below="@+id/selectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="구매한 주차권은 구매일로부터 3년까지 사용하실수 있습니다."
+                    android:textSize="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/mainText"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorLightGray"
+                    android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:background="@color/Maincolor"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="총 결제 정보 "
+                    android:paddingTop="10dp"
+                    android:textSize="14dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/mainText"
+                    android:layout_toLeftOf="@+id/selectPriceTV"/>
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:id="@+id/selectPriceTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0원 "
+                    android:layout_marginRight="25dp"
+                    android:paddingTop="10dp"
+                    android:textSize="14dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/mainText"
+                    android:layout_alignParentRight="true"/>
+
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <com.team.smart.customfonts.MyTextView_Roboto_Regular

@@ -16,12 +16,17 @@ import com.team.smart.adapter.MyCustomPagerAdapter;
 
 public class ParkingPaymentActivity extends AppCompatActivity {
     private TextView paymentBtn;
-
+    String p_code; //주차장 코드
     ImageView carNumImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_payment);
+
+        //p_code 값 받아오기
+        Intent intent = getIntent();
+        p_code = intent.getExtras().getString("p_code");
+
 
         carNumImg=findViewById(R.id.carNumImg);
         paymentBtn = findViewById(R.id.paymentBtn);

@@ -1,39 +1,47 @@
 package com.team.smart.vo;
 
-public class MarkerItem {
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.clustering.ClusterItem;
 
-    double lat; // 위도
-    double lon; // 경도
-    int price;  // 가격
+public class MarkerItem implements ClusterItem {
+    private final LatLng mPosition;
+    String r_cnt;
+    String b_code;
 
-    public MarkerItem(double lat, double lon, int price) {
-        this.lat = lat;
-        this.lon = lon;
-        this.price = price;
+    public MarkerItem(double lat, double lng, String r_cnt, String b_code) {
+        mPosition = new LatLng(lat, lng);
+        this.r_cnt = r_cnt;
+        this.b_code = b_code;
     }
 
-    public double getLat() {
-        return lat;
+    @Override
+    public LatLng getPosition() {
+        return mPosition;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    @Override
+    public String getTitle() {
+        return null;
     }
 
-    public double getLon() {
-        return lon;
+    @Override
+    public String getSnippet() {
+        return null;
     }
 
-    public void setLon(double lon) {
-        this.lon = lon;
+    public String getR_cnt() {
+        return r_cnt;
     }
 
-    public int getPrice() {
-        return price;
+    public void setR_cnt(String r_cnt) {
+        this.r_cnt = r_cnt;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public String getB_code() {
+        return b_code;
     }
 
+    public void setB_code(String b_code) {
+        this.b_code = b_code;
+    }
 }
