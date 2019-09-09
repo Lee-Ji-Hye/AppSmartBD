@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_food_main_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(주문1동)삼겹구이" />
+
+        <TextView
+            android:id="@+id/tv_food_best_menu"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="#00f"
+            android:text="대표메뉴"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_food_sub_name"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="삼겹살+5찬+쌈채소+밥+찌개" />
+
+    <LinearLayout
+        android:id="@+id/li_detail_desc"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></LinearLayout>
+
+</LinearLayout>

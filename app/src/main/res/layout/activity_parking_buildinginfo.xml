@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ParkingBuildinginfo">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!--상단바-->
+        <androidx.appcompat.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_left_arrow" />
+
+            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="주차장 정보 "
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/ic_three_dot"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <!--스크롤뷰안 전체 레이아웃-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <!--주차장 위치 정보-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:paddingTop="20dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:textAlignment="center"
+                            android:src="@drawable/logo"
+                            />
+
+                        <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                            android:id="@+id/titleTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="월드벤처메르디앙 센터 2차 "
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="18dp" />
+
+                        <!--<com.team.smart.customfonts.MyTextView_Roboto_Medium
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="[가산디지털단지역]"
+                            android:textAlignment="center"
+                            android:textColor="#000"
+                            android:textSize="15dp" />
+-->
+                    </LinearLayout>
+
+                    <!--입차정보-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="15dp"
+                        android:background="#ffffff">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:id="@+id/addressTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginTop="8dp"
+                                android:text="서울특별시 금천구 가산동 547-9"
+                                android:textColor="@color/subText"
+                                android:textSize="14dp" />
+
+                            <Button
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:text="지도보기"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/box_border"
+                                android:layout_alignParentRight="true"
+                                android:textSize="12dp"/>
+
+                        </RelativeLayout>
+
+                        <!--주차시간-->
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.7dp"
+                        android:background="#dddddd"/>
+
+                    <!---->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#ffffff"
+                        android:layout_marginTop="10dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="주차정보"
+                                android:paddingTop="10dp"
+                                android:textSize="14dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="16dp"
+                                android:textColor="@color/mainText"/>
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:background="#dddddd"/>
+
+                        <!--주차권-->
+                        <LinearLayout
+                            android:id="@+id/tikectInfoTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:id="@+id/ticketText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="판매상품"
+                                android:paddingTop="10dp"
+                                android:textSize="11dp"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="12dp"
+                                android:textColor="@color/mainText"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycler1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            </androidx.recyclerview.widget.RecyclerView>
+                        </LinearLayout>
+
+                        <!--주차요금-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="12dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="주차 요금"
+                                android:textColor="@color/mainText"
+                                android:textSize="11dp" />
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="12dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="1시간 요금 / 3,000원"
+                                android:textColor="#2ebcff"
+                                android:textAlignment="center"
+                                android:textSize="15dp" />
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:background="#dddddd"/>
+
+                    </LinearLayout>
+
+
+                    <!--운영시간-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="12dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="운영시간"
+                                android:textColor="@color/mainText"
+                                android:textSize="11dp" />
+
+                            <!--평일 운영시간-->
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="평일"
+                                    android:textColor="@color/mainText"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="11dp" />
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:id="@+id/opendayTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="24시간"
+                                    android:textColor="#2ebcff"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_alignParentRight="true"
+                                    android:textSize="11dp" />
+                            </RelativeLayout>
+
+                            <!--주말 운영시간-->
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp">
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="주말/공휴일"
+                                    android:textColor="@color/mainText"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="11dp" />
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:id="@+id/openWeekTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="24시간"
+                                    android:textColor="#2ebcff"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_alignParentRight="true"
+                                    android:textSize="11dp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dddddd"/>
+                    </LinearLayout>
+
+                    <!--주차장 층 안내-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#FFFFFF"
+                        android:layout_marginTop="10dp"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="12dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:text="주차장 안내"
+                                android:textColor="@color/mainText"
+                                android:textSize="11dp" />
+
+                            <!--층안내-->
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="10dp">
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="B1층"
+                                    android:textColor="@color/mainText"
+                                    android:layout_marginLeft="20dp"
+                                    android:textSize="11dp" />
+
+                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:text="장애인 주차구역"
+                                    android:textColor="#2ebcff"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_alignParentRight="true"
+                                    android:textSize="11dp" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dddddd"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+                <!--담당자-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="90dp">
+                    <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/subText"
+                        android:textSize="14dp"
+                        android:text="담당자"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+                        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/profile_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/p3"
+                            app:civ_border_color="#00000000"
+                            app:civ_border_width="2dp"
+                            android:layout_marginLeft="10dp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp">
+                            <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                                android:id="@+id/parkNameTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="주차관리사무소"
+                                android:textSize="12dp"
+                                android:textColor="#000"/>
+                            <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                                android:id="@+id/phoneTV"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/subText"
+                                android:text="02-5465-4888"
+                                />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_message"
+                            android:layout_gravity="center_vertical"/>
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_phone"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!--결제 버튼 -->
+    <LinearLayout
+        android:id="@+id/hiddenLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:visibility="gone">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/openBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/toparrow"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/spinnerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/box_border"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                >
+
+            </Spinner>
+            <RelativeLayout
+                android:id="@+id/selectedTvLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0원 "
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="8dp"
+                android:paddingTop="10dp"
+                android:textSize="14dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/mainText"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/selectPriceTV"
+                android:background="@color/colorLightGray"
+                android:visibility="gone">
+
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:id="@+id/selectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주차권 "
+                    android:textSize="14dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/mainText"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorLightGray"
+                    android:layout_marginRight="10dp"/>
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:layout_below="@+id/selectTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="구매한 주차권은 구매일로부터 3년까지 사용하실수 있습니다."
+                    android:textSize="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/mainText"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorLightGray"
+                    android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:background="@color/Maincolor"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="총 결제 정보 "
+                    android:paddingTop="10dp"
+                    android:textSize="14dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/mainText"
+                    android:layout_toLeftOf="@+id/selectPriceTV"/>
+                <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                    android:id="@+id/selectPriceTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0원 "
+                    android:layout_marginRight="25dp"
+                    android:paddingTop="10dp"
+                    android:textSize="14dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/mainText"
+                    android:layout_alignParentRight="true"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <com.team.smart.customfonts.MyTextView_Roboto_Regular
+            android:id="@+id/paymentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/send_inq_rect"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_below="@+id/openBtn"
+            android:text="구매"
+            android:textSize="18dp"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+</RelativeLayout>

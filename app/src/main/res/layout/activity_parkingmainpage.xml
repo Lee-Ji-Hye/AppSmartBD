@@ -1,0 +1,69 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mapLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/parkingMap"
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onLastLocationButtonClicked"
+        android:text="현재 위치" />
+
+    <Button
+        android:id="@+id/carNumPayBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:text="차번호로 바로 결제하기"
+        android:background="@drawable/send_inq_rect"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        />
+
+    <!-- 바로결제하기 누르면 뜨는 화면 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="60dp"
+        android:background="@drawable/radius_border"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone"
+        android:id="@+id/chooseLayout"
+        >
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="로그인"
+            android:textColor="#FFFFFF"
+            android:background="#377dff"
+            android:textSize="18dp"
+            />
+
+        <Button
+            android:id="@+id/anyonePayBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="비회원으로 결제하기"
+            android:background="#cccccc"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

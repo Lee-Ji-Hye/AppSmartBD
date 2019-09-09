@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:id="@+id/linear_menu_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가게 소개"
+            android:layout_marginLeft="15dp"
+            android:textSize="16.7sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/tv_long_desc"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="간장냉면은 생소한 메뉴이지만
+            \n육수의시원하고 깊은 맛으로
+            \n고객님들께 단골매장이 되고자 합니다.
+
+            \n\n안심하고 드실 수 있게 좋은재료로 만들고있습니다.
+            \n특별한 조합! 맛있는 간장냉면 드시러 오세요^^"
+            android:layout_marginLeft="15dp"
+            android:textSize="13.7sp"
+            android:textColor="#747474" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가게 통계"
+                android:layout_marginLeft="15dp"
+                android:textSize="16.7sp"
+                android:textColor="#000"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/recentOrderTitle"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최근 주문수"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="13.7sp"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/recentOrderTitle"
+                    android:text="600+"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="13.7sp"
+                    android:textColor="#747474"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="17dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!--파라미터 셋팅 (이렇게 하는거 아니겠지)-->
+        <!--메뉴코드-->
+        <TextView
+            android:id="@+id/tv_fcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+        <!--업체코드-->
+        <TextView
+            android:id="@+id/tv_comp_seq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+        <!--업체명-->
+        <TextView
+            android:id="@+id/tv_comp_org"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/Food_13_Image_Id"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pexel" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_food_main_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:text="(주문1동)삼겹구이"
+                    android:textColor="#262628"
+                    android:textSize="14.4sp" />
+
+                <TextView
+                    android:id="@+id/tv_food_best_menu"
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="#2bccfe"
+                    android:text="대표메뉴"
+                    android:textSize="10dp"
+                    android:layout_toRightOf="@+id/tv_food_main_name"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_food_sub_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="삼겹살+5찬+쌈채소+밥+찌개"
+                android:textColor="#9b9b9b"
+                android:textSize="11.5sp" />
+
+            <TextView
+                android:id="@+id/tv_food_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="5000원"
+                android:textColor="#9b9b9b"
+                android:textSize="11.5sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="17dp"
+        android:background="#f5f5f5" />
+
+</LinearLayout>
+

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ParkingMainPageActivity"
+    android:id="@+id/drawerLayout">
+
+    <!--배경이 될 레이아웃-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#377dff"
+            >
+            <ImageButton
+                android:id="@+id/btn_OpenDrawer"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/menubtn"/>
+
+            <TextView
+                android:id="@+id/tv_headerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text=""
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"/>
+
+            <ImageButton
+                android:id="@+id/bt_searchbtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/searchbtn"/>
+        </RelativeLayout>
+
+        <!--여기가 이제 자식창 시작-->
+        <FrameLayout
+            android:id="@+id/childFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+        <!--여기가 이제 자식창 종료-->
+
+    </LinearLayout>
+
+    <!--드로어 화면이 될 Layout-->
+    <RelativeLayout
+        android:id="@+id/drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:layout_gravity="start">
+
+        <RelativeLayout
+            android:id="@+id/firstRLayout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#377dff"
+            android:orientation="vertical">
+
+            <!--회원 안내문-->
+            <LinearLayout
+                android:id="@+id/lay_userTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/userIdView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="ooo 님"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/userIdView"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="환영합니다"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+            <!--비회원 안내문 default = 안보이게 -->
+            <LinearLayout
+                android:id="@+id/lay_guestTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="로그인을"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/userIdView"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="해주세요"
+                    android:textColor="#ffffff"
+                    android:textSize="24dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_CloseDrawer"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="닫기"
+                android:background="@drawable/radius_mini_border"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="#FFFFFF"/>
+        </RelativeLayout>
+
+        <!--상세 메뉴 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstRLayout"
+            android:orientation="vertical">
+
+            <!--<Button
+                android:id="@+id/btnSingUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:textAlignment="center"
+                android:background="#e3e3e3"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />-->
+            <Button
+                android:id="@+id/mypageBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="마이페이지"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#377dff"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+            <!--마이페이지 안에서 처리하기 -->
+            <!--<Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="보유한 주차권 조회"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#377dff"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>-->
+
+            <!--메뉴-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+                <ImageView
+                    android:id="@+id/homeImg"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/logo"/>
+                <TextView
+                    android:id="@+id/homeBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/homeImg"
+                    android:text="홈으로"
+                    android:layout_centerInParent="true"
+                    android:textSize="18dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSingUp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="로그인"
+            android:background="#ffffff"
+            android:textColor="#377dff" />
+
+        <Button
+            android:id="@+id/btnSingUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="회원가입"
+            android:background="#ffffff"
+            android:textColor="#377dff"/>
+
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="로그아웃"
+            android:background="#ffffff"
+            android:textColor="#377dff"/>
+
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
