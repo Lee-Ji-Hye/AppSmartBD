@@ -8,9 +8,15 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 
 import android.net.Uri;
@@ -19,29 +25,45 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.googlecode.tesseract.android.TessBaseAPI;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.team.smart.R;
+
+import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ParkingUserCarInfo extends Activity {
 
     RelativeLayout addLayout,resultLayout;
     ImageView resultIV;
+    Button reSelectBtn;
+    EditText carNumEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_user_car_info);
         resultIV = findViewById(R.id.resultIV);
         resultLayout= findViewById(R.id.resultLayout);
+        reSelectBtn = findViewById(R.id.reSelectBtn);
+        carNumEdit = findViewById(R.id.carNumEdit);
         //뒤로가기
         ImageView backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +76,13 @@ public class ParkingUserCarInfo extends Activity {
         //차량 추가 클릭시
         addLayout = findViewById(R.id.addLayout);
         addLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertImageDialog();
+            }
+        });
+        //제선택 클릭시
+        reSelectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 alertImageDialog();
@@ -179,14 +208,16 @@ public class ParkingUserCarInfo extends Activity {
     }
 
     //갤러리에서 받아온 이미지 넣기
+    Bitmap originalBm;
     private void setImage() {
         addLayout.setVisibility(View.GONE);
         resultLayout.setVisibility(View.VISIBLE);
         BitmapFactory.Options options = new BitmapFactory.Options();
-        Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
+        originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
         Log.d("파일저장 경로~~~~~~~~~~~~",tempFile+","+originalBm);
-        resultIV.setImageBitmap(originalBm);
 
+        //resultIV.setImageBitmap(originalBm);
+        changeGrayScale();
     }
     //카메라에서 이미지 가져오기
     private static final int PICK_FROM_CAMERA = 2;
@@ -238,4 +269,104 @@ public class ParkingUserCarInfo extends Activity {
 
         return image;
     }
+    //이미지 전처리 작업 : 기본적으로 GrayScale(흑백) 및 ThresHold(이진화) 처리를 수행합니다.
+    ImageView image_result;
+    int[][] listarr;
+    Bitmap roi;
+    private void changeGrayScale(){
+        Log.d("회색처리","시작~~~~~~~~~~");
+        Bitmap image1 = originalBm;
+        OpenCVLoader.initDebug();
+        Mat img1=new Mat();
+        Utils.bitmapToMat(image1 ,img1);
+        Mat imageGray1 = new Mat();
+        Mat imageCny1 = new Mat();
+        Imgproc.cvtColor(img1, imageGray1, Imgproc.COLOR_BGR2GRAY);
+        Imgproc.threshold(imageGray1, imageCny1, 160, 255, Imgproc.THRESH_BINARY);
+        //Utils.matToBitmap(imageCny1,image1);
+        //resultIV.setImageBitmap(image1);//이진화까지는 됨.
+
+        //흑백 처리와 이진화된 이미지 가져오기
+        List<MatOfPoint> contours = new ArrayList<>();
+        Mat hierarchy = new Mat();
+        Imgproc.findContours(imageCny1, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+
+        for(int idx = 0; idx >= 0; idx = (int) hierarchy.get(0, idx)[0]) {
+            MatOfPoint matOfPoint = contours.get(idx);
+            Rect rect = Imgproc.boundingRect(matOfPoint);
+            if(rect.width < 30 || rect.height < 30 || rect.width <= rect.height || rect.x < 20 || rect.y < 20
+                    || rect.width <= rect.height * 3 || rect.width >= rect.height * 6) continue; // 사각형 크기에 따라 출력 여부 결정
+            // ROI 출력
+            Utils.matToBitmap(imageCny1,image1); //추가한 부분
+            roi = Bitmap.createBitmap(image1, (int)rect.tl().x, (int)rect.tl().y, rect.width, rect.height);
+            ImageView imageView = (ImageView)findViewById(R.id.image_result);
+            imageView.setImageBitmap(roi);// 번호판만 자르고 넣기
+        }
+        image1= Bitmap.createBitmap(img1.cols(), img1.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(img1, image1); // Mat to Bitmap
+        resultIV.setImageBitmap(image1);
+
+        datapath = getFilesDir()+ "/tesseract/";
+
+        checkFile(new File(datapath + "tessdata/"));
+
+        String lang = "kor";
+        mTess = new TessBaseAPI();
+        mTess.init(datapath, lang);
+        processImage();
+    }
+    private TessBaseAPI mTess;
+    String datapath = "";
+    private void copyFiles() {
+        try {
+            //location we want the file to be at
+            String filepath = datapath + "/tessdata/kor.traineddata";
+
+            //get access to AssetManager
+            AssetManager assetManager = getAssets();
+
+            //open byte streams for reading/writing
+            InputStream instream = assetManager.open("tessdata/kor.traineddata");
+            OutputStream outstream = new FileOutputStream(filepath);
+
+            //copy the file to the location specified by filepath
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = instream.read(buffer)) != -1) {
+                outstream.write(buffer, 0, read);
+            }
+            outstream.flush();
+            outstream.close();
+            instream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkFile(File dir) {
+        //directory does not exist, but we can successfully create it
+        if (!dir.exists()&& dir.mkdirs()){
+            copyFiles();
+        }
+        //The directory exists, but there is no data file in it
+        if(dir.exists()) {
+            String datafilepath = datapath+ "/tessdata/kor.traineddata";
+            File datafile = new File(datafilepath);
+            if (!datafile.exists()) {
+                copyFiles();
+            }
+        }
+    }
+
+    public void processImage(){
+        String OCRresult = null;
+        mTess.setImage(roi);
+        OCRresult = mTess.getUTF8Text();
+        Log.d("이미지 결과~~~~~:",""+OCRresult);
+        carNumEdit.setText(OCRresult);
+    }
+
 }

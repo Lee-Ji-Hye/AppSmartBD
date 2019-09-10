@@ -85,11 +85,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone">
-            <ImageView
-                android:id="@+id/resultIV"
+            <RelativeLayout
                 android:layout_width="350dp"
                 android:layout_height="250dp"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/resultIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true" />
+                <Button
+                    android:id="@+id/reSelectBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:text="재선택"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/box_border"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"/>
+            </RelativeLayout>
         </RelativeLayout>
 
         <TextView
@@ -140,6 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:id="@+id/carNumEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="37dp"
@@ -196,6 +211,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/image_result"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"

@@ -39,7 +39,7 @@ public class MainActivity extends HeaderActivity {
         //비콘서비스는 beacon패키지 안에 들어있고 service란, 앱이 종료되어도 백단에서 돌고있는 서비스임.
         //즉, 앱을 깔고 앱을 처음 실행한 모든 유저(회원, 비회원)는 앱을 종료해도 백단에서 비콘 서비스가 돌고있기 때문에
         //앱을 실행하지 않아도 쿠폰을 자동으로 발송받을 수 있음.
-        startService(new Intent(MainActivity.this, BeaconService.class));
+        //startService(new Intent(MainActivity.this, BeaconService.class));
     }
 
     /**
