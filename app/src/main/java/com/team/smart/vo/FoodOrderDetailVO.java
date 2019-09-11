@@ -15,27 +15,84 @@ public class FoodOrderDetailVO implements Serializable {
     }
 
 
-    public ArrayList<FoodOrderDetailVO.Detail> getMenuList() {
+    public ArrayList<FoodOrderDetailVO.Detail> getOrderDetail() {
         return orderDetail;
     }
 
-    class Detail {
+    public class Detail {
+        @SerializedName("f_ocode")
+        private String f_ocode;
+        @SerializedName("f_status")
+        private String f_status;
+        @SerializedName("comp_seq")
         private String comp_seq;         //업체코드
+        @SerializedName("f_name")
         private String f_name;           //이름
+        @SerializedName("f_hp")
         private String f_hp;             //핸드폰번호
+        @SerializedName("f_receive_time")
         private String f_receive_time;  //예상수령시간
+        @SerializedName("f_message")
         private String f_message;       //요청사항
+        @SerializedName("f_person_num")
         private String f_person_num;    //인원
+        @SerializedName("userid")
         private String userid;          //아이디
+        @SerializedName("f_serial")
         private String f_serial;        //시리얼번호
+        @SerializedName("f_amount")
         private String f_amount;        //주문 금액
+        @SerializedName("f_sale_price")
         private String f_sale_price;    //할인 금액(쿠폰)
+        @SerializedName("f_pay_type")
         private String f_pay_type;      //결제수단
+        @SerializedName("f_pay_price")
         private String f_pay_price;     //결제한 금액
         //private String f_refund_price;  //환불금액
+        @SerializedName("f_rate")
         private String f_rate;          //수수료
+        @SerializedName("f_regidate")
+        private String f_regidate;      //등록일
 
+
+        @SerializedName("menulist")
         private ArrayList<FoodCartVO> menulist;
+
+        //그냥.. 업체 이름이랑 업체 전화번호도 같이 가져오자..
+        private String comp_org;
+        private String comp_hp;
+
+        public String getF_ocode() {
+            return f_ocode;
+        }
+
+        public void setF_ocode(String f_ocode) {
+            this.f_ocode = f_ocode;
+        }
+
+        public String getF_status() {
+            return f_status;
+        }
+
+        public void setF_status(String f_status) {
+            this.f_status = f_status;
+        }
+
+        public String getComp_org() {
+            return comp_org;
+        }
+
+        public void setComp_org(String comp_org) {
+            this.comp_org = comp_org;
+        }
+
+        public String getComp_hp() {
+            return comp_hp;
+        }
+
+        public void setComp_hp(String comp_hp) {
+            this.comp_hp = comp_hp;
+        }
 
         public ArrayList<FoodCartVO> getMenulist() {
             return menulist;
@@ -147,6 +204,14 @@ public class FoodOrderDetailVO implements Serializable {
 
         public void setF_rate(String f_rate) {
             this.f_rate = f_rate;
+        }
+
+        public String getF_regidate() {
+            return f_regidate;
+        }
+
+        public void setF_regidate(String f_regidate) {
+            this.f_regidate = f_regidate;
         }
     }
 }

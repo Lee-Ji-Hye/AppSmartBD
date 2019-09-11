@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
+import com.team.smart.util.SPUtil;
 import com.team.smart.vo.FoodCartVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
@@ -30,7 +31,7 @@ import retrofit2.Response;
 
 public class FoodOrderActivity extends AppCompatActivity {
     DecimalFormat numberComma = new DecimalFormat("###,###"); //숫자 콤마
-
+    private String userid;
     private ArrayList<FoodCartVO> foodVo;
     private int salePrice = 0; //할인액
     int sum=0;
@@ -49,6 +50,8 @@ public class FoodOrderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_order_form);
+
+        userid = SPUtil.getUserId(FoodOrderActivity.this); //아이디 없으면 ""
 
         Intent intent = getIntent();
         foodVo = (ArrayList<FoodCartVO>) intent.getSerializableExtra("cartMenuList");
@@ -203,7 +206,7 @@ public class FoodOrderActivity extends AppCompatActivity {
 
             FoodOrderVO orderinfoVO = new FoodOrderVO();
             orderinfoVO.setComp_seq(comp_seq);
-            orderinfoVO.setUserid("id10");
+            orderinfoVO.setUserid(userid);
             orderinfoVO.setF_name(tvName.getText().toString());
             orderinfoVO.setF_hp(tvHp.getText().toString());
             orderinfoVO.setF_person_num(f_cnt);

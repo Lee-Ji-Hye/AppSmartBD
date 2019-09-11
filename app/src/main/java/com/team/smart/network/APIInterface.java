@@ -2,6 +2,7 @@ package com.team.smart.network;
 
 import com.team.smart.vo.FoodCouponVO;
 import com.team.smart.vo.FoodDetailVO;
+import com.team.smart.vo.FoodOrderDetailVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
@@ -53,8 +54,13 @@ public interface APIInterface
     Call<FoodCouponVO> getBeaconCouponList(@Body HashMap map);
     @POST("/api/food/payTest")
     Call<HashMap> kakaoPayTest(@Body FoodOrderVO foodOrderVO);
-    @POST("/api/food/orderDetail")
-    Call<FoodOrderVO> getOrderDerailInfo(@Query("comp_seq") String comp_seq, @Query("id") String id); //주문정보 1건 조회
+    @POST("/api/food/getOrderDetail")
+    Call<FoodOrderDetailVO> getOrderDerail(@Body HashMap map); //주문정보 1건 조회 (회원은 주문코드랑 아이디, 비회원은 주문코드랑 이름)
+    @POST("/api/food/getOrderDetailChk")
+    Call<HashMap> getOrderDetailChk(@Query("f_name") String username, @Query("f_ocode") String f_ocode); //주문정보 있나 없나만 조회
+    @GET("/api/food/modifyFoodStatus")
+    Call<HashMap> modifyFoodStatus(@Query("orderCode") String f_ocode, @Query("new_status") String new_status); //주문 상태 변경
+
 
     @POST("/api/user/signUp")
     Call<Map<String, String>> memberSignUp(@Body RequestUserVO userVO); //회원가입

@@ -69,6 +69,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
+
+    //로딩화면
     implementation project(':AR_ST01')
 
 }

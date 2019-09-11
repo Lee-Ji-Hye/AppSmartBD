@@ -63,4 +63,13 @@
         <item name="android:background">@drawable/bg_btn_style_grey</item>
     </style>
     <!--명근 종료-->
+
+    <!--지혜 시작-->
+    <!-- 앱 처음시작시 로고 띄움 -->
+    <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+    <!--지혜 종료-->
 </resources>

@@ -15,6 +15,7 @@ public class FoodOrderCompleteActivity extends AppCompatActivity {
 
 
     String paramFocode;
+    String paramFname;
     TextView tvOrderDetailBtn;
 
     @Override
@@ -25,6 +26,7 @@ public class FoodOrderCompleteActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); /*데이터 수신*/
         paramFocode = intent.getExtras().getString("f_ocode"); /*String형*/
+        paramFname = intent.getExtras().getString("f_name"); /*String형*/
 
         tvOrderDetailBtn = findViewById(R.id.tv_order_detail_btn);
 
@@ -37,6 +39,7 @@ public class FoodOrderCompleteActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "ssss", Toast.LENGTH_SHORT).show();
             Intent myOrderintent = new Intent(FoodOrderCompleteActivity.this, FoodOrderDetailActivity.class);
             myOrderintent.putExtra("f_ocode", paramFocode);
+            myOrderintent.putExtra("f_name", paramFname);
             this.startActivity(myOrderintent);
         });
 

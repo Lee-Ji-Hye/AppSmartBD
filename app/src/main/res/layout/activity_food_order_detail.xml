@@ -170,6 +170,44 @@
                             </LinearLayout>
                         </LinearLayout>
 
+                        <!--주문 상태-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="0dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
+                                android:textColor="@color/mainText"
+                                android:text="주문상태"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="right" >
+                                <TextView
+                                    android:id="@+id/tv_status"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginTop="0dp"
+                                    android:paddingRight="16dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingBottom="10dp"
+                                    android:textColor="#1266FF"
+                                    android:textStyle="bold"
+                                    android:text="FD00235"
+                                    android:textSize="12dp"/>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
                         <!--주문자-->
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -209,7 +247,7 @@
 
 
                         <!--핸드폰 번호-->
-                        <RelativeLayout
+                        <!--<RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
@@ -243,7 +281,7 @@
                                     android:text="010-2721-1710"
                                     android:textSize="12dp"/>
                             </LinearLayout>
-                        </RelativeLayout>
+                        </RelativeLayout>-->
 
                         <!-- 인원정보 -->
                         <RelativeLayout
@@ -368,6 +406,50 @@
                         android:layout_height="0.7dp"
                         android:background="#dddddd"/>
 
+                    <!--주문 메뉴-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="#ffffff"
+                        android:layout_marginTop="10dp">
+
+
+                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:paddingLeft="16dp"
+                                android:text="주문 메뉴"
+                                android:textColor="@color/mainText"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+
+                                <TextView
+                                    android:id="@+id/tv_menu_list"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:paddingTop="10dp"
+                                    android:textSize="11dp"
+                                    android:paddingBottom="10dp"
+                                    android:paddingLeft="12dp"
+                                    android:text=""
+                                    android:background="@null"
+                                    android:textColor="@color/mainText"/>
+
+                            </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:background="#dddddd"/>
+
+                    </LinearLayout>
+
                     <!--요청사항-->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -419,47 +501,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.7dp"
                         android:background="#dddddd"/>
-
-                    <!--요청사항-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="#ffffff"
-                        android:layout_marginTop="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:paddingLeft="16dp"
-                                android:text="주문 메뉴"
-                                android:textColor="@color/mainText"
-                                android:textSize="14dp" />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/recyclerView"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="#f5f5f5"
-                                android:clipToPadding="false"
-                                android:elevation="1dp"
-                                android:paddingBottom="20dp">
-
-                            </androidx.recyclerview.widget.RecyclerView>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.7dp"
-                            android:background="#dddddd"/>
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -678,6 +719,7 @@
             android:layout_below="@+id/openBtn"
             android:text="주문 취소하기"
             android:textSize="18dp"
+            android:visibility="gone"
             android:textColor="#ffffff" />
     </LinearLayout>
 
