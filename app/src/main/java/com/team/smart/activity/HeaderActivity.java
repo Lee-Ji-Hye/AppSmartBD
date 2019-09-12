@@ -182,8 +182,15 @@ public abstract class HeaderActivity extends AppCompatActivity {
         foodOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(HeaderActivity.this, FoodOrderChkActivity.class); //비회원 주문조회 페이지
-                startActivity(intent);
+
+                if(userid.equals("")) {
+                    Intent intent =new Intent(HeaderActivity.this, FoodOrderChkActivity.class); //비회원 주문조회 페이지
+                    startActivity(intent);
+                } else {
+                    Intent intent =new Intent(HeaderActivity.this, FoodOrderListActivity.class); //주문리스트 페이지
+                    startActivity(intent);
+                }
+
             }
         });
         //메뉴 내부 종료---------------------------------

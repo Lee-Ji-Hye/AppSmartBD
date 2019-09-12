@@ -3,6 +3,7 @@ package com.team.smart.network;
 import com.team.smart.vo.FoodCouponVO;
 import com.team.smart.vo.FoodDetailVO;
 import com.team.smart.vo.FoodOrderDetailVO;
+import com.team.smart.vo.FoodOrderListVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
@@ -60,6 +61,8 @@ public interface APIInterface
     Call<HashMap> getOrderDetailChk(@Query("f_name") String username, @Query("f_ocode") String f_ocode); //주문정보 있나 없나만 조회
     @GET("/api/food/modifyFoodStatus")
     Call<HashMap> modifyFoodStatus(@Query("orderCode") String f_ocode, @Query("new_status") String new_status); //주문 상태 변경
+    @POST("/api/food/getFoodOrderList")
+    Call<FoodOrderListVO> getFoodOrderList(@Query("userid") String userid); //주문 정보 리스트
 
 
     @POST("/api/user/signUp")

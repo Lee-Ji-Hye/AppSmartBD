@@ -674,12 +674,9 @@
                                 android:text="02-5465-4888"
                                 />
                         </LinearLayout>
+
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_message"
-                            android:layout_gravity="center_vertical"/>
-                        <ImageView
+                            android:id="@+id/btnCall"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:src="@drawable/ic_phone"

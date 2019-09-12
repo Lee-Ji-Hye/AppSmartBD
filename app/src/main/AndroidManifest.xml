@@ -85,6 +85,7 @@
         <activity android:name=".activity.FoodOrderCompleteActivity" />
         <activity android:name=".activity.FoodOrderDetailActivity" />
         <activity android:name=".activity.FoodOrderChkActivity" />
+        <activity android:name=".activity.FoodOrderListActivity" />
 
 
         <!--지혜 서비스 -->

@@ -1,9 +1,11 @@
 package com.team.smart.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +36,7 @@ public class FoodOrderDetailActivity extends AppCompatActivity {
     private String userid, username;
 
     private String paramFocode, paramFname;
-
+    private ImageView btnCall;
     private TextView tvOcode,tvStatus,tvName,tvPersonNum,tvRegidate,tvReceive_time,tvMenu_list,tvMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvCompOrg,tvCompName,tvCompHp,paymentBtn;
 
     @Override
@@ -144,11 +146,24 @@ public class FoodOrderDetailActivity extends AppCompatActivity {
         tvCompName    = findViewById(R.id.tv_comp_name);
         tvCompHp      = findViewById(R.id.tv_comp_hp);
         paymentBtn      = findViewById(R.id.paymentBtn);
+
+        btnCall = findViewById(R.id.btnCall);
     }
 
     protected void configuListner() {
         paymentBtn.setOnClickListener(view -> {
             callModifyStatusApi();
+        });
+
+        btnCall.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+tvCompHp.getText()));
+                if(intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
         });
     }
 
