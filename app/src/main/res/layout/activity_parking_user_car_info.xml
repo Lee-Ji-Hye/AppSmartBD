@@ -72,19 +72,19 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp">
 
-                <ImageView
-                    android:layout_width="138dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/caricon"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"/>
+            <ImageView
+                android:layout_width="138dp"
+                android:layout_height="100dp"
+                android:src="@drawable/caricon"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="150dp"
-                    android:background="#ccc"
-                    android:layout_centerInParent="true"/>
+            <View
+                android:layout_width="2dp"
+                android:layout_height="150dp"
+                android:background="#ccc"
+                android:layout_centerInParent="true"/>
             <LinearLayout
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
