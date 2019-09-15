@@ -116,7 +116,8 @@
                 android:layout_marginRight="50dp"
                 android:hint="차량번호 4자리"
                 android:background="@drawable/box_border"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp"
+                android:maxLength="4"/>
 
             <Button
                 android:id="@+id/numSearchBtn"

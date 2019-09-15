@@ -9,6 +9,7 @@ import com.team.smart.vo.ParkingOrderVO;
 import com.team.smart.vo.ParkingTicketVO;
 import com.team.smart.vo.RequestUserVO;
 import com.team.smart.vo.RoomBVO;
+import com.team.smart.vo.UserCarVO;
 import com.team.smart.vo.UserVO;
 
 import java.util.HashMap;
@@ -40,6 +41,22 @@ public interface APIInterface
     //결제시 하나의 주차권 정보 가져오기
     @GET("/api/parking/ParkingTicketOne")
     Call<ParkingTicketVO> getParkingTicketOne(@Query("p_code") String p_code);
+    //티켓구매하기
+    @POST("/api/parking/kakao/ParkingBuyTicket")
+    Call<HashMap> ParkingBuyTicket(@Body ParkingOrderVO orderVO);
+    //유저정보가져오기
+    @POST("/api/parking/getUserInfo")
+    Call<UserCarVO> getUserInfo(@Query("userid") String userid);
+    //회원차량정보 입력
+    @POST("/api/parking/insertUserCarInfo")
+    Call<HashMap> insertUserCarInfo(@Body UserCarVO carVO);
+    //차량정보 가져오기
+    @POST("/api/parking/getUserCarInfo")
+    Call<UserCarVO> getUserCarInfo(@Query("userid") String userid);
+    //차량정보 삭제
+    @POST("/api/parking/delUserCarInfo")
+    Call<HashMap> delUserCarInfo(@Query("userid") String userid);
+
     //주차관리 은지 종료
 
     //지혜 시작
@@ -74,8 +91,6 @@ public interface APIInterface
     //카카오페이
     //@POST("/kakao/payTest")
     //Call<HashMap> kakaoPayParkingTicket(@Body FoodOrderVO foodOrderVO);
-    @POST("/api/parking/kakao/ParkingBuyTicket")
-    Call<HashMap> ParkingBuyTicket(@Body ParkingOrderVO orderVO);
     @POST
     Call<HashMap> kakaoPaySuccess(@Url String reUrl, @Query("orderCode") String orderCode);
     //카카오페이 끝

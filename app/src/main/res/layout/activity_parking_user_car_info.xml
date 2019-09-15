@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="차량 정보 입력 "
+            android:text="차량 정보"
             android:textColor="#000"
             android:textSize="20dp" />
 
@@ -35,12 +35,103 @@
             android:src="@drawable/ic_three_dot"/>
 
     </androidx.appcompat.widget.Toolbar>
-
-    <!--내용: 차량정보가 없을때-->
+    <!--내용: 차량정보가 있을때-->
     <LinearLayout
+        android:id="@+id/afterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="20dp"
+            android:text="등록된 차량 정보는 차량번호 입력페이지에서\n차번호 불러오기로 편한 이용가능합니다."/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/removeBtn"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="삭제"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/send_inq_rect"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/radius_border"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:layout_width="138dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/caricon"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"/>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="150dp"
+                    android:background="#ccc"
+                    android:layout_centerInParent="true"/>
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="20dp"
+                android:orientation="vertical">
+                <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                    android:id="@+id/afterCarNumTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:text="01가1234"
+                    android:textAlignment="center"/>
+                <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                    android:id="@+id/afterCarTypeTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#4d4d4d"
+                    android:textSize="15dp"
+                    android:text="승용차"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:textSize="10dp"
+            android:text="*다른 사람의 차량번호를 무단으로 등록할 경우  불이익을 받을수 있습니다."/>
+
+    </LinearLayout>
+
+    <!--내용: 차량정보가 없을때-->
+    <LinearLayout
+        android:id="@+id/beforeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,11 +176,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone">
-            <ImageView
-                android:id="@+id/resultIV"
+            <RelativeLayout
                 android:layout_width="350dp"
                 android:layout_height="250dp"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:id="@+id/resultIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true" />
+                <Button
+                    android:id="@+id/reSelectBtn"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:text="재선택"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/box_border"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"/>
+            </RelativeLayout>
         </RelativeLayout>
 
         <TextView
@@ -140,6 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
+                    android:id="@+id/carNumEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="37dp"
@@ -180,33 +286,40 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <EditText
+                <TextView
+                    android:id="@+id/carTypeBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="37dp"
                     android:paddingTop="10dp"
                     android:hint="차종 유형 선택"
                     android:textSize="18dp"
-                    android:layout_centerInParent="true"
-                    android:enabled="false"/>
+                    android:layout_centerInParent="true"/>
             </RelativeLayout>
 
         </LinearLayout><!--내용:차량없을때-->
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/send_inq_rect"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:text="등록"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image_result"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/insertBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/send_inq_rect"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="등록"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+
 </LinearLayout>

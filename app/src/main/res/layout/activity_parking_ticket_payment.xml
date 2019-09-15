@@ -144,6 +144,7 @@
                                     android:paddingLeft="15dp"
                                     android:textColor="@color/mainText"/>
                                 <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:id="@+id/nameTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="김 00"
@@ -168,6 +169,7 @@
                                     android:paddingLeft="15dp"
                                     android:textColor="@color/mainText"/>
                                 <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                                    android:id="@+id/hpTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="010-0000-0000"

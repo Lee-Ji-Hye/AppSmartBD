@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,8 +17,10 @@ import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
+import com.team.smart.util.SPUtil;
 import com.team.smart.vo.ParkingOrderVO;
 import com.team.smart.vo.ParkingTicketVO;
+import com.team.smart.vo.UserCarVO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,8 +30,9 @@ public class ParkingTicketPayment extends AppCompatActivity {
     String p_code; //주차권상품 코드
     public ParkingTicketVO.ParkingTicket Ticket;
     public ParkingOrderVO orderVO;
-    private APIInterface apiTicketInterface;
-    TextView b_nameTv,t_nameTv,priceTV,p_countBtn,paymentBtn,TotalpriceTV;
+    private APIInterface apiTicketInterface,apiUserInterface;
+    TextView b_nameTv,t_nameTv,priceTV,p_countBtn,paymentBtn,TotalpriceTV,nameTv,hpTv;
+
     EditText countEdit;
     int count;
     String o_count;
@@ -39,7 +43,7 @@ public class ParkingTicketPayment extends AppCompatActivity {
         }
         //통신
         Call<ParkingTicketVO> call = apiTicketInterface.getParkingTicketOne(p_code);
-            call.enqueue(new Callback<ParkingTicketVO>() {
+        call.enqueue(new Callback<ParkingTicketVO>() {
             @Override
             public void onResponse(Call<ParkingTicketVO> call, Response<ParkingTicketVO> response) {
                 Log.d("TAG",response.code()+"");
@@ -66,12 +70,16 @@ public class ParkingTicketPayment extends AppCompatActivity {
                     t_nameTv.setText(S_text);
                     int price=Integer.parseInt(Ticket.getPrice());
 
-                    TotalpriceTV.setText(price+"원");
+                    TotalpriceTV.setText("0원");
 
+                    //키보드 컨트롤
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     //수량 적용 버튼 클릭시
                     p_countBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            //키보드 내리기
+                            imm.hideSoftInputFromWindow(countEdit.getWindowToken(), 0);
                             String getEdit = countEdit.getText().toString();
                             getEdit = getEdit.trim();//스페이스 입력시 공백 제거
 
@@ -119,6 +127,33 @@ public class ParkingTicketPayment extends AppCompatActivity {
         });
     }
 
+    //회원정보 가져오기
+    protected void callParkingUserInfo(String userid) {
+        if(apiUserInterface == null) {
+            apiUserInterface = APIClient.getClient().create(APIInterface.class);
+        }
+        //통신
+        Call<UserCarVO> call = apiUserInterface.getUserInfo(userid);
+        call.enqueue(new Callback<UserCarVO>() {
+            @Override
+            public void onResponse(Call<UserCarVO> call, Response<UserCarVO> response) {
+                Log.d("TAG",response.code()+"");
+                if(response.code()==200) {
+                    UserCarVO resource = response.body();
+                    Gson gson3 = new Gson();
+                    String json3 = gson3.toJson(resource);
+                    Log.d("회원 정보 통신~~~~",json3);
+                    nameTv.setText(resource.getName());
+                    hpTv.setText(resource.getHp());
+                }
+            }
+            @Override
+            public void onFailure(Call<UserCarVO> call, Throwable t) {
+                Log.d("회원 정보 fail~~~~~~~~~...", "실패..");
+                call.cancel();
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +171,8 @@ public class ParkingTicketPayment extends AppCompatActivity {
         countEdit = findViewById(R.id.countEdit);
         priceTV = findViewById(R.id.priceTV);
         TotalpriceTV = findViewById(R.id.totalPriceTV);
+        nameTv = findViewById(R.id.nameTv);
+        hpTv = findViewById(R.id.hpTv);
         //버튼(버튼역할 텍스트뷰도 포함)
         p_countBtn = findViewById(R.id.p_countBtn); //수량 적용
         paymentBtn = findViewById(R.id.paymentBtn); //결제
@@ -148,8 +185,10 @@ public class ParkingTicketPayment extends AppCompatActivity {
                 finish();
             }
         });
-
+        String userid = SPUtil.getUserId(this); //아이디
         //주차권 통신 메소드  호출
+        callParkingUserInfo(userid);
         callParkingTicketApi(p_code);
+
     }
 }
