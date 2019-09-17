@@ -53,7 +53,7 @@ public class FoodDetailVO extends BaseRespon  {
         private String userid;
 
         @SerializedName("f_icon")
-        private String icon;
+        private String f_icon;
 
         @SerializedName("f_regidate")
         private String regidate;
@@ -119,12 +119,12 @@ public class FoodDetailVO extends BaseRespon  {
             this.userid = userid;
         }
 
-        public String getIcon() {
-            return icon;
+        public String getF_icon() {
+            return f_icon;
         }
 
-        public void setIcon(String icon) {
-            this.icon = icon;
+        public void setF_icon(String f_icon) {
+            this.f_icon = f_icon;
         }
 
         public String getRegidate() {

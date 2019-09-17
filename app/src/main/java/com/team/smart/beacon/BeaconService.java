@@ -82,13 +82,23 @@ public class BeaconService extends Service {
     private void GetResultForBeacon(String uuid, int Major, int Minor) {
 
         try {
-            // farakhanie api baraye gereftane etelaate set shode roye har beacon
+
+            String userid = SPUtil.getUserId(getApplicationContext());
+
+            if(userid.equals("")) {
+                return;
+            }
+            if(Major != 40001 && Minor != 26052) {
+                return;
+            }
+
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("uuid", uuid);
+            map.put("userid", userid);
             map.put("major", Major + "");
             map.put("minor", Minor + "");
-            String id = SPUtil.getUserId(getApplicationContext());
 
+            Log.d("Major : ", String.valueOf(Major));
+            Log.d("Minor : ", String.valueOf(Minor));
             /**
              GET List Resources
              **/
@@ -97,6 +107,9 @@ public class BeaconService extends Service {
                 @Override
                 public void onResponse(Call<FoodCouponVO> call, Response<FoodCouponVO> response) {
                     if (response.code() == 200) {
+                        if(response.body().getResponseCode() != 570 && response.body().getResponseCode() != 572 ) {
+                            return;
+                        }
                         ShowNotification(response.body());
                     }
                 }
@@ -169,8 +182,8 @@ public class BeaconService extends Service {
 
                 // etelaate set shode roye beacon baraye namayesh be karbar
                 //Titre Campaign
-                resultIntent.putExtra("title", coupons.getCouponList().get(0).getComp_org()+"쿠폰이왔쪄염");
-                resultIntent.putExtra("content",coupons.getCouponList().get(0).getF_coupon_num());
+                resultIntent.putExtra("title", "쿠폰 알림");
+                resultIntent.putExtra("content",coupons.getCouponList().get(0).getComp_org()+" 할인 쿠폰 도착~!");
 
                 //namayesh notification be user va tanzime namayeshe popup bad az click user
                 PendingIntent PendingIntentFragment =

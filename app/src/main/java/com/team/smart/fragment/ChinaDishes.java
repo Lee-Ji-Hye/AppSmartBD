@@ -43,7 +43,9 @@ public class ChinaDishes extends Dishes {
 
             @Override
             public void failed(String message) {
-
+                view.findViewById(R.id.progressbar).setVisibility(View.GONE);//프로그레스바 숨김
+                view.findViewById(R.id.food_empty).setVisibility(View.VISIBLE); //상품없음 띄움
+                view.findViewById(R.id.rv_foodlist).setVisibility(View.GONE); //상품없음 띄움
             }
         };
     }

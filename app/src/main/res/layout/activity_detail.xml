@@ -53,7 +53,7 @@
                     <ImageView
                         android:id="@+id/f_mainimg"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"  />
+                        android:layout_height="match_parent" />
 
                     <include layout="@layout/food_detail_header_toolbar" />
 
@@ -79,7 +79,7 @@
                     android:textSize="14.4sp"
                     android:gravity="center_horizontal"/>
 
-                <RelativeLayout
+                <!--<RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -102,9 +102,10 @@
                         android:layout_toRightOf="@+id/rt_bar"
                         android:text="4.8"
                         android:textSize="20dp" />
-                </RelativeLayout>
+                </RelativeLayout>-->
 
                 <RelativeLayout
+                    android:id="@+id/is_coupon"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="15dp"
@@ -112,7 +113,6 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/is_coupon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true">
@@ -160,6 +160,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+
+<!--                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="#dddddd"/>-->
 
                 <FrameLayout
                     android:id="@+id/fr_tab"

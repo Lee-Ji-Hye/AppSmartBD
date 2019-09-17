@@ -22,8 +22,9 @@
     <!--beacon라이브러리-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
     <application
@@ -86,6 +87,10 @@
         <activity android:name=".activity.FoodOrderDetailActivity" />
         <activity android:name=".activity.FoodOrderChkActivity" />
         <activity android:name=".activity.FoodOrderListActivity" />
+        <activity android:name=".activity.FoodCouponActivity" />
+        <activity android:name=".activity.SignEditActivity" />
+        <activity android:name=".activity.SignEditPwdActivity" />
+        <activity android:name=".activity.SignWithdrawActivity" />
 
 
         <!--지혜 서비스 -->

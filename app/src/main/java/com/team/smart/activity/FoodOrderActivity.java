@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -19,6 +20,8 @@ import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 import com.team.smart.util.SPUtil;
 import com.team.smart.vo.FoodCartVO;
+import com.team.smart.vo.FoodCouponVO;
+import com.team.smart.vo.FoodDetailVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 
@@ -34,14 +37,21 @@ public class FoodOrderActivity extends AppCompatActivity {
     private String userid;
     private ArrayList<FoodCartVO> foodVo;
     private int salePrice = 0; //할인액
+    int originalPrice=0;
     int sum=0;
     private String comp_seq;
 
     private ArrayAdapter myAdapter;
     private Spinner spinArriveTime;
 
+
+    int couponCnt = 0;
+    ArrayList<FoodCouponVO.Coupon> couponList;
+    private int REQUESTCOUPONCD = 101;
+    FoodCouponVO.Coupon useCoupon;
+
     //findid
-    TextView tvCompOrg,tvAddress,tvFcnt,editMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvOpen,tvOpenWeek,paymentBtn,tvCompName, tvCompHp;
+    TextView tvCompOrg,tvAddress,tvFcnt,editMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvOpen,tvOpenWeek,paymentBtn,tvCompName, tvCompHp, tvCouponCnt;
     EditText tvName, tvHp, btMinusBtn, btPlusBtn;
 
     int cnt = 1; //인원 관리
@@ -64,10 +74,16 @@ public class FoodOrderActivity extends AppCompatActivity {
         //여기서 업체정보 불러오는 통신 한번 하고(~)
         callStoreInfoApi(comp_seq);
 
+        //유저 쿠폰 정보 가져오기
+        if(!userid.equals("")) {
+            callCouponInfoApi(comp_seq, userid);
+        }
+
 
     }
 
     private APIInterface apiStoreInterface;
+    private APIInterface apiCouponInterface;
 
     //스토어 통신
     protected void callStoreInfoApi(String paramCompSeq) {
@@ -94,17 +110,18 @@ public class FoodOrderActivity extends AppCompatActivity {
                     tvOpen.setText(store.getF_open_stt() +"~"+store.getF_open_end());
                     tvCompName.setText(store.getComp_org());
                     tvCompHp.setText(store.getComp_hp());
-                    //정보세팅
-                    //foodStore = ;
-//                    FoodStoreVO.Store store = data.getStores().get(0);
-//                    LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-//                    viewStoreLongDesc = inflater.inflate(R.layout.food_detail_desc, null);
-//                    TextView tvLongDesc = viewStoreLongDesc.findViewById(R.id.tv_long_desc);
-//                    tvLongDesc.setText(store.getLong_desc());
-//                    //mainImg
-//                    Glide.with(getApplicationContext()).load(store.getF_mainimg()).placeholder(R.drawable.no_img)
-//                            .error(R.drawable.no_img).into(mainImg);
 
+                    //영업시간 이외의 시간이면 결제하기 버튼 비활성화 시킴.
+                    String currTime   = new java.text.SimpleDateFormat("HHmm").format(new java.util.Date());
+                    int inTime = Integer.parseInt(currTime);
+
+                    int startTime = Integer.parseInt(store.getF_open_stt().replace(":", ""));
+                    int endTime = Integer.parseInt(store.getF_open_end().replace(":", ""));
+
+                    if(inTime < startTime || inTime > endTime) {
+                        paymentBtn.setEnabled(false);
+                        paymentBtn.setText("주문 불가");
+                    }
                 }
             }
 
@@ -116,6 +133,47 @@ public class FoodOrderActivity extends AppCompatActivity {
         });
     }
 
+    //쿠폰 통신
+    protected void callCouponInfoApi(String paramCompSeq, String userid) {
+
+        if(apiCouponInterface == null) {
+            apiCouponInterface = APIClient.getClient().create(APIInterface.class);
+        }
+
+        //통신
+        Call<FoodCouponVO> call = apiCouponInterface.foodCouponList(paramCompSeq, userid);
+        call.enqueue(new Callback<FoodCouponVO>() {
+            @Override
+            public void onResponse(Call<FoodCouponVO> call, Response<FoodCouponVO> response) {
+                Log.d("TAG",response.code()+"");
+                if(response.code()==200) {
+                    FoodCouponVO data = response.body();
+
+                    if(data.getResponseCode() == 200) {
+                        if(data.getCouponList() != null) {
+                            couponCnt = data.getCouponList().size();
+                            couponList = data.getCouponList();
+                            tvCouponCnt.setText(couponCnt+"개 보유");
+                        }
+
+                    } else {
+                        tvCouponCnt.setText("0개 보유");
+                    }
+
+                    Gson gson3 = new Gson();
+                    String json3 = gson3.toJson(data.getCouponList());
+                    Log.d("오더 쿠폰 통신~~~~",json3);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FoodCouponVO> call, Throwable t) {
+                Log.d("스토어 통신 fail~~~~~~~~~...", "실패..");
+                call.cancel();
+            }
+        });
+    }
     private void findid() {
         tvCompOrg = findViewById(R.id.tv_comp_org);           //업체명
         tvCompName = findViewById(R.id.tv_comp_name);         //업체명2
@@ -130,6 +188,8 @@ public class FoodOrderActivity extends AppCompatActivity {
         tvAmount = findViewById(R.id.tv_amount);             //주문금액
         tvSalePrice = findViewById(R.id.tv_sale_price);     //할인금액
         tvTotPayPrice = findViewById(R.id.tv_tot_pay_price);//최종 결제 금액
+
+        tvCouponCnt = findViewById(R.id.tv_coupon_cnt);
 
         btMinusBtn = findViewById(R.id.bt_minusBtn);
         btPlusBtn = findViewById(R.id.bt_plusBtn);
@@ -162,14 +222,17 @@ public class FoodOrderActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "금액설정오류", Toast.LENGTH_LONG).show();
         }
 
+        originalPrice = sum;
+
         //할인액
         if(salePrice > 0) {
             sum = sum - salePrice;
-            tvSalePrice.setText(salePrice);
+            tvSalePrice.setText(numberComma.format(salePrice)+"원");
         } else {
             tvSalePrice.setText("0원");
         }
-        tvAmount.setText(numberComma.format(sum)+"원");//주문 금액
+
+        tvAmount.setText(numberComma.format(originalPrice)+"원");//주문 금액
         tvTotPayPrice.setText(numberComma.format(sum)+"원"); //최종 결제금액
 
     }
@@ -198,6 +261,20 @@ public class FoodOrderActivity extends AppCompatActivity {
             }
         });
 
+        tvCouponCnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(couponCnt <= 0) {
+                    return;
+                }
+
+                Intent intent = new Intent(FoodOrderActivity.this, FoodCouponActivity.class);
+                intent.putExtra("couponList", couponList);
+                intent.putExtra("sum", originalPrice);
+                startActivityForResult(intent, REQUESTCOUPONCD);
+            }
+        });
+
         paymentBtn.setOnClickListener(view -> {
 
             //파라미터 세팅
@@ -214,7 +291,11 @@ public class FoodOrderActivity extends AppCompatActivity {
             orderinfoVO.setF_message(editMessage.getText().toString());
             //orderinfoVO.setF_serial("asd-asd-asd"); //시리얼
             orderinfoVO.setF_sale_price(String.valueOf(salePrice));
-            orderinfoVO.setF_amount(String.valueOf(sum));
+            orderinfoVO.setF_amount(String.valueOf(originalPrice));
+
+            if(useCoupon != null) {
+                orderinfoVO.setF_serial(useCoupon.getF_serial());
+            }
 
 
             //검증
@@ -242,5 +323,22 @@ public class FoodOrderActivity extends AppCompatActivity {
             this.startActivity(intent);
 
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUESTCOUPONCD) {
+            if (resultCode == 200) {
+                useCoupon = (FoodCouponVO.Coupon) data.getSerializableExtra("useCoupon");
+
+                Gson gson = new Gson();
+                String json = gson.toJson(useCoupon);
+                Log.d("뜨아아아아아 :::: ", json);
+                String tmp = (useCoupon.getF_coupon_price() == null)? "0" : useCoupon.getF_coupon_price();
+                salePrice = Integer.parseInt(tmp);
+                calcPrice();
+            }
+        }
     }
 }

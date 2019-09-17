@@ -63,12 +63,20 @@ public interface APIInterface
     Call<HashMap> modifyFoodStatus(@Query("orderCode") String f_ocode, @Query("new_status") String new_status); //주문 상태 변경
     @POST("/api/food/getFoodOrderList")
     Call<FoodOrderListVO> getFoodOrderList(@Query("userid") String userid); //주문 정보 리스트
-
+    @POST("/api/food/foodCouponList")
+    Call<FoodCouponVO> foodCouponList(@Query("comp_seq") String comp_seq, @Query("userid") String userid); // 유저 쿠폰 보유 수
 
     @POST("/api/user/signUp")
     Call<Map<String, String>> memberSignUp(@Body RequestUserVO userVO); //회원가입
     @POST("/api/user/signIn")
     Call<UserVO> memberSignIn(@Body RequestUserVO userVO); //로그인
+    @POST("/api/user/modifyUserInfo")
+    Call<Map<String, Object>> modifyUserInfo(@Body RequestUserVO userVO); //내정보 불러오기
+    @POST("/api/user/modifyUserPwd")
+    Call<Map<String, Object>> modifyUserPwd(@Body HashMap<String,String> map); //비밀번호 변경하기
+    @POST("/api/user/modifyUserWithdraw")
+    Call<Map<String, Object>> modifyUserWithdraw(@Body HashMap<String,String> map); //회원 탈퇴
+
     //지혜 종료
 
     //명근 시작

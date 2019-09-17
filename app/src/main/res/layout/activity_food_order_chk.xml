@@ -136,14 +136,5 @@
             android:textColor="#ffffff"
             android:textSize="16dp" />
 
-        <com.team.smart.customfonts.MyTextView_Roboto_Regular
-            android:id="@+id/btnSingUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign In Now"
-            android:textColor="#377dff"
-            android:layout_gravity="center"
-            android:padding="20dp"
-            android:layout_marginTop="100dp" />
     </LinearLayout>
 </LinearLayout>

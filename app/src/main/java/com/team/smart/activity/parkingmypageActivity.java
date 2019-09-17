@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.team.smart.R;
 import com.team.smart.blockchain.Wallet;
+import com.team.smart.util.SPUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,35 @@ public class parkingmypageActivity extends AppCompatActivity {
             }
         });
 
+        //내 정보 수정
+        TextView tvEditMyinfo = findViewById(R.id.tv_edit_myinfo);
+        tvEditMyinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignEditActivity.class); //내정보 수정하기 페이지 이동
+                startActivity(intent);
+            }
+        });
+
+        //비밀번호 변경
+        TextView tvChangePw = findViewById(R.id.tv_change_pw);
+        tvChangePw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignEditPwdActivity.class); //내정보 수정하기 페이지 이동
+                startActivity(intent);
+            }
+        });
+
+        //회원탈퇴
+        TextView outBtn = findViewById(R.id.outBtn);
+        outBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignWithdrawActivity.class); // 회원 탈퇴
+                startActivity(intent);
+            }
+        });
 
         //차량 정보 버튼 클릭
         TextView carInfoBtn = findViewById(R.id.carInfoBtn);
@@ -67,6 +98,18 @@ public class parkingmypageActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
+            }
+        });
+
+        TextView btnSignOut = findViewById(R.id.btnSignOut);
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPUtil.removeAllPreferences(parkingmypageActivity.this);//로그인정보 제거
+
+                Intent intent =new Intent(parkingmypageActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }

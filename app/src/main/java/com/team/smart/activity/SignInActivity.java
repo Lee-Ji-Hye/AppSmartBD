@@ -1,10 +1,13 @@
 package com.team.smart.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,8 @@ public class SignInActivity extends AppCompatActivity {
     private APIInterface apiInterface;
 
     TextView btnSignIn, btnSingUp, tvUserId, tvUserPw;
+    ProgressBar progressbar;
+    LinearLayout liMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +51,19 @@ public class SignInActivity extends AppCompatActivity {
         tvUserId=(TextView)findViewById(R.id.tv_userid);
         tvUserPw=(TextView)findViewById(R.id.tv_userpw);
 
+        progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        liMain = (LinearLayout)findViewById(R.id.li_main);
+
     }
 
     private void configuListner() {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarShow();//프로그레스바 보임
                 boolean error = validationChk(); //회원가입 폼 검증
                 if(error) {
+                    progressbarHide();//프로그레스바 숨김
                     return;
                 }
 
@@ -109,6 +119,8 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserVO> call, Response<UserVO> response) {
                 Log.d("TAG",response.code()+"");
+                progressbarHide();//프로그레스바 숨김
+
                 if(response.code()==200) {
                     UserVO resource = response.body();
 
@@ -149,9 +161,21 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserVO> call, Throwable t) {
                 Log.d("로그인 통신 fail...", t.getMessage());
-
                 call.cancel();
+                progressbarHide();//프로그레스바 숨김
             }
         });
+    }
+
+    private void progressbarShow() {
+        int gray = Color.parseColor("#BDBDBD");
+        liMain.setBackgroundColor(gray);
+        progressbar.setVisibility(View.VISIBLE);//프로그레스바 보임
+    }
+
+    private void progressbarHide() {
+        int white = Color.parseColor("#FFFFFF");
+        liMain.setBackgroundColor(white);
+        progressbar.setVisibility(View.GONE);//프로그레스바 숨김
     }
 }

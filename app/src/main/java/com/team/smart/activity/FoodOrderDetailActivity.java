@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class FoodOrderDetailActivity extends AppCompatActivity {
     private String userid, username;
 
     private String paramFocode, paramFname;
-    private ImageView btnCall;
+    private ImageView btnCall,backBtn;
     private TextView tvOcode,tvStatus,tvName,tvPersonNum,tvRegidate,tvReceive_time,tvMenu_list,tvMessage,tvAmount,tvSalePrice,tvTotPayPrice,tvCompOrg,tvCompName,tvCompHp,paymentBtn;
 
     @Override
@@ -92,7 +93,7 @@ public class FoodOrderDetailActivity extends AppCompatActivity {
 
                     String menuStr = "";
                     for(int i=0; i < menulist.size(); i++) {
-                        FoodCartVO menu = menulist.get(0);
+                        FoodCartVO menu = menulist.get(i);
                         menuStr += menu.getF_name()+" " + menu.getF_cnt()+"개"+"\n";
                     }
 
@@ -146,6 +147,7 @@ public class FoodOrderDetailActivity extends AppCompatActivity {
         tvCompName    = findViewById(R.id.tv_comp_name);
         tvCompHp      = findViewById(R.id.tv_comp_hp);
         paymentBtn      = findViewById(R.id.paymentBtn);
+        backBtn =  (ImageView) findViewById(R.id.backBtn);
 
         btnCall = findViewById(R.id.btnCall);
     }
@@ -164,6 +166,11 @@ public class FoodOrderDetailActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
+        });
+
+        /* 뒤로가기 버튼 */
+        backBtn.setOnClickListener(view -> {
+            finish();
         });
     }
 
