@@ -11,7 +11,7 @@ public class APIClient {
     //private static String MAINURL = "http://192.168.219.121:8081/"; //은지 ip
     //private static String MAINURL = "http://192.168.219.120:8081/"; //지혜 ip
     //private static String MAINURL = "http://192.168.219.106:8081/"; //명근 ip
-    private static String MAINURL = "http://192.168.0.3:8081/"; //사용할 아이피는 여기에서만 넣으세요 위에는 다 주석으로 막으세용
+    private static String MAINURL = "http://192.168.219.120:8081/"; //사용할 아이피는 여기에서만 넣으세요 위에는 다 주석으로 막으세용
 
     private static Retrofit retrofit = null;
 
