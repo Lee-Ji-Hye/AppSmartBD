@@ -240,36 +240,14 @@
 
                         <TextView
                             android:id="@+id/tv_r_deposit3"
-                            android:text="360,000원"
+                            android:text="360,00원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke" />
 
                         <TextView
                             android:id="@+id/tv_r_deposit4"
-                            android:text="396,000원"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke"
-                            android:layout_span="3" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:text="부가서비스"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke" />
-
-                        <TextView
-                            android:text="0원"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke" />
-
-                        <TextView
-                            android:text="0원"
+                            android:text="396,00원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
@@ -294,7 +272,7 @@
                         <TextView
                             android:id="@+id/tv_total_price"
                             android:textColor="#FF6E00"
-                            android:text="366,000원"
+                            android:text="366,00원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke3"
@@ -502,145 +480,6 @@
                     <TextView
                         android:layout_height="5dp" />
 
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="계약자명"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <EditText
-                            android:hint="계약자명"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="연락처"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <EditText
-                            android:hint="연락처"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="이메일"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <EditText
-                            android:hint="이메일"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-
-                    <TextView />
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#000000"
-                            android:text="[보증금반환 계좌정보]"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:layout_span="5" />
-                    </TableRow>
-
-                    <TextView />
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="은행명"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <EditText
-                            android:hint="은행명"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="예금주"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <EditText
-                            android:hint="예금주명"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="계좌번호"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <EditText
-                            android:hint="계좌정보"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-                </TableLayout>
-            </TableRow>
-
-            <TableRow>
-
-                <TableLayout
-                    android:background="@drawable/stroke"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="*">
-
                     <TableRow
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
@@ -669,6 +508,7 @@
                             android:textColor="#FF6E00" />
 
                         <EditText
+                            android:id="@+id/rt_name"
                             android:hint="이름"
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
@@ -688,6 +528,7 @@
                             android:textColor="#FF6E00" />
 
                         <EditText
+                            android:id="@+id/rt_businessNum"
                             android:layout_height="match_parent"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
@@ -707,6 +548,7 @@
                             android:textColor="#FF6E00" />
 
                         <EditText
+                            android:id="@+id/rt_mobile"
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
@@ -722,19 +564,108 @@
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke3"
                             android:paddingTop="11.2dp"
-                            android:text="주소"
+                            android:text="이메일"
                             android:textColor="#FF6E00" />
 
                         <EditText
+                            android:id="@+id/rt_email"
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
-                            android:hint="주소"
+                            android:hint="이메일"
                             android:maxLength="24"
                             android:layout_span="4" />
                     </TableRow>
 
+                    <TableRow>
+
+                        <TextView
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:background="@drawable/stroke3"
+                            android:paddingTop="11.2dp"
+                            android:text="입주가능일"
+                            android:textColor="#FF6E00" />
+
+                        <EditText
+                            android:id="@+id/rt_able_date"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:background="@drawable/stroke"
+                            android:hint="입주가능일"
+                            android:maxLength="24"
+                            android:layout_span="4"
+                            android:textColor="@color/black"
+                            android:enabled="false" />
+                    </TableRow>
+
                     <TextView />
+
+                    <TableRow>
+
+                        <TextView
+                            android:textColor="#000000"
+                            android:text="[보증금반환 계좌정보]"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:layout_span="5" />
+                    </TableRow>
+
+                    <TextView />
+
+                    <TableRow>
+
+                        <TextView
+                            android:textColor="#FF6E00"
+                            android:text="지갑 이름"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="11.2dp"
+                            android:background="@drawable/stroke3" />
+
+                        <TextView
+                            android:id="@+id/walletName"
+                            android:text="지갑 이름"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="11.2dp"
+                            android:layout_span="4"
+                            android:background="@drawable/stroke"
+                            android:maxLength="24" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:textColor="#FF6E00"
+                            android:text="지갑 주소"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="11.2dp"
+                            android:background="@drawable/stroke3" />
+
+                        <TextView
+                            android:id="@+id/walletAddress"
+                            android:text="지갑 주소"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="11.2dp"
+                            android:layout_span="4"
+                            android:background="@drawable/stroke"
+                            android:maxLength="24" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <TableLayout
+                    android:background="@drawable/stroke"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="*">
 
                     <TableRow>
 
@@ -764,23 +695,6 @@
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
                             android:text="(주)삼성글로버즈"
-                            android:layout_span="4" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke2"
-                            android:text="사업자번호" />
-
-                        <TextView
-                            android:id="@+id/tv_comp_seq"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke"
-                            android:text="682-86-01182"
                             android:layout_span="4" />
                     </TableRow>
 

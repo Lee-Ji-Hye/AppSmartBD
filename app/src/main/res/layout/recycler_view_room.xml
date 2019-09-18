@@ -43,15 +43,6 @@
                 android:text="1000"
                 android:textColor="#000"
                 android:textSize="14dp" />
-
-            <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                android:id="@+id/r_deposit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="0"
-                android:textColor="#000"
-                android:textSize="14dp" />
         </LinearLayout>
 
         <TableLayout
@@ -62,12 +53,12 @@
             <TableRow>
 
                 <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                    android:id="@+id/r_name"
+                    android:id="@+id/r_kind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
-                    android:text="403"
+                    android:text="상가"
                     android:textColor="#A2A2A2"
                     android:textSize="12dp" />
 
@@ -103,14 +94,32 @@
             </TableRow>
         </TableLayout>
 
-        <com.team.smart.customfonts.MyTextView_Roboto_Regular
-            android:id="@+id/r_able_date"
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="2019-08-25"
-            android:textColor="#A2A2A2"
-            android:textSize="12dp" />
+            android:orientation="horizontal">
+
+        <TableRow>
+
+            <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                android:id="@+id/r_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="403"
+                android:textColor="#A2A2A2"
+                android:textSize="12dp" />
+
+            <com.team.smart.customfonts.MyTextView_Roboto_Regular
+                android:id="@+id/r_able_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="2019-08-25"
+                android:textColor="#A2A2A2"
+                android:textSize="12dp" />
+            </TableRow>
+        </TableLayout>
 
         <com.team.smart.customfonts.MyTextView_Roboto_Medium
             android:id="@+id/regidate"

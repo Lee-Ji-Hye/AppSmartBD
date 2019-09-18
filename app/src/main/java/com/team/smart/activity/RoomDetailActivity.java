@@ -20,23 +20,32 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.team.smart.R;
 import com.team.smart.adapter.MyCustomPagerAdapter;
+import com.team.smart.blockchain.Wallet;
+import com.team.smart.util.SPUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap; //Google Map 참조 변수
+
+    private List<String> address = new ArrayList<>();
 
     ViewPager viewPager;
     int images[] = {R.drawable.property, R.drawable.property, R.drawable.property, R.drawable.property};
     MyCustomPagerAdapter myCustomPagerAdapter;
 
     private String b_area1,b_area2,b_address,b_year,b_landarea,b_buildarea,b_buildscale
-                  ,r_code,r_name,r_type,r_price,r_deposit,r_ofer_fee,r_floor,r_indi_space,r_able_date,regidate,r_area,r_desc
+                  ,r_kind,r_code,r_name,r_type,r_price,r_deposit,r_ofer_fee,r_floor,r_indi_space,r_able_date,regidate,r_area,r_desc,userid
                   ,name,email,hp
-                  ,comp_seq;
+                  ,comp_seq
+                  ,userId;
+    private int r_blockCode;
     private double b_lat,b_lon;
     TextView imageNo,rentalContract
-            ,tv_r_type,tv_r_price,tv_r_deposit
+            ,tv_r_type,tv_r_price
             ,tv_r_name,tv_r_indi_space,tv_r_floor,tv_r_ofer_fee
-            ,tv_r_able_date,tv_regidate
+            ,tv_r_code,tv_r_able_date,tv_regidate
             ,tv_r_type2,tv_r_floor2,tv_r_ofer_fee2,tv_r_area2,tv_r_able_date2,tv_r_deposit2
             ,tv_r_indi_space2
             ,tv_r_desc2
@@ -49,6 +58,9 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         setContentView(R.layout.activity_room_detail);
 
         findid();
+        initData();
+
+        userId = SPUtil.getUserId(RoomDetailActivity.this);
 
         myCustomPagerAdapter = new MyCustomPagerAdapter(RoomDetailActivity.this, images);
         viewPager.setAdapter(myCustomPagerAdapter);
@@ -74,24 +86,38 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         rentalContract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "계약서 작성 버튼 눌림", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), RoomContractActivity.class); //ParkingMainActivity 이동할 준비
-                intent.putExtra("b_area1", b_area1);
-                intent.putExtra("b_area2", b_area2);
-                intent.putExtra("b_address", b_address);
-                intent.putExtra("b_year", b_year);
-                intent.putExtra("b_landarea", b_landarea);
-                intent.putExtra("b_buildarea", b_buildarea);
-                intent.putExtra("b_buildscale", b_buildscale);
+                if(userId.equals("")) {
+                    Toast.makeText(getApplicationContext(), "로그인이 되어있지 않음", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), SignInActivity.class); //WalletCreateActivity로 이동할 준비
+                    startActivity(intent);
+                }else if(address.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "지갑 주소 없음", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), WalletCreateActivity.class); //WalletCreateActivity로 이동할 준비
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "계약서 작성 버튼 눌림", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), RoomContractActivity.class); //ParkingMainActivity 이동할 준비
+                    intent.putExtra("b_area1", b_area1);
+                    intent.putExtra("b_area2", b_area2);
+                    intent.putExtra("b_address", b_address);
+                    intent.putExtra("b_year", b_year);
+                    intent.putExtra("b_landarea", b_landarea);
+                    intent.putExtra("b_buildarea", b_buildarea);
+                    intent.putExtra("b_buildscale", b_buildscale);
 
-                intent.putExtra("r_price", r_price);
-                intent.putExtra("r_deposit", r_deposit);
+                    intent.putExtra("r_code", r_code);
+                    intent.putExtra("r_blockCode", r_blockCode);
+                    intent.putExtra("r_price", r_price);
+                    intent.putExtra("r_deposit", r_deposit);
+                    intent.putExtra("userid", userid);
+                    intent.putExtra("r_able_date", r_able_date);
 
-                intent.putExtra("name", name);
-                intent.putExtra("email", email);
-                intent.putExtra("hp", hp);
-                intent.putExtra("comp_seq", comp_seq);
-                startActivity(intent);
+                    intent.putExtra("name", name);
+                    intent.putExtra("email", email);
+                    intent.putExtra("hp", hp);
+                    intent.putExtra("comp_seq", comp_seq);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -119,7 +145,9 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         b_buildarea = intent.getExtras().getString("b_buildarea");
         b_buildscale = intent.getExtras().getString("b_buildscale");
 
+        r_kind = intent.getExtras().getString("r_kind");
         r_code = intent.getExtras().getString("r_code");
+        r_blockCode = intent.getExtras().getInt("r_blockCode");
         r_name = intent.getExtras().getString("r_name");
         r_type = intent.getExtras().getString("r_type");
         r_price = intent.getExtras().getString("r_price");
@@ -131,6 +159,7 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         regidate = intent.getExtras().getString("regidate");
         r_area = intent.getExtras().getString("r_area");
         r_desc = intent.getExtras().getString("r_desc");
+        userid = intent.getExtras().getString("userid");
 
         b_lat = intent.getExtras().getDouble("b_lat");
         b_lon = intent.getExtras().getDouble("b_lon");
@@ -151,11 +180,11 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
 
         tv_r_type = findViewById(R.id.r_type);
         tv_r_price = findViewById(R.id.r_price);
-        tv_r_deposit = findViewById(R.id.r_deposit);
         tv_r_name = findViewById(R.id.r_name);
         tv_r_indi_space = findViewById(R.id.r_indi_space);
         tv_r_floor = findViewById(R.id.r_floor);
         tv_r_ofer_fee = findViewById(R.id.r_ofer_fee);
+        tv_r_code = findViewById(R.id.r_kind);
         tv_r_able_date = findViewById(R.id.r_able_date);
         tv_regidate = findViewById(R.id.regidate);
 
@@ -174,20 +203,34 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
 
         //find id -> text setting
         tv_r_type.setText(r_type);
-        tv_r_price.setText(r_price);
-        tv_r_deposit.setText(r_deposit);
-        tv_r_name.setText(r_name);
+        tv_r_price.setText(r_price+"/"+r_deposit);
+        tv_r_name.setText("매물번호 "+r_name);
+        if(r_indi_space == null) {
+            tv_r_indi_space.setText("없음");
+        }else{
+            tv_r_indi_space.setText(r_indi_space);
+        }
         tv_r_indi_space.setText(r_indi_space);
-        tv_r_floor.setText(r_floor);
-        tv_r_ofer_fee.setText(r_ofer_fee);
-        tv_r_able_date.setText(r_able_date);
-        tv_regidate.setText(regidate);
+        tv_r_floor.setText(r_floor+"층");
+        tv_r_ofer_fee.setText("관리비 "+r_ofer_fee+"만원");
+        if(r_kind.equals("ST")) {
+            tv_r_code.setText("상가");
+        }else{
+            tv_r_code.setText("사무실");
+        }
+        if(r_able_date.equals("0")) {
+            tv_r_able_date.setText("즉시 입주 가능");
+            tv_r_able_date2.setText("즉시 입주 가능");
+        }else{
+            tv_r_able_date.setText(r_able_date+"일 후 입주 가능");
+            tv_r_able_date2.setText(r_able_date+"일 후 입주 가능");
+        };
+        tv_regidate.setText("등록일 : "+regidate);
 
         tv_r_type2.setText(r_type);
-        tv_r_floor2.setText(r_floor);
-        tv_r_ofer_fee2.setText(r_ofer_fee);
+        tv_r_floor2.setText(r_floor+"층");
+        tv_r_ofer_fee2.setText(r_ofer_fee+"만원");
         tv_r_area2.setText(r_area);
-        tv_r_able_date2.setText(r_able_date);
         tv_r_deposit2.setText(r_deposit);
         tv_r_indi_space2.setText(r_indi_space);
         tv_r_desc2.setText(r_desc);
@@ -210,10 +253,26 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         btnAR.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "매물 AR 버튼 눌림", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), AR_ST01Activity.class); //RoomUnityActivity 이동할 준비
-                startActivity(intent);
+                if(r_kind.equals("ST")) {
+                    Toast.makeText(getApplicationContext(), "매물 AR 버튼 눌림", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), AR_ST01Activity.class); //RoomUnityActivity 이동할 준비
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "현재 AR 준비중입니다.", Toast.LENGTH_LONG).show();
+                }
             }
         });
+    }
+
+    public void initData(){
+        Wallet wallet = Wallet.getInstance();
+        String filepath = getFilesDir()+"/keystore";
+        try {
+            wallet.getLists(filepath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        address = wallet.getAddresses();
     }
 }

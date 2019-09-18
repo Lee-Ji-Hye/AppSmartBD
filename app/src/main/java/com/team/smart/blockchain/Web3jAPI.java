@@ -8,22 +8,28 @@ import org.web3j.crypto.ECKeyPair;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.tuples.generated.Tuple3;
+import org.web3j.tx.Contract;
+import org.web3j.tx.ManagedTransaction;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class Web3jAPI {
 
     private static Web3j web3j;
 
+    private static RoomContract roomContract;
+
     public static Credentials getCredentials() {
         return credentials;
     }
-
 
     private static Credentials credentials;
 
@@ -59,6 +65,7 @@ public class Web3jAPI {
     static void initCredentials(){
         Wallet wallet = Wallet.getInstance();
         credentials = wallet.getCredentials();
+        roomContract = RoomContract.load(Configuration.contractAddress,web3j,credentials, ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
     }
 
     static void initialize(){
@@ -66,7 +73,43 @@ public class Web3jAPI {
         initCredentials();
     }
 
+    public String rentalRoom(BigInteger _rCode, byte[] _name, byte[] _businessNumber, BigInteger weiValue){
+        TransactionReceipt txReceipt = null;
+        try {
+            txReceipt = roomContract.buyRealEstate(_rCode,_name,_businessNumber,weiValue).sendAsync().get();
+            // get tx hash and tx fees
+            String txHash = txReceipt.getTransactionHash();
+            BigInteger txFees = txReceipt
+                    .getCumulativeGasUsed()
+                    .multiply(Configuration.GAS_PRICE);
 
+            System.out.println("hash: " + txHash);
+            System.out.println("fees: " + Web3jUtil.weiToEther(txFees));
+            return txHash;
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Object> getBuyerInfo(BigInteger index){
+        try {
+            Tuple3<String, byte[], byte[]> room = roomContract.getBuyerInfo(index).sendAsync().get();
+            List<Object> details = new ArrayList<>();
+            details.add(room.getValue1());
+            details.add(Numeric.toHexStringNoPrefix(room.getValue2()));
+            details.add(Numeric.toHexStringNoPrefix(room.getValue3()));
+            return details;
+        }
+        catch (Exception e){
+            System.err.println("getBuyerInfo 실패");
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public boolean sendETH(String to, Double ETHValue) {
 
@@ -89,8 +132,7 @@ public class Web3jAPI {
             return false;
         }
     }
-
-
+    
     public BigDecimal getETHBalance(){
 
         try {
@@ -104,11 +146,9 @@ public class Web3jAPI {
 
     }
 
-
     public String getAddress(){
         return credentials.getAddress();
     }
-
 
     public String exportPrivateKey(){
         ECKeyPair ecKeyPair = credentials.getEcKeyPair();

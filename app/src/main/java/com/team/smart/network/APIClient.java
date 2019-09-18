@@ -11,8 +11,8 @@ public class APIClient {
     //private static String MAINURL = "http://192.168.219.121:8081/"; //은지 ip
 
     //private static String MAINURL = "http://192.168.219.120:8081/"; //지혜 ip
-    private static String MAINURL = "http://192.168.219.106:8081/"; //명근 ip
-    //private static String MAINURL = "http://172.30.1.24:8081/";
+    private static String MAINURL = "http://192.168.219.101:8081/"; //명근 ip
+    //private static String MAINURL = "http://172.30.1.5:8081/";
 
     private static Retrofit retrofit = null;
 

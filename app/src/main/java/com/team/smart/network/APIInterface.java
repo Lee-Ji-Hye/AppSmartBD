@@ -9,6 +9,8 @@ import com.team.smart.vo.ParkingOrderVO;
 import com.team.smart.vo.ParkingTicketVO;
 import com.team.smart.vo.RequestUserVO;
 import com.team.smart.vo.RoomBVO;
+import com.team.smart.vo.RoomContractDetailVO;
+import com.team.smart.vo.RoomContractVO;
 import com.team.smart.vo.UserVO;
 
 import java.util.HashMap;
@@ -69,6 +71,12 @@ public interface APIInterface
     //매물 정보 리스트
     @GET("/api/room/getRoomList")
     Call<RoomBVO> getRoomList(@Query("b_code") String b_code);
+    //계약 정보 등록
+    @POST("/api/room/insertContract")
+    Call<HashMap<String, Object>> insertContract(@Body RoomContractVO roomContractVO);
+    //계약 정보 리스트
+    @GET("/api/room/getContractList")
+    Call<RoomContractDetailVO> getContractList(@Query("userid") String userid);
     //명근 종료
 
     //카카오페이

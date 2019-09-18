@@ -117,14 +117,6 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
                     if(networkResponse!=null) {
                         networkResponse.success(resource);
 
-                        //for(int i=0; i<RoomList.size();i++) {
-                        //    System.out.println(RoomList.get(i).getB_address());
-                        //    System.out.println(RoomList.get(i).getB_area2());
-                        //    System.out.println(RoomList.get(i).getB_area1());
-                        //    System.out.println(RoomList.get(i).getB_code());
-                        //    System.out.println(RoomList.get(i).getR_cnt());
-                        //}
-
                         getSampleMarkerItems(RoomList);
                     }
                 }
@@ -246,7 +238,7 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
         configuListner(); //클릭 리스너 일괄 세팅
     }
 
-    // /////////////// 지오 코딩(Geocoding)으로 주소를 해당 좌표(위도, 경도)로 변환 시작 ///////////////
+    //지오 코딩(Geocoding)으로 주소를 해당 좌표(위도, 경도)로 변환
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent)
     {
@@ -267,9 +259,8 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,15));
         }
     }
-// /////////////// 지오 코딩(Geocoding)으로 주소를 해당 좌표(위도, 경도)로 변환 종료 ///////////////
 
-// ////////////////////////////// Google Map에 Custom Marker 추가 시작 /////////////////////////////
+    //Google Map에 Custom Marker 추가
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -279,9 +270,8 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
 
         setCustomMarkerView();
     }
-// ////////////////////////////// Google Map에 Custom Marker 추가 종료 /////////////////////////////
 
-// /////////////////////////////// Google Map에 현재 위치 정보 시작 ////////////////////////////////
+    //Google Map에 현재 위치 정보
     public void onLastLocationButtonClicked(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -328,9 +318,8 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
-// /////////////////////////////// Google Map에 현재 위치 정보 종료 ////////////////////////////////
 
-// ///////////////////////////////////////// 공통헤더 시작 /////////////////////////////////////////
+    //공통헤더
     @Override
     void findid() { }
 
@@ -348,5 +337,4 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
 
     @Override
     void init() { }
-// ///////////////////////////////////////// 공통헤더 종료 /////////////////////////////////////////
 }

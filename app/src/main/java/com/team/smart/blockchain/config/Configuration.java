@@ -12,10 +12,10 @@ public class Configuration {
     public static final BigInteger GAS_LIMIT_GREETER_TX = BigInteger.valueOf(500_000L);
     public static String RPC_URL = "https://ropsten.infura.io/v3/8540293cf7684d2594ff48e7cb44d34f";
 
-    public static String contractAddress="0x7c64d7f1d9e74e7f0a4d9a33a6d147cc235ca749";
-    public static String contractOwner = "0x80753a86047d27b51d542ab453c24f5ad1401f79";
+    public static String contractAddress="0xa868B934Cfc023B3dbEaA1949fFC7c5421eFaEd4";
+    public static String contractOwner = "0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C";
 
-    public static String[] rares = new String[]{"","","","","","","",""};
+    /*public static String[] rares = new String[]{"","","","","","","",""};
 
     public static int getIndexOfRares(String str){
         int index = 0;
@@ -40,5 +40,5 @@ public class Configuration {
         else if(str.equals("")) {color = "#EE0000";}
 
         return color;
-    }
+    }*/
 }

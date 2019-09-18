@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class RoomBVO extends BaseRespon {
 
     @SerializedName("rooms")
-    private ArrayList<Room> rooms; //매물정보
+    private ArrayList<Room> rooms; //매물 정보
 
     public RoomBVO() {
         rooms = new ArrayList<>();
@@ -34,8 +34,11 @@ public class RoomBVO extends BaseRespon {
         @SerializedName("b_buildscale")
         private String b_buildscale;   //건축규모
 
+
         @SerializedName("r_code")
         private String r_code;         //매물 코드
+        @SerializedName("r_blockcode")
+        private int r_blockcode;       //매물 블록체인 코드
         @SerializedName("b_code")
         private String b_code;         //건물 코드
         @SerializedName("r_img")
@@ -155,6 +158,14 @@ public class RoomBVO extends BaseRespon {
 
         public void setR_code(String r_code) {
             this.r_code = r_code;
+        }
+
+        public int getR_blockcode() {
+            return r_blockcode;
+        }
+
+        public void setR_blockcode(int r_blockcode) {
+            this.r_blockcode = r_blockcode;
         }
 
         public String getB_code() {

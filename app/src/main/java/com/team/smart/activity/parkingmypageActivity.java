@@ -41,8 +41,17 @@ public class parkingmypageActivity extends AppCompatActivity {
             }
         });
 
+        //계약 정보 버튼 클릭
+        TextView btnRoomInfo = findViewById(R.id.btnRoomInfo);
+        btnRoomInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RoomContractListActivity.class); //ParkingMainActivity 이동
+                startActivity(intent);
+            }
+        });
 
-        // 지갑 정보 버튼 클릭
+        //지갑 정보 버튼 클릭
         TextView btnWalletInfo = findViewById(R.id.btnWalletInfo);
         btnWalletInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +72,7 @@ public class parkingmypageActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), WalletCreateActivity.class); //지갑 없음 이동
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), Start.class); //지갑있음 이동
+                    Intent intent = new Intent(getApplicationContext(), WalletStartActivity.class); //지갑있음 이동
                     startActivity(intent);
                 }
 
