@@ -20,11 +20,8 @@ import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
-import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.RequestUserVO;
-import com.team.smart.vo.UserVO;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -184,7 +181,6 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     }
-
                 }
             }
 

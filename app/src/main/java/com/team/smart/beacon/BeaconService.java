@@ -88,38 +88,38 @@ public class BeaconService extends Service {
             if(userid.equals("")) {
                 return;
             }
-            if(Major != 40001 && Minor != 26052) {
-                return;
-            }
+            if(Major == 40001 && Minor == 26052) {
 
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("userid", userid);
-            map.put("major", Major + "");
-            map.put("minor", Minor + "");
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("userid", userid);
+                map.put("major", Major + "");
+                map.put("minor", Minor + "");
 
-            Log.d("Major : ", String.valueOf(Major));
-            Log.d("Minor : ", String.valueOf(Minor));
-            /**
-             GET List Resources
-             **/
-            Call<FoodCouponVO> call = apiInterface.getBeaconCouponList(map);
-            call.enqueue(new Callback<FoodCouponVO>() {
-                @Override
-                public void onResponse(Call<FoodCouponVO> call, Response<FoodCouponVO> response) {
-                    if (response.code() == 200) {
-                        if(response.body().getResponseCode() != 570 && response.body().getResponseCode() != 572 ) {
-                            return;
+                Log.d("Major : ", String.valueOf(Major));
+                Log.d("Minor : ", String.valueOf(Minor));
+                /**
+                 GET List Resources
+                 **/
+                Call<FoodCouponVO> call = apiInterface.getBeaconCouponList(map);
+                call.enqueue(new Callback<FoodCouponVO>() {
+                    @Override
+                    public void onResponse(Call<FoodCouponVO> call, Response<FoodCouponVO> response) {
+                        if (response.code() == 200) {
+                            if(response.body().getResponseCode() != 570 && response.body().getResponseCode() != 572 ) {
+                                return;
+                            }
+                            ShowNotification(response.body());
                         }
-                        ShowNotification(response.body());
                     }
-                }
 
-                @Override
-                public void onFailure(Call<FoodCouponVO> call, Throwable t) {
-                    call.cancel();
-                    Toast.makeText(getApplicationContext(), "통신 에러 ", Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<FoodCouponVO> call, Throwable t) {
+                        call.cancel();
+                        Toast.makeText(getApplicationContext(), "통신 에러 ", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
 
         } catch (Exception ex) {
             Log.e(TAG + "GetRes", ex.getMessage());
