@@ -29,7 +29,7 @@ public abstract class HeaderActivity extends AppCompatActivity {
     protected FrameLayout mBody;
     protected ImageButton btnOpenDrawer, btSearchBtn;
     protected Button btnCloseDrawer, btnSignIn, btnSingUp, btnSignOut;
-    protected TextView userIdView, mypageBtn;
+    protected TextView userIdView, mypageBtn, foodOrderBtn;
 
     protected DrawerLayout drawerLayout;
     protected View drawerView;
@@ -79,6 +79,8 @@ public abstract class HeaderActivity extends AppCompatActivity {
 
         // Drawer 화면(뷰) 객체 참조
         drawerView = (View) findViewById(R.id.drawer);
+
+        foodOrderBtn = findViewById(R.id.foodOrderBtn);
     }
 
     private void UI_Load() {
@@ -177,11 +179,20 @@ public abstract class HeaderActivity extends AppCompatActivity {
             }
         });
 
-        /*//참고사이트 : https://arabiannight.tistory.com/entry/286
-                        //FLAG_ACTIVITY_CLEAR_TOP: 루트액티비티와 중복된 액티비티만 남고 그게 아니면 액티비티가 디스트로이됨
-                        Intent intent =new Intent(SignInActivity.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);*/
+        foodOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(userid.equals("")) {
+                    Intent intent =new Intent(HeaderActivity.this, FoodOrderChkActivity.class); //비회원 주문조회 페이지
+                    startActivity(intent);
+                } else {
+                    Intent intent =new Intent(HeaderActivity.this, FoodOrderListActivity.class); //주문리스트 페이지
+                    startActivity(intent);
+                }
+
+            }
+        });
         //메뉴 내부 종료---------------------------------
     }
 

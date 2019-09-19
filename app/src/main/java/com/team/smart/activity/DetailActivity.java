@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
     private int REQUESTDETAILFOODCD = 100;
     private int REQUESTFOODCARTCD = 101;
 
-    private LinearLayout isCoupon;
+    private RelativeLayout isCoupon;
     private TextView tvCouponName, tvCompBranch;
     private Button btnMenu, btnInfo;
     private ImageButton btnback;

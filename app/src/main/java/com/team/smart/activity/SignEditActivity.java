@@ -7,39 +7,58 @@ import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.team.smart.R;
+import com.team.smart.adapter.FoodOrderListAdapter;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
+import com.team.smart.util.SPUtil;
+import com.team.smart.vo.FoodOrderListVO;
 import com.team.smart.vo.RequestUserVO;
+import com.team.smart.vo.UserVO;
 
+import org.web3j.crypto.Sign;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignEditActivity extends AppCompatActivity {
     private APIInterface apiInterface;
-
+    ImageButton backBtn;
+    TextView btnEdit;
+    EditText tvUserId, tvUserPw, tvName, tvHp, tvEmail;
     ProgressBar progressbar;
-    LinearLayout liMain, liEdit;
-    TextView btnSignIn;
-    EditText tvUserId, tvUserPw, tvUserPwRe, tvName, tvHp, tvEmail;
+    LinearLayout liMain;
+
+    String userid,username,userhp,useremail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_sign_edit);
+
+        userid = SPUtil.getUserId(SignEditActivity.this);
+        username = SPUtil.getUserName(SignEditActivity.this);
+        userhp = SPUtil.getUserHP(SignEditActivity.this);
+        useremail = SPUtil.getUserEmail(SignEditActivity.this);
 
         findId();
         configuListner();//클릭이벤트함수
@@ -47,39 +66,47 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     protected void findId() {
-        btnSignIn = findViewById(R.id.btnSignIn); //회원가입버튼
+        backBtn = (ImageButton) findViewById(R.id.backBtn);
+        btnEdit = findViewById(R.id.btnEdit); //회원가입버튼
         tvUserId = findViewById(R.id.tv_userid);
         tvUserPw = findViewById(R.id.tv_userpw);
-        tvUserPwRe = findViewById(R.id.tv_userpw_re);
         tvName = findViewById(R.id.tv_name);
         tvEmail = findViewById(R.id.tv_email);
         tvHp = findViewById(R.id.tv_hp);
 
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
         liMain = (LinearLayout)findViewById(R.id.li_main);
-        liEdit = (LinearLayout)findViewById(R.id.li_edit);
 
         //기본세팅
         tvHp.addTextChangedListener(new PhoneNumberFormattingTextWatcher()); //숫자 키패드
         tvEmail.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS); //키패드에 @ 보이게
+
+        tvUserId.setEnabled(false); //아이디 입력 비활성화
+        tvUserId.setText(userid);   //아이디 셋팅
+        tvName.setText(username);
+        tvHp.setText(userhp);
+        tvEmail.setText(useremail);
+
+        tvUserPw.requestFocus();
     }
 
     protected void configuListner() {
-        //회원가입하기 버튼
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
+        /* 뒤로가기 버튼 */
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
+
+        //정보 수정하기 버튼
+        btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 progressbarShow();//프로그레스바 보임
-                boolean error = validationChk(); //회원가입 폼 검증
+                boolean error = validationChk(); //내정보 수정하기 폼 검증
                 if(error) {
                     progressbarHide();//프로그레스바 숨김
                     return;
                 }
-
-                callSignUpApi();
-
-//                Intent intent =new Intent(SignUpActivity.this, SignInActivity.class);
-//                startActivity(intent);
+                callSignEditApi();
             }
         });
     }
@@ -96,17 +123,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         } else if(tvUserPw.getText().toString().equals("")) {
             error = true;
-            Toast toast = Toast.makeText(getApplicationContext(),"비밀번호를 입력하세요", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
+            tvUserPw.setHintTextColor(Color.parseColor("#FF0000"));
+            tvUserPw.setHint("정보 변경을 위해 비밀번호 입력");
             tvUserPw.requestFocus();
-
-        } else if(tvUserPwRe.getText().toString().equals("")) {
-            error = true;
-            Toast toast = Toast.makeText(getApplicationContext(),"비밀번호확인을 입력하세요", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-            tvUserPwRe.requestFocus();
 
         } else if(tvName.getText().toString().equals("")) {
             error = true;
@@ -134,7 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     //회원가입 통신
-    protected void callSignUpApi() {
+    protected void callSignEditApi() {
         if(apiInterface == null) {
             apiInterface = APIClient.getClient().create(APIInterface.class);
         }
@@ -147,63 +166,73 @@ public class SignUpActivity extends AppCompatActivity {
         vo.setHp(tvHp.getText().toString());
 
         //회원가입 통신
-        Call<Map<String, String>> call = apiInterface.memberSignUp(vo);
-        call.enqueue(new Callback<Map<String, String>>() {
+        Call<Map<String, Object>> call = apiInterface.modifyUserInfo(vo);
+        call.enqueue(new Callback<Map<String, Object>>() {
             @Override
-            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
                 Log.d("TAG",response.code()+"");
+
                 progressbarHide();//프로그레스바 숨김
 
                 if(response.code()==200) {
-                    Map<String, String> data = response.body();
-                    Gson gson3 = new Gson();
-                    String json3 = gson3.toJson(data);
-                    Log.d("회원가입 통신~~~~",json3);
+                    Map<String, Object> data = response.body();
 
-                    String responseCode = data.get("responseCode");
-                    String responseMsg = data.get("responseMsg");
+                    String responseCode = String.valueOf(data.get("responseCode"));
+                    String responseMsg = data.get("responseMsg").toString();
 
-                    if(!responseCode.equals("300")) {
-                        Toast toast = Toast.makeText(getApplicationContext(),responseMsg, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                       return;
+                    if(!responseCode.equals("200")) {
+                        if(responseCode.equals("405")) {
+                            tvUserPw.setText("");
+                            tvUserPw.setHintTextColor(Color.parseColor("#FF0000"));
+                            tvUserPw.setHint("비밀번호가 일치하지 않습니다.");
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), responseMsg, Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                        }
+
+                        return;
 
                     } else {
-                        Toast toast = Toast.makeText(getApplicationContext(),"회원가입 성공!", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(getApplicationContext(),"정보가 수정되었습니다.", Toast.LENGTH_SHORT);
                         toast.setGravity(Gravity.CENTER, 0, 0);
                         toast.show();
 
-                        //참고사이트 : https://arabiannight.tistory.com/entry/286
-                        //FLAG_ACTIVITY_CLEAR_TOP: 루트액티비티와 중복된 액티비티만 남고 그게 아니면 액티비티가 디스트로이됨
-                        Intent intent =new Intent(SignUpActivity.this, MainActivity.class);
+                        SPUtil.removeAllPreferences(SignEditActivity.this);
+
+                        //수정정보 저장 (쿠키개념)
+                        SPUtil.setUserId(SignEditActivity.this, tvUserId.getText().toString());
+                        SPUtil.setUserName(SignEditActivity.this, tvName.getText().toString());
+                        SPUtil.setUserHP(SignEditActivity.this, tvHp.getText().toString());
+                        SPUtil.setUserEmail(SignEditActivity.this, tvEmail.getText().toString());
+
+                        Intent intent =new Intent(SignEditActivity.this, parkingmypageActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-
                     }
+
                 }
             }
 
             @Override
-            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
                 Log.d("회원가입 통신 fail...", "실패..");
                 call.cancel();
                 progressbarHide();//프로그레스바 숨김
             }
         });
+
     }
 
     private void progressbarShow() {
         int gray = Color.parseColor("#BDBDBD");
         liMain.setBackgroundColor(gray);
-        liEdit.setVisibility(View.GONE);//입력폼 숨김
         progressbar.setVisibility(View.VISIBLE);//프로그레스바 보임
     }
 
     private void progressbarHide() {
         int white = Color.parseColor("#FFFFFF");
         liMain.setBackgroundColor(white);
-        liEdit.setVisibility(View.VISIBLE);//입력폼 보임
         progressbar.setVisibility(View.GONE);//프로그레스바 숨김
     }
 }

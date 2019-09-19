@@ -2,6 +2,8 @@ package com.team.smart.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -14,6 +16,7 @@ public class FoodListActivity extends AppCompatActivity {
 
     TabLayout tbFoodMenu;
     ViewPager viewPager;
+    ImageView backBtn;
     FoodTabFragmentAdapter starterFragmentAdapter;
 
     @Override
@@ -21,6 +24,7 @@ public class FoodListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list2);
         findId(); //아이디 셋팅
+        configuListner();
         FoodListLoad();
 
         //Intent intent = new Intent(getApplicationContext(), AKakaoTestActivity.class);
@@ -67,5 +71,13 @@ public class FoodListActivity extends AppCompatActivity {
     public void findId() {
         tbFoodMenu = findViewById(R.id.tablayout);
         viewPager=findViewById(R.id.viewpager);
+        backBtn = (ImageView) findViewById(R.id.backBtn);
+    }
+
+    private void configuListner() {
+        /* 뒤로가기 버튼 */
+        backBtn.setOnClickListener(view -> {
+            finish();
+        });
     }
 }

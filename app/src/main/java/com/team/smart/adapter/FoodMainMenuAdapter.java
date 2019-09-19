@@ -75,6 +75,7 @@ public class FoodMainMenuAdapter extends RecyclerView.Adapter<FoodMainMenuAdapte
             convertView = inflater.inflate(R.layout.food_main_menu, null);
             holder = new Holder(convertView); // ViewHolder을 생성
             holder.tvBestMenu = (TextView) convertView.findViewById(R.id.tv_food_best_menu);
+            holder.tvHotMenu = (TextView) convertView.findViewById(R.id.tv_food_hot_menu);
             holder.liDesc = (LinearLayout) convertView.findViewById(R.id.li_detail_desc);
             holder.tvSubName = (TextView) convertView.findViewById(R.id.tv_food_sub_name);
             holder.tvMainName = (TextView) convertView.findViewById(R.id.tv_food_main_name);
@@ -85,6 +86,7 @@ public class FoodMainMenuAdapter extends RecyclerView.Adapter<FoodMainMenuAdapte
             //convertView = holder.view;
            // holder = (Holder) convertView.getTag(); // rootView에서 holder을 꺼내온다
             holder.tvBestMenu = (TextView) convertView.findViewById(R.id.tv_food_best_menu);
+            holder.tvHotMenu = (TextView) convertView.findViewById(R.id.tv_food_hot_menu);
             holder.liDesc = (LinearLayout) convertView.findViewById(R.id.li_detail_desc);
             holder.tvSubName = (TextView) convertView.findViewById(R.id.tv_food_sub_name);
             holder.tvMainName = (TextView) convertView.findViewById(R.id.tv_food_main_name);
@@ -101,10 +103,25 @@ public class FoodMainMenuAdapter extends RecyclerView.Adapter<FoodMainMenuAdapte
 
         holder.tvMainName.setText(detail.getName());
         holder.tvSubName.setText(detail.getSubname());
-        holder.tvBestMenu.setText("대표메뉴");
         holder.tvPrice.setText(numberComma.format(Integer.parseInt(detail.getPrice()))+"원");
         Glide.with(context).load(detail.getF_img()).placeholder(R.drawable.no_img)
                 .error(R.drawable.no_img).into(holder.f_img);
+
+        String icon = detail.getF_icon();
+
+        if(icon != null && !icon.equals("")) {
+            icon = icon.toUpperCase();
+
+            if(icon.equals("BEST")) {
+                holder.tvBestMenu.setText("대표메뉴");
+                holder.tvBestMenu.setVisibility(View.VISIBLE);
+            } else if(icon.equals("HOT")) {
+                holder.tvHotMenu.setText("인기메뉴");
+                holder.tvHotMenu.setVisibility(View.VISIBLE);
+            }
+        }
+
+
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +175,7 @@ public class FoodMainMenuAdapter extends RecyclerView.Adapter<FoodMainMenuAdapte
 
     public static class Holder extends RecyclerView.ViewHolder {
         public LinearLayout liDesc;
-        public TextView tvBestMenu, tvMainName, tvSubName, tvPrice;
+        public TextView tvBestMenu, tvMainName, tvSubName, tvPrice,tvHotMenu;
         public ImageView f_img;
         public View view;
         public Holder(View view) {

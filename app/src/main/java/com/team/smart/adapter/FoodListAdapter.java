@@ -13,13 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.team.smart.R;
 import com.team.smart.activity.DetailActivity;
 import com.team.smart.vo.FoodStoreVO;
-import com.team.smart.vo.Foods;
 
 import java.util.ArrayList;
-
-import com.team.smart.R;
 
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.Holder> {
     private ArrayList<FoodStoreVO.Store> foodList;

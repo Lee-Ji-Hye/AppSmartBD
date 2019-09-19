@@ -2,9 +2,10 @@ package com.team.smart.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FoodCouponVO extends BaseRespon {
+public class FoodCouponVO extends BaseRespon  {
     @SerializedName("couponList")
     private ArrayList<Coupon> couponList;
 
@@ -16,7 +17,7 @@ public class FoodCouponVO extends BaseRespon {
         return couponList;
     }
 
-    public class Coupon {
+    public class Coupon implements Serializable {
         //쿠폰 tbl
         @SerializedName("useYN")
         private String useYN;
@@ -28,8 +29,8 @@ public class FoodCouponVO extends BaseRespon {
         private String comp_org;
         @SerializedName("comp_seq")
         private String comp_seq;
-        @SerializedName("fcoupon_price")
-        private String fcoupon_price;
+        @SerializedName("f_coupon_price")
+        private String f_coupon_price;
         @SerializedName("staff_id")
         private String staff_id;
         @SerializedName("f_coupon_regidate")
@@ -109,12 +110,12 @@ public class FoodCouponVO extends BaseRespon {
             this.comp_seq = comp_seq;
         }
 
-        public String getFcoupon_price() {
-            return fcoupon_price;
+        public String getF_coupon_price() {
+            return f_coupon_price;
         }
 
-        public void setFcoupon_price(String fcoupon_price) {
-            this.fcoupon_price = fcoupon_price;
+        public void setF_coupon_price(String f_coupon_price) {
+            this.f_coupon_price = f_coupon_price;
         }
 
         public String getStaff_id() {

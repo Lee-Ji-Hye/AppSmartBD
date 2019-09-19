@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +21,7 @@ public class KoreanDishes extends Dishes {
 
     RecyclerView rv_foodlist;
     FoodListAdapter foodListAdapter;
-
+    View view;
     private void init() {
         networkResponse = new NetworkResponse() {
             @Override
@@ -31,11 +30,18 @@ public class KoreanDishes extends Dishes {
 
                 foodListAdapter = new FoodListAdapter(getActivity(), data);
                 rv_foodlist.setAdapter(foodListAdapter);
+                view.findViewById(R.id.progressbar).setVisibility(View.GONE);//프로그레스바 숨김
+                if(data == null) {
+                    view.findViewById(R.id.food_empty).setVisibility(View.VISIBLE); //상품없음 띄움
+                    view.findViewById(R.id.rv_foodlist).setVisibility(View.GONE); //상품없음 띄움
+                }
             }
 
             @Override
             public void failed(String message) {
-
+                view.findViewById(R.id.progressbar).setVisibility(View.GONE);//프로그레스바 숨김
+                view.findViewById(R.id.food_empty).setVisibility(View.VISIBLE); //상품없음 띄움
+                view.findViewById(R.id.rv_foodlist).setVisibility(View.GONE); //상품없음 띄움
             }
         };
     }
@@ -43,7 +49,7 @@ public class KoreanDishes extends Dishes {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recyclerview_food_list, container, false);
+        view = inflater.inflate(R.layout.recyclerview_food_list, container, false);
 
         init(); //통신 완료 후 콜백시 호출
         rv_foodlist = view.findViewById(R.id.rv_foodlist);

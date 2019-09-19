@@ -40,6 +40,7 @@ public class WalletStartActivity extends Activity {
             intent.setClass(this,WalletCreateActivity.class);
             startActivity(intent);
         } else {
+
             ListView listView = findViewById(R.id.listview);
             startAdapter = new StartAdapter(this, R.layout.wallet_item, names);
             listView.setAdapter(startAdapter);

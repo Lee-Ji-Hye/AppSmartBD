@@ -171,6 +171,18 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"/>
+            <Button
+                android:id="@+id/foodOrderBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="식당 주문 내역"
+                android:textAlignment="center"
+                android:background="#ffffff"
+                android:textColor="#377dff"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
             <!--마이페이지 안에서 처리하기 -->
             <!--<Button
                 android:layout_width="match_parent"

@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="17dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:padding="7dp"
         android:orientation="horizontal">
 
         <!--파라미터 셋팅 (이렇게 하는거 아니겠지)-->
@@ -40,7 +40,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/pexel" />
+            android:src="@drawable/no_img" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,6 +72,20 @@
                     android:layout_toRightOf="@+id/tv_food_main_name"
                     android:layout_centerVertical="true"
                     android:gravity="center_horizontal"
+                    android:visibility="gone"
+                    android:textColor="#fff" />
+                <TextView
+                    android:id="@+id/tv_food_hot_menu"
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="#ff0012"
+                    android:text="인기메뉴"
+                    android:textSize="10dp"
+                    android:layout_toRightOf="@+id/tv_food_main_name"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_horizontal"
+                    android:visibility="gone"
                     android:textColor="#fff" />
             </RelativeLayout>
 
@@ -99,7 +113,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="17dp"
         android:background="#f5f5f5" />
 
 </LinearLayout>

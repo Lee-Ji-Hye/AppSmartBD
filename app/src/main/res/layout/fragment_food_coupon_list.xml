@@ -3,31 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FoodListActivity"
+    tools:context=".activity.FoodCouponActivity"
     android:orientation="vertical">
 
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/progressbar"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#E7E7E7"
+        android:layout_marginBottom="10.6dp" />
 
     <TextView
-        android:id="@+id/food_empty"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="500dp"
+        android:id="@+id/list_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:indeterminate="true"
         android:visibility="gone"
-        android:text="준비중 입니다."/>
+        android:text="보유 쿠폰이 없습니다."/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_couponlist"
         android:layout_width="match_parent"
-        android:id="@+id/rv_foodlist"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
