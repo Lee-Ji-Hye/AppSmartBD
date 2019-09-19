@@ -88,6 +88,13 @@
         <activity android:name=".activity.AKakaoTestActivity"/>
         <activity android:name=".activity.FoodOrderCompleteActivity" />
         <activity android:name=".activity.FoodOrderDetailActivity" />
+        <activity android:name=".activity.FoodOrderChkActivity" />
+        <activity android:name=".activity.FoodOrderListActivity" />
+        <activity android:name=".activity.FoodCouponActivity" />
+        <activity android:name=".activity.SignEditActivity" />
+        <activity android:name=".activity.SignEditPwdActivity" />
+        <activity android:name=".activity.SignWithdrawActivity" />
+
 
         <!--지혜 서비스 -->
         <activity android:name=".beacon.PopUp"/>
@@ -108,12 +115,21 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <!-- 세로 화면으로 고정 -->
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
+            <!-- 세로 화면으로 고정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <meta-data android:name="unity.tango-enable" android:value="True" />
         <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true" />
         <meta-data android:name="unity.build-id" android:value="2b8e0cad-7fed-4fff-ae1f-243cf14b9dc0"/>
