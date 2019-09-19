@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class WalletStartActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_wallet_start);
 
         initData();
@@ -83,6 +85,7 @@ public class WalletStartActivity extends Activity {
                             }
                         }).
                         setNegativeButton("취소", null);
+
                     builder.create().show();
                 }
             });
@@ -111,4 +114,6 @@ public class WalletStartActivity extends Activity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }
+

@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.team.smart.R;
 import com.team.smart.blockchain.Wallet;
+
 import com.team.smart.util.SPUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +78,6 @@ public class parkingmypageActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), WalletStartActivity.class); //지갑있음 이동
                     startActivity(intent);
                 }
-
 
             }
         });

@@ -54,6 +54,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     //은지 - 이미지 권한
     implementation "gun0912.ted:tedpermission:2.2.0"
+    //은지- 이미지인식 openCV
+    implementation project(path: ':opencv')
+    implementation 'com.rmtheis:tess-two:9.0.0'
 
     //명근 추가 --
     testImplementation 'junit:junit:4.12'

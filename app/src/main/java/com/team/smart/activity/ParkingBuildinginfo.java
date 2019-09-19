@@ -190,7 +190,7 @@ public class ParkingBuildinginfo extends AppCompatActivity {
                         if (h_type.equalsIgnoreCase("h")){
                             S_text="시간권 ["+ticket.get(i).getHourly()+"시간]";
                         }else if (h_type.equalsIgnoreCase("d")){
-                            S_text="일일권2";
+                            S_text="일일권";
                         }else{
                             S_text="시간권 ["+ticket.get(i).getHourly()+"분]";
                         }

@@ -146,6 +146,10 @@ public class KakaoWebViewClient extends WebViewClient {
             myPageintent = new Intent(activity, ParkingOrderComplete.class);
             myPageintent.putExtra("parking_code", response.get("partner_order_id").toString());
 
+        }else if(theme.equals("parkingBasic")) {
+            myPageintent = new Intent(activity, ParkingPayComplete.class);
+            myPageintent.putExtra("parking_code", response.get("partner_order_id").toString());
+
         } else if(theme.equals("rental")) {
             //myPageintent = new Intent(activity, RentalOrderComplete.class);
             //myPageintent.putExtra("rt_code", response.get("partner_order_id").toString());

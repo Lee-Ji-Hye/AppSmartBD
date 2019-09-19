@@ -13,6 +13,7 @@ public class APIClient {
     private static String MAINURL = "http://192.168.219.101:8081/"; //명근 ip
     //private static String MAINURL = "http://172.30.1.5:8081/";
 
+
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {

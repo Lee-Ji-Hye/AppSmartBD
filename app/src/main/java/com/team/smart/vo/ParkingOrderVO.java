@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+//주차권 상품 구매시 보낼때 vo
 public class ParkingOrderVO implements Serializable {
 
     public ParkingOrderVO() {
