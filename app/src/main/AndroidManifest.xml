@@ -35,7 +35,9 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".activity.RoomContractListActivity"></activity>
+        <activity android:name=".activity.RoomContractDetailActivity" />
+        <activity android:name=".activity.WalletHistoryActivity" />
         <!--은지 : 이미지업로드를 위한 추가-->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -68,10 +70,11 @@
         <activity android:name=".activity.RoomDetailActivity" />
         <activity android:name=".activity.RoomListActivity" />
         <activity android:name=".activity.RoomMainActivity" />
+        <activity android:name=".activity.RoomContractCompleteActivity" />
         <activity android:name=".activity.WalletActivity" />
         <activity android:name=".activity.WalletCreateActivity" />
         <activity android:name=".activity.WalletTransferActivity" />
-        <activity android:name=".activity.MyWalletActivity" />
+        <activity android:name=".activity.WalletMyPageActivity" />
         <activity android:name=".activity.WalletStartActivity" />
         <activity android:name=".activity.SearchMapActivity" />
 

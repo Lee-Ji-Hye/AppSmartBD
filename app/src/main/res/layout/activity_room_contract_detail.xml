@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RoomContractActivity">
+    tools:context=".activity.RoomContractDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_span="5"
+                            android:layout_span="6"
                             android:text="[계약내용]"
                             android:textColor="#000000"
                             android:textSize="24sp"
@@ -163,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:textStyle="bold"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -175,7 +175,7 @@
                             android:text="임대인과 임차인은 위 임대차 부동산에 관하여 보증금과 월 임대료에 대해 아래와 같이 합의한다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -195,15 +195,8 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke2"
-                            android:gravity="center_horizontal" />
-
-                        <TextView
-                            android:text="합계"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke2"
                             android:gravity="center_horizontal"
-                            android:layout_span="3" />
+                            android:layout_span="5" />
                     </TableRow>
 
                     <TableRow>
@@ -212,6 +205,7 @@
                             android:text="보증금(최초1회)"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:gravity="center_horizontal"
                             android:background="@drawable/stroke" />
 
                         <TextView
@@ -219,15 +213,9 @@
                             android:text="70,000원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:background="@drawable/stroke" />
-
-                        <TextView
-                            android:id="@+id/tv_r_price3"
-                            android:text="70,000원"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                            android:gravity="right"
                             android:background="@drawable/stroke"
-                            android:layout_span="3" />
+                            android:layout_span="5" />
                     </TableRow>
 
                     <TableRow>
@@ -236,6 +224,7 @@
                             android:text="월 임대료"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:gravity="center_horizontal"
                             android:background="@drawable/stroke" />
 
                         <TextView
@@ -243,15 +232,28 @@
                             android:text="360,00원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:gravity="right"
+                            android:background="@drawable/stroke"
+                            android:layout_span="5" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:text="권리금"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:gravity="center_horizontal"
                             android:background="@drawable/stroke" />
 
                         <TextView
-                            android:id="@+id/tv_r_deposit4"
-                            android:text="396,00원"
+                            android:id="@+id/tv_r_premium"
+                            android:text="70,000원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:gravity="right"
                             android:background="@drawable/stroke"
-                            android:layout_span="3" />
+                            android:layout_span="5" />
                     </TableRow>
 
                     <TableRow>
@@ -261,22 +263,18 @@
                             android:textColor="#FF6E00"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:gravity="center_horizontal"
                             android:background="@drawable/stroke3" />
 
                         <TextView
-                            android:text=""
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke3" />
-
-                        <TextView
-                            android:id="@+id/tv_total_price"
+                            android:id="@+id/tv_rt_total"
+                            android:text="70,000원"
                             android:textColor="#FF6E00"
-                            android:text="366,00원"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:gravity="right"
                             android:background="@drawable/stroke3"
-                            android:layout_span="3" />
+                            android:layout_span="5" />
                     </TableRow>
 
                     <TextView
@@ -288,7 +286,7 @@
                             android:text="제2조 [존속기간]"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5"
+                            android:layout_span="6"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -298,10 +296,10 @@
                     <TableRow>
 
                         <TextView
-                            android:text="임대인은 위 부동산을 임대차 목적대로 사용 수익할 수 있는 상태로 까지 임차인에게 인도하며, 임대차 기간은 인도일로부터 까지로 한다."
-                            android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_height="wrap_content"
+                            android:layout_span="6"
+                            android:text="임대인은 위 부동산을 임대차 목적대로 사용 수익할 수 있는 상태로 까지 임차인에게 인도하며, 임대차 기간은 인도일로부터 까지로 한다." />
                     </TableRow>
 
                     <TextView
@@ -313,7 +311,7 @@
                             android:text="제3조 [용도변경 및 전대 등]"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5"
+                            android:layout_span="6"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -326,7 +324,7 @@
                             android:text="임차인은 임대인의 동의 없이는 위 부동산의 용도나 구조 등을 변경하거나 전대,임차권 양도 또는 담보제공을 하지 못하며 임대차 목적 이외의 용도에 사용할 수 없다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -337,7 +335,7 @@
                             android:text="제4조  [계약의 해지]"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5"
+                            android:layout_span="6"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -350,7 +348,7 @@
                             android:text="① 임차인이 2회 이상 차임의 지급을 연체하거나 제3조를 위반했을 때는 임대인은 본 계약을 해지할 수 있다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -362,7 +360,7 @@
                             android:text="② 중도해지시 사용기간동안 정상가격 금액으로 정산후 반환한다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -374,7 +372,7 @@
                             android:text="③ 임대차 계약 연장을 안하고 무단 전출하거나 또는 본 계약 종료후 사업자 주소지 이전 정정신고를 안했을경우 관할세무서로 부터 직권폐업될 수 있다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -386,7 +384,7 @@
                             android:text="제5조 [계약의 종료]"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5"
+                            android:layout_span="6"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -399,7 +397,7 @@
                             android:text="① 임대차 계약이 종료된 경우 임차인은 위 부동산을 원상으로 회복하여 임대인에게 반환한다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -411,7 +409,7 @@
                             android:text="② 제1항의 경우, 임대인은 보증금을 임차인에게 반환하고 연체임대료 또는 손해배상 금액이 있을 때는 이들을 제하고 그 잔액을 반환한다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -423,7 +421,7 @@
                             android:text="③ 임차인이 차임의 지급을 미루거나 지급이 안되었을 경우 무단으로 임대차 부동산의 주소지를 사용시 부가가치세법 8조 및 시행령 15조에 따라 세무서에 직권폐업 신청이 진행되며 이로인한 불이익에 대한 책임은 임차인에게 있다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -435,7 +433,7 @@
                             android:text="제6조  [계약연장]"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="4"
+                            android:layout_span="6"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -449,7 +447,7 @@
 (자동연장시 1개월 정상요금으로 연장됨)"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
@@ -461,7 +459,7 @@
                             android:text="제7조 [존속기간]"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5"
+                            android:layout_span="6"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -474,11 +472,56 @@
                             android:text="위에 언급되지 않은 사항은 특약으로 갈음한다."
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:layout_span="5" />
+                            android:layout_span="6" />
                     </TableRow>
 
                     <TextView
                         android:layout_height="5dp" />
+
+                    <TableRow>
+
+                        <TextView
+                            android:textColor="#000000"
+                            android:text="[보증금반환 계좌정보]"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:layout_span="6" />
+                    </TableRow>
+
+                    <TextView />
+
+                    <TableRow>
+
+                        <TextView
+                            android:text="지갑 주소"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:paddingTop="11.2dp"
+                            android:background="@drawable/stroke2" />
+
+                        <TextView
+                            android:id="@+id/walletAddress"
+                            android:text="지갑 주소"
+                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="11.2dp"
+                            android:layout_span="5"
+                            android:background="@drawable/stroke"
+                            android:maxLength="24" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <TableLayout
+                    android:background="@drawable/stroke"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="*">
 
                     <TableRow
                         android:layout_width="wrap_content"
@@ -502,16 +545,16 @@
                         <TextView
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
-                            android:background="@drawable/stroke3"
+                            android:background="@drawable/stroke2"
                             android:paddingTop="11.2dp"
-                            android:text="이름"
-                            android:textColor="#FF6E00" />
+                            android:text="이름" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/rt_name"
                             android:hint="이름"
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
+                            android:paddingTop="11.2dp"
                             android:layout_span="4"
                             android:background="@drawable/stroke"
                             android:maxLength="24" />
@@ -522,17 +565,17 @@
                         <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:background="@drawable/stroke3"
+                            android:background="@drawable/stroke2"
                             android:paddingTop="11.2dp"
-                            android:text="주민번호/\n사업자번호"
-                            android:textColor="#FF6E00" />
+                            android:text="주민번호/\n사업자번호" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/rt_businessNum"
                             android:layout_height="match_parent"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
                             android:hint="주민번호/사업자번호"
+                            android:paddingTop="11.2dp"
                             android:maxLength="24"
                             android:layout_span="4" />
                     </TableRow>
@@ -542,17 +585,17 @@
                         <TextView
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
-                            android:background="@drawable/stroke3"
+                            android:background="@drawable/stroke2"
                             android:paddingTop="11.2dp"
-                            android:text="연락처"
-                            android:textColor="#FF6E00" />
+                            android:text="연락처" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/rt_mobile"
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
                             android:hint="연락처"
+                            android:paddingTop="11.2dp"
                             android:maxLength="24"
                             android:layout_span="4" />
                     </TableRow>
@@ -562,110 +605,22 @@
                         <TextView
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
-                            android:background="@drawable/stroke3"
+                            android:background="@drawable/stroke2"
                             android:paddingTop="11.2dp"
-                            android:text="이메일"
-                            android:textColor="#FF6E00" />
+                            android:text="이메일" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/rt_email"
                             android:layout_height="40dp"
                             android:layout_width="wrap_content"
                             android:background="@drawable/stroke"
                             android:hint="이메일"
+                            android:paddingTop="11.2dp"
                             android:maxLength="24"
                             android:layout_span="4" />
                     </TableRow>
 
-                    <TableRow>
-
-                        <TextView
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke3"
-                            android:paddingTop="11.2dp"
-                            android:text="입주가능일"
-                            android:textColor="#FF6E00" />
-
-                        <EditText
-                            android:id="@+id/rt_able_date"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:background="@drawable/stroke"
-                            android:hint="입주가능일"
-                            android:maxLength="24"
-                            android:layout_span="4"
-                            android:textColor="@color/black"
-                            android:enabled="false" />
-                    </TableRow>
-
                     <TextView />
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#000000"
-                            android:text="[보증금반환 계좌정보]"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:textSize="24sp"
-                            android:textStyle="bold"
-                            android:layout_span="5" />
-                    </TableRow>
-
-                    <TextView />
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="지갑 이름"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <TextView
-                            android:id="@+id/walletName"
-                            android:text="지갑 이름"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-
-                    <TableRow>
-
-                        <TextView
-                            android:textColor="#FF6E00"
-                            android:text="지갑 주소"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:background="@drawable/stroke3" />
-
-                        <TextView
-                            android:id="@+id/walletAddress"
-                            android:text="지갑 주소"
-                            android:layout_height="40dp"
-                            android:layout_width="wrap_content"
-                            android:paddingTop="11.2dp"
-                            android:layout_span="4"
-                            android:background="@drawable/stroke"
-                            android:maxLength="24" />
-                    </TableRow>
-                </TableLayout>
-            </TableRow>
-
-            <TableRow>
-
-                <TableLayout
-                    android:background="@drawable/stroke"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="*">
 
                     <TableRow>
 
@@ -749,7 +704,7 @@
 
                         <Button
                             android:id="@+id/finishContract"
-                            android:text="결제하기"
+                            android:text="납부하기"
                             android:textColor="#FFFFFF"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -760,7 +715,7 @@
 
                         <Button
                             android:id="@+id/cancelContract"
-                            android:text="취소"
+                            android:text="확인"
                             android:textColor="#FFFFFF"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

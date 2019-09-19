@@ -1,6 +1,4 @@
-package com.team.smart.blockchain;
-
-import org.web3j.abi.TypeReference;
+package import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Address;
 import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.StaticArray;
@@ -13,6 +11,7 @@ import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tuples.generated.Tuple3;
 import org.web3j.tx.Contract;
 import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.ContractGasProvider;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -20,11 +19,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+.;
+
 /**
  * <p>Auto generated code.
  * <p><strong>Do not modify!</strong>
  * <p>Please use the <a href="https://docs.web3j.io/command_line.html">web3j command line tools</a>,
- * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the
+ * or the org.web3j.codegen.SolidityFunctionWrapperGenerator in the 
  * <a href="https://github.com/web3j/web3j/tree/master/codegen">codegen module</a> to update.
  *
  * <p>Generated with web3j version 3.6.0.
@@ -44,27 +45,27 @@ public class RoomContract extends Contract {
 
     public static final String FUNC_BUYERS = "buyers";
 
-    //@Deprecated
+    @Deprecated
     protected RoomContract(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
         super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
     }
 
-    /*protected RoomContract(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+    protected RoomContract(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
         super(BINARY, contractAddress, web3j, credentials, contractGasProvider);
-    }*/
+    }
 
-    //@Deprecated
+    @Deprecated
     protected RoomContract(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
         super(BINARY, contractAddress, web3j, transactionManager, gasPrice, gasLimit);
     }
 
-    /*protected RoomContract(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
+    protected RoomContract(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
         super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
-    }*/
+    }
 
     public RemoteCall<Tuple3<String, byte[], byte[]>> getBuyerInfo(BigInteger _id) {
-        final Function function = new Function(FUNC_GETBUYERINFO,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_id)),
+        final Function function = new Function(FUNC_GETBUYERINFO, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_id)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}, new TypeReference<Bytes32>() {}, new TypeReference<Bytes32>() {}));
         return new RemoteCall<Tuple3<String, byte[], byte[]>>(
                 new Callable<Tuple3<String, byte[], byte[]>>() {
@@ -72,8 +73,8 @@ public class RoomContract extends Contract {
                     public Tuple3<String, byte[], byte[]> call() throws Exception {
                         List<Type> results = executeCallMultipleValueReturn(function);
                         return new Tuple3<String, byte[], byte[]>(
-                                (String) results.get(0).getValue(),
-                                (byte[]) results.get(1).getValue(),
+                                (String) results.get(0).getValue(), 
+                                (byte[]) results.get(1).getValue(), 
                                 (byte[]) results.get(2).getValue());
                     }
                 });
@@ -81,17 +82,17 @@ public class RoomContract extends Contract {
 
     public RemoteCall<TransactionReceipt> buyRealEstate(BigInteger _id, byte[] _name, byte[] _businessNumber, BigInteger weiValue) {
         final Function function = new Function(
-                FUNC_BUYREALESTATE,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_id),
-                        new org.web3j.abi.datatypes.generated.Bytes32(_name),
-                        new org.web3j.abi.datatypes.generated.Bytes32(_businessNumber)),
+                FUNC_BUYREALESTATE, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(_id), 
+                new org.web3j.abi.datatypes.generated.Bytes32(_name), 
+                new org.web3j.abi.datatypes.generated.Bytes32(_businessNumber)), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function, weiValue);
     }
 
     public RemoteCall<List> getAllBuyers() {
-        final Function function = new Function(FUNC_GETALLBUYERS,
-                Arrays.<Type>asList(),
+        final Function function = new Function(FUNC_GETALLBUYERS, 
+                Arrays.<Type>asList(), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<StaticArray<Address>>() {}));
         return new RemoteCall<List>(
                 new Callable<List>() {
@@ -105,15 +106,15 @@ public class RoomContract extends Contract {
     }
 
     public RemoteCall<String> owner() {
-        final Function function = new Function(FUNC_OWNER,
-                Arrays.<Type>asList(),
+        final Function function = new Function(FUNC_OWNER, 
+                Arrays.<Type>asList(), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}));
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
 
     public RemoteCall<Tuple3<String, byte[], byte[]>> buyerInfo(BigInteger param0) {
-        final Function function = new Function(FUNC_BUYERINFO,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(param0)),
+        final Function function = new Function(FUNC_BUYERINFO, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(param0)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}, new TypeReference<Bytes32>() {}, new TypeReference<Bytes32>() {}));
         return new RemoteCall<Tuple3<String, byte[], byte[]>>(
                 new Callable<Tuple3<String, byte[], byte[]>>() {
@@ -121,53 +122,53 @@ public class RoomContract extends Contract {
                     public Tuple3<String, byte[], byte[]> call() throws Exception {
                         List<Type> results = executeCallMultipleValueReturn(function);
                         return new Tuple3<String, byte[], byte[]>(
-                                (String) results.get(0).getValue(),
-                                (byte[]) results.get(1).getValue(),
+                                (String) results.get(0).getValue(), 
+                                (byte[]) results.get(1).getValue(), 
                                 (byte[]) results.get(2).getValue());
                     }
                 });
     }
 
     public RemoteCall<String> buyers(BigInteger param0) {
-        final Function function = new Function(FUNC_BUYERS,
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(param0)),
+        final Function function = new Function(FUNC_BUYERS, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(param0)), 
                 Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}));
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
 
-    /*public static RemoteCall<RoomContract> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+    public static RemoteCall<RoomContract> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
         return deployRemoteCall(RoomContract.class, web3j, credentials, contractGasProvider, BINARY, "");
     }
 
     public static RemoteCall<RoomContract> deploy(Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
         return deployRemoteCall(RoomContract.class, web3j, transactionManager, contractGasProvider, BINARY, "");
-    }*/
+    }
 
-    //@Deprecated
+    @Deprecated
     public static RemoteCall<RoomContract> deploy(Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
         return deployRemoteCall(RoomContract.class, web3j, credentials, gasPrice, gasLimit, BINARY, "");
     }
 
-    //@Deprecated
+    @Deprecated
     public static RemoteCall<RoomContract> deploy(Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
         return deployRemoteCall(RoomContract.class, web3j, transactionManager, gasPrice, gasLimit, BINARY, "");
     }
 
-    //@Deprecated
+    @Deprecated
     public static RoomContract load(String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit) {
         return new RoomContract(contractAddress, web3j, credentials, gasPrice, gasLimit);
     }
 
-    //@Deprecated
+    @Deprecated
     public static RoomContract load(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
         return new RoomContract(contractAddress, web3j, transactionManager, gasPrice, gasLimit);
     }
 
-    /*public static RoomContract load(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
+    public static RoomContract load(String contractAddress, Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider) {
         return new RoomContract(contractAddress, web3j, credentials, contractGasProvider);
     }
 
     public static RoomContract load(String contractAddress, Web3j web3j, TransactionManager transactionManager, ContractGasProvider contractGasProvider) {
         return new RoomContract(contractAddress, web3j, transactionManager, contractGasProvider);
-    }*/
+    }
 }

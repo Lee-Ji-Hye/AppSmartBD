@@ -70,6 +70,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="계약 정보 관리"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:background="#e3e3e3"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/btnRoomInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:text="임대 계약서 관리"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="지갑 정보 관리"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"

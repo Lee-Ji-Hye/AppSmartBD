@@ -19,8 +19,8 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <com.team.smart.customfonts.EditText_Roboto_Regular
-                android:id="@+id/etxt_pwd_3"
+            <EditText
+                android:id="@+id/etxt_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="받는 사람 주소"
@@ -52,8 +52,8 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <com.team.smart.customfonts.EditText_Roboto_Regular
-                android:id="@+id/etxt_pwd_4"
+            <EditText
+                android:id="@+id/etxt_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="금액을 입력하시오(ETH)"
@@ -86,8 +86,8 @@
             android:visibility="invisible"
             android:indeterminateDrawable="@drawable/progressbar"/>
 
-        <com.team.smart.customfonts.MyTextView_Roboto_Medium
-            android:id="@+id/createWalletBtn"
+        <TextView
+            android:id="@+id/btn_transfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

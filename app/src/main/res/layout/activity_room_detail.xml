@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp">
 
-                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                            <com.team.smart.customfonts.MyTextView_Roboto_Regular
                                 android:id="@+id/r_type"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -124,21 +124,12 @@
                                 android:textColor="#000"
                                 android:textSize="14dp" />
 
-                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                            <com.team.smart.customfonts.MyTextView_Roboto_Regular
                                 android:id="@+id/r_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:text="1000"
-                                android:textColor="#000"
-                                android:textSize="14dp" />
-
-                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                android:id="@+id/r_deposit"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="0"
                                 android:textColor="#000"
                                 android:textSize="14dp" />
                         </LinearLayout>
@@ -151,12 +142,12 @@
                             <TableRow>
 
                                 <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                    android:id="@+id/r_name"
+                                    android:id="@+id/r_kind"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="8dp"
-                                    android:text="403"
+                                    android:text="상가"
                                     android:textColor="#A2A2A2"
                                     android:textSize="12dp" />
 
@@ -199,11 +190,11 @@
                             <TableRow>
 
                                 <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                    android:id="@+id/r_code"
+                                    android:id="@+id/r_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:text="ST001"
+                                    android:text="403"
                                     android:textColor="#A2A2A2"
                                     android:textSize="12dp" />
 
@@ -249,7 +240,7 @@
                         <com.team.smart.customfonts.MyTextView_Roboto_Regular
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Location"
+                            android:text="위치정보"
                             android:background="#ffffff"
                             android:paddingTop="10dp"
                             android:textSize="14dp"
