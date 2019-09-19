@@ -43,7 +43,7 @@ public class WalletCreateActivity extends AppCompatActivity {
                     Toast.makeText(WalletCreateActivity.this, "지갑 생성하기 성공.", Toast.LENGTH_SHORT).show();
                     pgb.setVisibility(ProgressBar.GONE);
 
-                    Intent intent = new Intent(WalletCreateActivity.this, Start.class);
+                    Intent intent = new Intent(WalletCreateActivity.this, WalletStartActivity.class);
                     startActivity(intent);
 
                     break;

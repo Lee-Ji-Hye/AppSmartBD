@@ -22,7 +22,7 @@ import com.team.smart.blockchain.Wallet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Start extends Activity {
+public class WalletStartActivity extends Activity {
 
     private List<String> names = new ArrayList<>();
     private List<String> passwords = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Start extends Activity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent();
-                    intent.setClass(Start.this,WalletCreateActivity.class);
+                    intent.setClass(WalletStartActivity.this,WalletCreateActivity.class);
                     startActivity(intent);
                 }
             });
@@ -62,8 +62,8 @@ public class Start extends Activity {
                     final String pass = passwords.get(i);
                     final String fi = filepaths.get(i);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Start.this);
-                    final EditText et = new EditText(Start.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(WalletStartActivity.this);
+                    final EditText et = new EditText(WalletStartActivity.this);
                     builder.setMessage("비밀번호를 입력하세요").
                             setView(et).
                             setPositiveButton("확인", new DialogInterface.OnClickListener() {
