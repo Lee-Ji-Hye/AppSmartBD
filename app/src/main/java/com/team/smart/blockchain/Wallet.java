@@ -28,32 +28,20 @@ public class Wallet {
 
     private static Credentials credentials;
 
-    public Credentials getCredentials() {
-        return credentials;
-    }
+    public Credentials getCredentials() { return credentials; }
 
     private static List<WalletVO> lists =new ArrayList<>();
 
     private String currentName = "";
-    public String getCurrentName() {
-        return currentName;
-    }
+    public String getCurrentName() { return currentName; }
     private List<String> names = new ArrayList<>();
     private List<String> passwords = new ArrayList<>();
     private List<String> filepaths = new ArrayList<>();
     private List<String> addresses = new ArrayList<>();
-    public List getNames(){
-        return names;
-    }
-    public List getPasswords(){
-        return passwords;
-    }
-    public List getFilepaths(){
-        return filepaths;
-    }
-    public List getAddresses(){
-        return addresses;
-    }
+    public List getNames(){ return names; }
+    public List getPasswords(){ return passwords; }
+    public List getFilepaths(){ return filepaths; }
+    public List getAddresses(){ return addresses; }
 
     public List getLists(String filepath) throws Exception {
         File file1 = new File("walletBean.adt");
@@ -81,12 +69,22 @@ public class Wallet {
     }
 
     /**
-     * @param name      current name of wallet
+     * @param name      current name of activity_wallet_start
      * @param password  password user once set
      * @param filename  including filepath+filename!!!!
      */
     public void useWallet(String name, String password, String filename){
-
+        try {
+            if (!filename.equals("")) {
+                currentName = name;
+                credentials = WalletUtils.loadCredentials(password, filename);
+                Web3jAPI.initCredentials();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CipherException e) {
+            e.printStackTrace();
+        }
     }
 
     public void importWallet(String name, String password, String privateKey, String filepath){
@@ -116,17 +114,13 @@ public class Wallet {
                 lists=DeserializeWallet(filepath);
             }
 
-            //namelists.add(name);
             walletBean.setName(name);
             walletBean.setPassword(password);
             walletBean.setAddress(address);
             walletBean.setPath(file);
             lists.add(walletBean);
             SerializeWallet(filepath);
-            //dataSave.setDataList("namelists",namelists);
-            //dataSave.setDataList("lists",lists);
 
-            //System.out.println("namelists: "+namelists);
             System.out.println("lists: "+lists);
         } catch (CipherException e) {
             e.printStackTrace();
@@ -138,7 +132,6 @@ public class Wallet {
 
         System.out.println("original private key: "+pk);
         System.out.println("private key: "+pri+"\npublic key: "+pub+"\naddress: "+address);
-
     }
 
 
@@ -153,7 +146,6 @@ public class Wallet {
             ECKeyPair ecKeyPair = credentials.getEcKeyPair();
             String pri = Numeric.toHexStringWithPrefix(ecKeyPair.getPrivateKey());
             String pub = Numeric.toHexStringWithPrefix(ecKeyPair.getPublicKey());
-            //File file1 = new File("walletBean.adt");
             File f = new File(filepath+"/walletBean.adt");
             if (f.exists()){
                 lists=DeserializeWallet(filepath);
@@ -165,9 +157,6 @@ public class Wallet {
             walletBean.setPath(file);
             lists.add(walletBean);
             SerializeWallet(filepath);
-            //dataSave.setDataList("namelists",namelists);
-            //dataSave.setDataList("lists",lists);
-
 
             System.out.println("lists: "+lists);
 
@@ -184,11 +173,9 @@ public class Wallet {
         }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private static void SerializeWallet(String filepath) throws IOException {
-        //File file = new File("walletBean.adt");
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(filepath+"/walletBean.adt")));
         WalletVO[] walletBean = new WalletVO[lists.size()];
         lists.toArray(walletBean);
@@ -198,23 +185,19 @@ public class Wallet {
     }
 
     private static List<WalletVO> DeserializeWallet(String filepath) throws Exception, IOException {
-        //File file = new File("walletBean.adt");
         ObjectInputStream out = new ObjectInputStream(new FileInputStream(new File(filepath+"/walletBean.adt")));
-        //执行反序列化读取
         WalletVO[] walletBean = (WalletVO[]) out.readObject();
-        //将数组转换成List
+        //배열을 목록으로 변환
         List<WalletVO> listObject = new ArrayList<WalletVO>(Arrays.asList(walletBean));
         System.out.println("성공");
         return listObject;
     }
-
 
     private Wallet() {}
 
     public static Wallet getInstance() {
 
         return INSTANCE;
-
     }
 
     public static void main(String[] args) {

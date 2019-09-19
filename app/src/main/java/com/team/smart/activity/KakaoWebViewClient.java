@@ -8,6 +8,7 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.gson.Gson;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
 
@@ -133,8 +134,13 @@ public class KakaoWebViewClient extends WebViewClient {
 
         //theme는 멤버변수에 있음
         if(theme.equals("food")) {
+            Gson gson3 = new Gson();
+            String json3 = gson3.toJson(response);
+            Log.d("여기에도 오는asdsad지~~~>", json3);
+            Log.d("여기에도 오는asdsad지~~~>", response.get("partner_user_id").toString());
             myPageintent = new Intent(activity, FoodOrderCompleteActivity.class);
             myPageintent.putExtra("f_ocode", response.get("partner_order_id").toString());
+            myPageintent.putExtra("f_name", response.get("partner_user_id").toString());
 
         } else if(theme.equals("parking")) {
             myPageintent = new Intent(activity, ParkingOrderComplete.class);

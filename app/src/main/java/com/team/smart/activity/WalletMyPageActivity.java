@@ -17,14 +17,14 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.team.smart.R;
 import com.team.smart.blockchain.Web3jAPI;
 
-public class MyWalletActivity extends AppCompatActivity {
+public class WalletMyPageActivity extends AppCompatActivity {
 
-    private static final String TAG = "MyWalletActivity";
+    private static final String TAG = "WalletMyPageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_wallet);
+        setContentView(R.layout.activity_wallet_my_page);
         ViewUtils.inject(this);
     }
 
@@ -61,15 +61,15 @@ public class MyWalletActivity extends AppCompatActivity {
     @OnClick(R.id.txt_my_address)
     public void toMyAddress(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        final Web3jAPI Web3jAPI = com.team.smart.blockchain.Web3jAPI.getInstance().getInstance();
-        builder.setTitle("주소").setMessage(Web3jAPI.getAddress()).setNeutralButton("복사", new DialogInterface.OnClickListener() {
+        final Web3jAPI web3jAPI = Web3jAPI.getInstance();
+        builder.setTitle("주소").setMessage(web3jAPI.getAddress()).setNeutralButton("복사", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(getApplicationContext(), "복사 성공", Toast.LENGTH_LONG).show();
                 ClipboardManager clipboardManager =
                         (ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
                 assert clipboardManager != null;
-                clipboardManager.setPrimaryClip(ClipData.newPlainText(null, Web3jAPI.getAddress()));
+                clipboardManager.setPrimaryClip(ClipData.newPlainText(null, web3jAPI.getAddress()));
                 if (clipboardManager.hasPrimaryClip()){
                     clipboardManager.getPrimaryClip().getItemAt(0).getText();
                 }
@@ -82,5 +82,20 @@ public class MyWalletActivity extends AppCompatActivity {
     public void myTransfer(View view){
         Intent intent = new Intent(this, WalletTransferActivity.class);
         startActivity(intent);
+    }
+
+    //거래내역
+    //查看历史
+    @OnClick(R.id.txt_my_history)
+    public void myHistory(View view){
+        Intent intent = new Intent(this,WalletHistoryActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //showUser();
     }
 }

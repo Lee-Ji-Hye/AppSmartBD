@@ -1,6 +1,7 @@
 package com.team.smart.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.InputType;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +20,8 @@ import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
-import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.RequestUserVO;
-import com.team.smart.vo.UserVO;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -31,6 +31,8 @@ import retrofit2.Response;
 public class SignUpActivity extends AppCompatActivity {
     private APIInterface apiInterface;
 
+    ProgressBar progressbar;
+    LinearLayout liMain, liEdit;
     TextView btnSignIn;
     EditText tvUserId, tvUserPw, tvUserPwRe, tvName, tvHp, tvEmail;
 
@@ -53,6 +55,10 @@ public class SignUpActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tv_email);
         tvHp = findViewById(R.id.tv_hp);
 
+        progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        liMain = (LinearLayout)findViewById(R.id.li_main);
+        liEdit = (LinearLayout)findViewById(R.id.li_edit);
+
         //기본세팅
         tvHp.addTextChangedListener(new PhoneNumberFormattingTextWatcher()); //숫자 키패드
         tvEmail.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS); //키패드에 @ 보이게
@@ -63,9 +69,10 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                progressbarShow();//프로그레스바 보임
                 boolean error = validationChk(); //회원가입 폼 검증
                 if(error) {
+                    progressbarHide();//프로그레스바 숨김
                     return;
                 }
 
@@ -145,6 +152,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                 Log.d("TAG",response.code()+"");
+                progressbarHide();//프로그레스바 숨김
+
                 if(response.code()==200) {
                     Map<String, String> data = response.body();
                     Gson gson3 = new Gson();
@@ -172,7 +181,6 @@ public class SignUpActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     }
-
                 }
             }
 
@@ -180,7 +188,22 @@ public class SignUpActivity extends AppCompatActivity {
             public void onFailure(Call<Map<String, String>> call, Throwable t) {
                 Log.d("회원가입 통신 fail...", "실패..");
                 call.cancel();
+                progressbarHide();//프로그레스바 숨김
             }
         });
+    }
+
+    private void progressbarShow() {
+        int gray = Color.parseColor("#BDBDBD");
+        liMain.setBackgroundColor(gray);
+        liEdit.setVisibility(View.GONE);//입력폼 숨김
+        progressbar.setVisibility(View.VISIBLE);//프로그레스바 보임
+    }
+
+    private void progressbarHide() {
+        int white = Color.parseColor("#FFFFFF");
+        liMain.setBackgroundColor(white);
+        liEdit.setVisibility(View.VISIBLE);//입력폼 보임
+        progressbar.setVisibility(View.GONE);//프로그레스바 숨김
     }
 }

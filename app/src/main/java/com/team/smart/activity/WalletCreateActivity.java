@@ -102,13 +102,15 @@ public class WalletCreateActivity extends AppCompatActivity {
                         List<WalletVO>lists=wallet.getLists(filepath);
                         for (WalletVO walletBean:lists){
                             String temp=walletBean.getName();
-                            String tname=walletBean.getName();
-                            String tpassword=walletBean.getName();
+                            String tname=walletBean.getAddress();
+                            String tpassword=walletBean.getPath();
                             if(temp.equals(name)){
                                 msg.what = 2;
                                 mHandler.sendMessage(msg);
                                 return;
                             }
+
+                            System.out.println("확인용"       +   temp + "                " +tname + "                       " + tpassword);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

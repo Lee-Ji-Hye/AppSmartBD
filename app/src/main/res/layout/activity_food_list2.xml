@@ -25,6 +25,7 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+
         <!--음식 리스트-->
         <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
@@ -33,6 +34,7 @@
             android:id="@+id/viewpager">
 
         </androidx.viewpager.widget.ViewPager>
+
     </LinearLayout>
 
 </RelativeLayout>

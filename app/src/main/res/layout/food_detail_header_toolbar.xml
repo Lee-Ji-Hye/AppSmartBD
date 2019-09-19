@@ -15,7 +15,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_arrow_back_black_24dp"
-                android:tint="@android:color/white"/>
+                android:tint="@android:color/black"/>
 
             <TextView
                 android:id="@+id/tx_comp_name"

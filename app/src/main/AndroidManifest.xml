@@ -36,6 +36,9 @@
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.ParkingPayComplete" />
+        <activity android:name=".activity.RoomContractListActivity"></activity>
+        <activity android:name=".activity.RoomContractDetailActivity" />
+        <activity android:name=".activity.WalletHistoryActivity" />
         <!--은지 : 이미지업로드를 위한 추가-->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -68,10 +71,11 @@
         <activity android:name=".activity.RoomDetailActivity" />
         <activity android:name=".activity.RoomListActivity" />
         <activity android:name=".activity.RoomMainActivity" />
+        <activity android:name=".activity.RoomContractCompleteActivity" />
         <activity android:name=".activity.WalletActivity" />
         <activity android:name=".activity.WalletCreateActivity" />
         <activity android:name=".activity.WalletTransferActivity" />
-        <activity android:name=".activity.MyWalletActivity" />
+        <activity android:name=".activity.WalletMyPageActivity" />
         <activity android:name=".activity.WalletStartActivity" />
         <activity android:name=".activity.SearchMapActivity" />
 
@@ -85,6 +89,13 @@
         <activity android:name=".activity.AKakaoTestActivity"/>
         <activity android:name=".activity.FoodOrderCompleteActivity" />
         <activity android:name=".activity.FoodOrderDetailActivity" />
+        <activity android:name=".activity.FoodOrderChkActivity" />
+        <activity android:name=".activity.FoodOrderListActivity" />
+        <activity android:name=".activity.FoodCouponActivity" />
+        <activity android:name=".activity.SignEditActivity" />
+        <activity android:name=".activity.SignEditPwdActivity" />
+        <activity android:name=".activity.SignWithdrawActivity" />
+
 
 
         <!--지혜 서비스 -->
@@ -105,6 +116,17 @@
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
+            <!-- 세로 화면으로 고정 -->
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <!-- 세로 화면으로 고정 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
