@@ -5,7 +5,11 @@ import com.team.smart.vo.FoodDetailVO;
 import com.team.smart.vo.FoodOrderVO;
 import com.team.smart.vo.FoodStoreVO;
 import com.team.smart.vo.ParkingBDVO;
+import com.team.smart.vo.ParkingBasicOrderVO;
+import com.team.smart.vo.ParkingBasicVO;
+import com.team.smart.vo.ParkingCarHistoryVO;
 import com.team.smart.vo.ParkingOrderVO;
+import com.team.smart.vo.ParkingPayOrderDetailVO;
 import com.team.smart.vo.ParkingTicketVO;
 import com.team.smart.vo.RequestUserVO;
 import com.team.smart.vo.RoomBVO;
@@ -56,7 +60,24 @@ public interface APIInterface
     //차량정보 삭제
     @POST("/api/parking/delUserCarInfo")
     Call<HashMap> delUserCarInfo(@Query("userid") String userid);
-
+    //입출차 정보 가져오기
+    @POST("/api/parking/getCarHistory")
+    Call<ParkingCarHistoryVO> getCarHistory(@Query("carnum") String carnum);
+    //입출차 정보 가져오기
+    @POST("/api/parking/getCarHistory2")
+    Call<ParkingCarHistoryVO> getCarHistory2(@Query("inoutcode") String inoutcode);
+    //주차요금 가져오기
+    @POST("/api/parking/getParkingPrice")
+    Call<ParkingBasicVO> getParkingPrice(@Query("b_code") String b_code);
+    //결제 정보 가져 오기
+    @POST("/api/parking/getPayTime")
+    Call<ParkingPayOrderDetailVO> getPayTime(@Query("inoutcode") String inoutcode);
+    //주차요금 결제 하기
+    @POST("/api/parking/kakao/ParkingPayBasic")
+    Call<HashMap> ParkingPayBasic(@Body ParkingBasicOrderVO orderVO);
+    //아이디와 건물코드로 주차권 정보 가져오기
+    @POST("/api/parking/kakao/getBDUserTicketList")
+    Call<HashMap> getBDUserTicketList(@Body ParkingBasicOrderVO orderVO);
     //주차관리 은지 종료
 
     //지혜 시작

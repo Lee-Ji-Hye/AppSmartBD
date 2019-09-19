@@ -46,6 +46,7 @@ import com.google.gson.Gson;
 import com.team.smart.R;
 import com.team.smart.network.APIClient;
 import com.team.smart.network.APIInterface;
+import com.team.smart.util.SPUtil;
 import com.team.smart.vo.ParkingBDVO;
 import com.team.smart.vo.ParkingMarkerItem;
 
@@ -141,7 +142,7 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
 
 
 
-
+    String userid;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +177,8 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
                 startActivity(intent);
             }
         });
+        userid="";
+        userid = SPUtil.getUserId(this); //아이디
 
         //차번호로 결제 버튼 클릭시 로그인 전이면 로그인/비회원 묻는 페이지 나오기
         carNumPayBtn = findViewById(R.id.carNumPayBtn);
@@ -184,14 +187,21 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
             public void onClick(View view) {
                 //Intent intent = new Intent(getApplicationContext(), BeaconActivity.class); //parkingsearchActivity 이동
                 // startActivity(intent);
-                chooseLayout = findViewById(R.id.chooseLayout);
+                Log.d("로그인한 아이디~~~~~",""+userid);
+                if (userid.equals("")){
+                    chooseLayout = findViewById(R.id.chooseLayout);
+                    if(chooseLayout.getVisibility() == view.GONE) {
+                        chooseLayout.setVisibility(view.VISIBLE);
+                        carNumPayBtn.setText("닫기");
+                    } else {
+                        chooseLayout.setVisibility(view.GONE);
+                        carNumPayBtn.setText("차번호로 바로 결제하기");
+                    }
+                }else{
+                    Intent intent2 = new Intent(getApplicationContext(), ParkingCarSearchActivity.class); //parkingsearchActivity 이동
+                    intent2.putExtra("userid",userid); //아이디 전달
+                    startActivity(intent2);
 
-                if(chooseLayout.getVisibility() == view.GONE) {
-                    chooseLayout.setVisibility(view.VISIBLE);
-                    carNumPayBtn.setText("닫기");
-                } else {
-                    chooseLayout.setVisibility(view.GONE);
-                    carNumPayBtn.setText("차번호로 바로 결제하기");
                 }
 
             }
@@ -213,8 +223,9 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
         anyonePayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ParkingCarSearchActivity.class); //parkingsearchActivity 이동
-                startActivity(intent);
+                Intent intent1 = new Intent(getApplicationContext(), ParkingCarSearchActivity.class); //parkingsearchActivity 이동
+                intent1.putExtra("userid",""); //아이디 전달
+                startActivity(intent1);
             }
         });
 
@@ -228,7 +239,7 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.480372,126.877127), 14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.480372,126.877127), 16));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 
@@ -265,8 +276,9 @@ public class ParkingMainPageActivity extends HeaderActivity implements OnMapRead
             tv_marker.setBackgroundResource(R.drawable.ic_marker_phone_blue);
             tv_marker.setTextColor(Color.WHITE);
         } else {
-            tv_marker.setBackgroundResource(R.drawable.ic_marker_phone);
-            tv_marker.setTextColor(Color.BLACK);
+            tv_marker.setBackgroundResource(R.drawable.ic_marker_phone_blue);
+            tv_marker.setTextColor(Color.WHITE);
+            tv_marker.setTextSize(12);
         }
 
         MarkerOptions markerOptions = new MarkerOptions();

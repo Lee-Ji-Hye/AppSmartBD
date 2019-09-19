@@ -93,7 +93,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_weight="1"
-                                android:text="[주차장]"
+                                android:text="[주차장 / 차번호]"
                                 android:textColor="#000"
                                 android:textSize="14dp" />
 
@@ -106,21 +106,15 @@
                             android:orientation="horizontal"
                             android:layout_marginBottom="10dp">
 
-                            <com.team.smart.customfonts.MyTextView_Roboto_Medium
+                            <TextView
+                                android:id="@+id/b_nameTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginTop="10dp"
-                                android:text="월드벤처 2차"
+                                android:text="차량을 선택하세요"
                                 android:textColor="#000"
                                 android:textSize="14dp" />
-                            <com.team.smart.customfonts.MyTextView_Roboto_Regular
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="가산디지털단지역 5분거리"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginLeft="7dp"
-                                android:textColor="#A2A2A2"/>
                         </LinearLayout>
 
 
@@ -175,60 +169,10 @@
                                 android:textColor="@color/mainText"/>
                         </RelativeLayout>
 
-                        <RelativeLayout
+                        <ListView
+                            android:id="@+id/listview"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <RadioGroup
-                                android:id="@+id/selectRG"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentLeft="true"
-                                android:paddingTop="10dp"
-                                android:textSize="14dp"
-                                android:paddingBottom="10dp"
-                                android:paddingLeft="15dp"
-                                android:layout_marginLeft="20dp">
-
-                                <RadioButton
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    />
-                            </RadioGroup>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:textSize="14dp"
-                                android:paddingBottom="10dp"
-                                android:layout_marginLeft="50dp"
-                                android:layout_toRightOf="@+id/selectRG"
-                                android:text="00가 0000"
-                                android:textColor="@color/mainText"/>
-
-                            <LinearLayout
-                                android:layout_width="110dp"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:layout_alignParentRight="true"
-                                android:orientation="horizontal">
-
-                                <com.team.smart.customfonts.MyTextView_Roboto_Medium
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2017-06-21 10:36"
-                                    android:paddingTop="10dp"
-                                    android:textSize="14dp"
-                                    android:paddingBottom="10dp"
-                                    android:paddingRight="15dp"
-                                    android:layout_alignParentRight="true"
-                                    android:textColor="@color/mainText" />
-
-                            </LinearLayout>
-
-
-                        </RelativeLayout>
+                            android:layout_height="250dp" />
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"

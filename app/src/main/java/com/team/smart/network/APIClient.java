@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     //main url 바꿔야됨
-    private static String MAINURL = "http://192.168.219.131:8081/"; //은지 ip
+    private static String MAINURL = "http://192.168.219.148:8081/"; //은지 ip
 
     //private static String MAINURL = "http://192.168.219.120:8081/"; //지혜 ip
     //private static String MAINURL = "http://192.168.219.106:8081/"; //명근 ip

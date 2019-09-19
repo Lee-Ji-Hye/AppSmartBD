@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ParkingTicketPayment extends AppCompatActivity {
-    String p_code; //주차권상품 코드
+    String p_code,userid; //주차권상품 코드
     public ParkingTicketVO.ParkingTicket Ticket;
     public ParkingOrderVO orderVO;
     private APIInterface apiTicketInterface,apiUserInterface;
@@ -104,7 +104,7 @@ public class ParkingTicketPayment extends AppCompatActivity {
                             }else{//수량이 0이상이면
                                 //결제 VO에 값 담기
                                 int TotalPrice = Integer.parseInt(Ticket.getPrice())*Integer.parseInt(o_count);
-                                orderVO = new ParkingOrderVO(Ticket.getP_code().toString(),"user102",Integer.toString(TotalPrice),o_count);
+                                orderVO = new ParkingOrderVO(Ticket.getP_code().toString(),userid,Integer.toString(TotalPrice),o_count);
 
                                 Gson gson3 = new Gson();
                                 String json3 = gson3.toJson(orderVO);
@@ -185,7 +185,7 @@ public class ParkingTicketPayment extends AppCompatActivity {
                 finish();
             }
         });
-        String userid = SPUtil.getUserId(this); //아이디
+         userid = SPUtil.getUserId(this); //아이디
         //주차권 통신 메소드  호출
         callParkingUserInfo(userid);
         callParkingTicketApi(p_code);

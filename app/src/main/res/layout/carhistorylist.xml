@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/selectRG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingTop="10dp"
+            android:textSize="14dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:layout_marginLeft="20dp">
+
+            <Button
+                android:id="@+id/selectBtn"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="선택"
+                />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/carnumTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:textSize="14dp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/selectRG"
+            android:text="00가 0000"
+            android:textColor="@color/mainText"/>
+
+        <com.team.smart.customfonts.MyTextView_Roboto_Medium
+            android:id="@+id/timeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017-06-21 10:36"
+            android:layout_marginTop="22dp"
+            android:textSize="14dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/mainText" />
+
+
+    </RelativeLayout>
+</LinearLayout>

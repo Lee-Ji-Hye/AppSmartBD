@@ -64,7 +64,8 @@ public class ParkingTicketAdapter extends RecyclerView.Adapter<ParkingTicketAdap
             h_text="시간권 [";
             hour=hour+"시간]";
         }else if (h_type.equalsIgnoreCase("d")){
-            h_text="일일권 ";
+            h_text="일일권";
+            hour ="";
         }else{
             h_text="시간권 [";
             hour=hour+"분]";
