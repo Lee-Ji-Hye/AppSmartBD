@@ -72,7 +72,7 @@
         <activity android:name=".activity.WalletCreateActivity" />
         <activity android:name=".activity.WalletTransferActivity" />
         <activity android:name=".activity.MyWalletActivity" />
-        <activity android:name=".activity.Start" />
+        <activity android:name=".activity.WalletStartActivity" />
         <activity android:name=".activity.SearchMapActivity" />
 
         <!-- 지혜 액티비티 -->

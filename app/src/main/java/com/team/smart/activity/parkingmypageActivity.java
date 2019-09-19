@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +28,58 @@ public class parkingmypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+
+        //차량 정보 버튼 클릭
+        TextView carInfoBtn = findViewById(R.id.carInfoBtn);
+        carInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ParkingUserCarInfo.class); //ParkingMainActivity 이동
+                startActivity(intent);
+            }
+        });
+
+
+        //지갑 정보 버튼 클릭
+        TextView btnWalletInfo = findViewById(R.id.btnWalletInfo);
+        btnWalletInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                List<String> names = new ArrayList<>();
+                Wallet wallet = Wallet.getInstance();
+                String filepath = getFilesDir()+"/keystore";
+                try {
+                    wallet.getLists(filepath);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                names = wallet.getNames();
+
+                if (names.size() == 0){
+                    Intent intent = new Intent(getApplicationContext(), WalletCreateActivity.class); //지갑 없음 이동
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), WalletStartActivity.class); //지갑있음 이동
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+        TextView btnSignOut = findViewById(R.id.btnSignOut);
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SPUtil.removeAllPreferences(parkingmypageActivity.this);//로그인정보 제거
+
+                Intent intent =new Intent(parkingmypageActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
@@ -58,57 +109,6 @@ public class parkingmypageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignWithdrawActivity.class); // 회원 탈퇴
-                startActivity(intent);
-            }
-        });
-
-        //차량 정보 버튼 클릭
-        TextView carInfoBtn = findViewById(R.id.carInfoBtn);
-        carInfoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ParkingUserCarInfo.class); //ParkingMainActivity 이동
-                startActivity(intent);
-            }
-        });
-
-
-        // 지갑 정보 버튼 클릭
-        TextView btnWalletInfo = findViewById(R.id.btnWalletInfo);
-        btnWalletInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                List<String> names = new ArrayList<>();
-                Wallet wallet = Wallet.getInstance();
-                String filepath = getFilesDir()+"/keystore";
-                try {
-                    wallet.getLists(filepath);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                names = wallet.getNames();
-
-                if (names.size() == 0){
-                    Intent intent = new Intent(getApplicationContext(), WalletCreateActivity.class); //지갑 없음 이동
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), Start.class); //지갑있음 이동
-                    startActivity(intent);
-                }
-
-            }
-        });
-
-        TextView btnSignOut = findViewById(R.id.btnSignOut);
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SPUtil.removeAllPreferences(parkingmypageActivity.this);//로그인정보 제거
-
-                Intent intent =new Intent(parkingmypageActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
