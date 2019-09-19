@@ -59,28 +59,7 @@ public class ContractRecyclerAdapter extends RecyclerView.Adapter<ContractRecycl
             public void onClick(View view) {
                 Toast.makeText(context, "계약 정보 버튼 눌림", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, RoomContractDetailActivity.class); //RoomContractDetailActivity 이동할 준비
-                intent.putExtra("b_area1", lists.getB_area1());
-                intent.putExtra("b_area2", lists.getB_area2());
-                intent.putExtra("b_address", lists.getB_address());
-                intent.putExtra("b_year", lists.getB_year());
-                intent.putExtra("b_landarea", lists.getB_landarea());
-                intent.putExtra("b_buildarea", lists.getB_buildarea());
-                intent.putExtra("b_buildscale", lists.getB_buildscale());
-
-                intent.putExtra("r_code", lists.getR_code());
-                intent.putExtra("rt_hash", lists.getRt_hash());
-                intent.putExtra("r_blockCode", lists.getR_blockcode());
-                intent.putExtra("r_type", lists.getR_type());
-                intent.putExtra("r_price", lists.getR_price());
-                intent.putExtra("r_deposit", lists.getR_deposit());
-                intent.putExtra("r_premium", lists.getR_premium());
-
-                intent.putExtra("rt_email", lists.getRt_email());
-                intent.putExtra("rt_mobile", lists.getRt_mobile());
-
-                intent.putExtra("name", lists.getName());
-                intent.putExtra("email", lists.getEmail());
-                intent.putExtra("hp", lists.getHp());
+                intent.putExtra("contractVO", lists);
 
                 context.startActivity(intent);
             }

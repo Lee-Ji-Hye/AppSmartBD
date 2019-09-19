@@ -253,7 +253,7 @@ public class RoomDetailActivity extends AppCompatActivity implements OnMapReadyC
         btnAR.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(r_kind.equals("ST")) {
+                if(r_kind.equals("RT")) {
                     Toast.makeText(getApplicationContext(), "매물 AR 버튼 눌림", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), AR_ST01Activity.class); //RoomUnityActivity 이동할 준비
                     startActivity(intent);

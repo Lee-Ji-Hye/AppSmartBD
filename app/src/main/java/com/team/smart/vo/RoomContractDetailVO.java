@@ -2,9 +2,10 @@ package com.team.smart.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RoomContractDetailVO extends BaseRespon {
+public class RoomContractDetailVO extends BaseRespon implements Serializable {
 
     @SerializedName("contracts")
     private ArrayList<Contract> contracts; //계약 정보
@@ -17,7 +18,7 @@ public class RoomContractDetailVO extends BaseRespon {
         return contracts;
     }
 
-    public class Contract {
+    public class Contract implements Serializable {
 
         @SerializedName("b_area1")
         private String b_area1;        //서울시
@@ -52,7 +53,7 @@ public class RoomContractDetailVO extends BaseRespon {
         @SerializedName("r_kind")
         private String r_kind;         //매물 종류
         @SerializedName("regidate")
-        private long regidate;    //등록일
+        private long regidate;         //등록일
 
         @SerializedName("rt_state")
         private String rt_state;       //계약 상태

@@ -54,8 +54,6 @@ public class WalletTransferActivity extends AppCompatActivity {
         }
     };
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,13 +69,9 @@ public class WalletTransferActivity extends AppCompatActivity {
                 user_amount = Double.parseDouble(balance.toString());
             }
         }).start();
-
     }
 
-
     /*private void initToolBar(){
-
-
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +79,6 @@ public class WalletTransferActivity extends AppCompatActivity {
                 TransferActivity.this.finish();
             }
         });
-
     }*/
 
     @Override
@@ -94,7 +87,6 @@ public class WalletTransferActivity extends AppCompatActivity {
 
         finish();
     }
-
 
     @OnClick(R.id.btn_transfer)
     public void transfer(View view){

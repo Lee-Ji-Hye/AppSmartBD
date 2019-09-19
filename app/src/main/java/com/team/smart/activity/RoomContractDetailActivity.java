@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.team.smart.R;
 import com.team.smart.blockchain.Web3jAPI;
+import com.team.smart.vo.RoomContractDetailVO;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -16,6 +17,7 @@ public class RoomContractDetailActivity extends AppCompatActivity {
     private String b_area1,b_area2,b_address,b_year,b_landarea,b_buildarea,b_buildscale
             ,r_code,rt_hash,rt_email,rt_mobile,r_price,r_deposit,r_premium
             ,name,email,hp;
+    private RoomContractDetailVO.Contract contractVO;
     private int r_blockCode,r_total;
 
     private static Web3jAPI web3jAPI;
@@ -36,27 +38,7 @@ public class RoomContractDetailActivity extends AppCompatActivity {
 
     private void findid() {
         Intent intent = getIntent(); //데이터 수신
-        b_area1 = intent.getExtras().getString("b_area1");
-        b_area2 = intent.getExtras().getString("b_area2");
-        b_address = intent.getExtras().getString("b_address");
-        b_year = intent.getExtras().getString("b_year");
-        b_landarea = intent.getExtras().getString("b_landarea");
-        b_buildarea = intent.getExtras().getString("b_buildarea");
-        b_buildscale = intent.getExtras().getString("b_buildscale");
-
-        r_code = intent.getExtras().getString("r_code");
-        rt_hash = intent.getExtras().getString("rt_hash");
-        r_blockCode = intent.getExtras().getInt("r_blockCode");
-        r_price = intent.getExtras().getString("r_price");
-        r_deposit = intent.getExtras().getString("r_deposit");
-        r_premium = intent.getExtras().getString("r_premium");
-
-        rt_email = intent.getExtras().getString("rt_email");
-        rt_mobile = intent.getExtras().getString("rt_mobile");
-
-        name = intent.getExtras().getString("name");
-        email = intent.getExtras().getString("email");
-        hp = intent.getExtras().getString("hp");
+        contractVO = (RoomContractDetailVO.Contract) intent.getSerializableExtra("contractVO");
 
         tv_b_address = findViewById(R.id.tv_b_address);
         tv_b_year = findViewById(R.id.tv_b_year);
@@ -80,24 +62,24 @@ public class RoomContractDetailActivity extends AppCompatActivity {
         tv_hp = findViewById(R.id.tv_hp);
         tv_email = findViewById(R.id.tv_email);
 
-        tv_b_address.setText(b_area1+" "+b_area2+" "+b_address);
-        tv_b_year.setText(b_year);
-        tv_b_landarea.setText(b_landarea);
-        tv_b_buildscale.setText(b_buildscale);
-        tv_b_buildarea.setText(b_buildarea);
+        tv_b_address.setText(contractVO.getB_area1()+" "+contractVO.getB_area2()+" "+contractVO.getB_address());
+        tv_b_year.setText(contractVO.getB_year());
+        tv_b_landarea.setText(contractVO.getB_landarea());
+        tv_b_buildscale.setText(contractVO.getB_buildscale());
+        tv_b_buildarea.setText(contractVO.getB_buildarea());
 
-        tv_r_price2.setText(r_price);
-        tv_r_deposit3.setText(r_deposit);
-        tv_r_premium.setText(r_premium);
-        r_total = Integer.parseInt(r_price) + Integer.parseInt(r_deposit);
+        tv_r_price2.setText(String.valueOf(contractVO.getR_price()));
+        tv_r_deposit3.setText(String.valueOf(contractVO.getR_deposit()));
+        tv_r_premium.setText(String.valueOf(contractVO.getR_premium()));
+        r_total = contractVO.getR_price() + contractVO.getR_deposit();
         tv_rt_total.setText(String.valueOf(r_total));
 
-        et_rt_mobile.setText(rt_mobile);
-        et_rt_email.setText(rt_email);
+        et_rt_mobile.setText(contractVO.getRt_mobile());
+        et_rt_email.setText(contractVO.getRt_email());
 
-        tv_name.setText(name);
-        tv_hp.setText(hp);
-        tv_email.setText(email);
+        tv_name.setText(contractVO.getName());
+        tv_hp.setText(contractVO.getHp());
+        tv_email.setText(contractVO.getEmail());
     }
 
     //Bytes32toString
@@ -121,7 +103,7 @@ public class RoomContractDetailActivity extends AppCompatActivity {
                     public void run() {
                         Web3jAPI web3jAPI = Web3jAPI.getInstance();
 
-                        List<Object> details = web3jAPI.getBuyerInfo(BigInteger.valueOf(r_blockCode));
+                        List<Object> details = web3jAPI.getBuyerInfo(BigInteger.valueOf(contractVO.getR_blockcode()));
 
                         if (details.get(0).toString() != null) {
                             System.out.println(details.get(0).toString());

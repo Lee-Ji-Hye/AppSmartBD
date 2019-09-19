@@ -24,6 +24,8 @@ public class RoomContractVO {
     private String rt_date2;      //계약 만기일
     @SerializedName("rt_deposit")
     private String rt_deposit;    //계약 보증금
+    @SerializedName("rt_price")
+    private String rt_price;      //계약 월세
     @SerializedName("staff_id")
     private String staff_id;      //관리자 아이디
 
@@ -66,6 +68,10 @@ public class RoomContractVO {
     public String getRt_deposit() { return rt_deposit; }
 
     public void setRt_deposit(String rt_deposit) { this.rt_deposit = rt_deposit; }
+
+    public String getRt_price() { return rt_price; }
+
+    public void setRt_price(String rt_price) { this.rt_price = rt_price; }
 
     public String getStaff_id() { return staff_id; }
 

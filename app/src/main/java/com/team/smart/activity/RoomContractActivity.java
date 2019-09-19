@@ -48,6 +48,8 @@ public class RoomContractActivity extends AppCompatActivity implements
 
     private SpotsDialog mDialog;
 
+    private AlertDialog.Builder alertDialogBuilder;
+
     private List<String> names = new ArrayList<>();
     private List<String> passwords = new ArrayList<>();
     private List<String> address = new ArrayList<>();
@@ -299,7 +301,7 @@ public class RoomContractActivity extends AppCompatActivity implements
 
         new Thread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 Web3jAPI web3jAPI = Web3jAPI.getInstance();
                 Boolean valid = true;
                 BigInteger balance =  Web3jUtil.etherToWei(web3jAPI.getETHBalance());
@@ -310,6 +312,7 @@ public class RoomContractActivity extends AppCompatActivity implements
                     if(mDialog!=null && mDialog.isShowing()){
                         mDialog.dismiss();
                         Log.d("돈부족 확인", "돈부족 확인");
+
                     }
                     valid = false;
                 }
@@ -331,11 +334,9 @@ public class RoomContractActivity extends AppCompatActivity implements
                     }
                 };
 
-
                 if(networkResponse!=null) {
                     networkResponse.success(rt_hash);
                 }
-
 
             }
         }).start();
@@ -356,6 +357,7 @@ public class RoomContractActivity extends AppCompatActivity implements
         vo.setRt_email(et_rt_email.getText().toString());
         vo.setRt_date1(r_able_date);
         vo.setRt_deposit(r_deposit);
+        vo.setRt_price(r_price);
         vo.setStaff_id(userid);
 
         //계약 정보 통신
@@ -373,25 +375,26 @@ public class RoomContractActivity extends AppCompatActivity implements
                     String responseCode = data.get("responseCode").toString();
                     String responseMsg = data.get("responseMsg").toString();
 
-                    Log.d("응답코드~~~~~~~~~", responseCode);
-                    Toast toast = Toast.makeText(getApplicationContext(), "계약 정보 insert 성공!", Toast.LENGTH_SHORT);
+                    Log.d("응답코드~~~~~~~~~", String.valueOf(responseCode));
+                    /*Toast toast = Toast.makeText(getApplicationContext(), "계약 정보 insert 성공!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+                    toast.show();*/
 
                     //참고사이트 : https://arabiannight.tistory.com/entry/286
                     //FLAG_ACTIVITY_CLEAR_TOP: 루트액티비티와 중복된 액티비티만 남고 그게 아니면 액티비티가 디스트로이됨
-                    Intent intent = new Intent(RoomContractActivity.this, RoomContractCompleteActivity.class);
-                    startActivity(intent);
 
-                    if(!responseCode.equals("500")) {
-                        toast = Toast.makeText(getApplicationContext(),responseMsg, Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                        return;
 
-                    } else {
+                    Toast toast = Toast.makeText(getApplicationContext(),responseMsg, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
 
+                    if(responseCode.equals("500.0")) {
+                        Intent intent = new Intent(RoomContractActivity.this, RoomContractCompleteActivity.class);
+                        startActivity(intent);
                     }
+
+                    return;
+
                 }
             }
 

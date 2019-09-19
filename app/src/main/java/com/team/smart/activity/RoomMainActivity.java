@@ -135,12 +135,14 @@ public class RoomMainActivity extends HeaderActivity implements OnMapReadyCallba
     private void getSampleMarkerItems(ArrayList<RoomBVO.Room> RoomList) {
         ArrayList<MarkerItem> sampleList = new ArrayList();
 
-        for(int i=0; i<RoomList.size(); i++) {
-            sampleList.add(new MarkerItem(RoomList.get(i).getB_lat(), RoomList.get(i).getB_lon(), RoomList.get(i).getR_cnt(), RoomList.get(i).getB_code()));
-        }
+        if(RoomList != null) {
+            for(int i=0; i<RoomList.size(); i++) {
+                sampleList.add(new MarkerItem(RoomList.get(i).getB_lat(), RoomList.get(i).getB_lon(), RoomList.get(i).getR_cnt(), RoomList.get(i).getB_code()));
+            }
 
-        for (MarkerItem markerItem : sampleList) {
-            addMarker(markerItem);
+            for (MarkerItem markerItem : sampleList) {
+                addMarker(markerItem);
+            }
         }
     }
 
